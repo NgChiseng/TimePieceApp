@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TimePieceApp</string>
+    <string name="action_settings">Configuracion</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="title_donations">Donaciones</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_log_out">Salir</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_publications">Publicaciones</string>
+    <string name="title_sales">Ventas</string>
+    <string name="title_shopping">Compras</string>
+</resources>
