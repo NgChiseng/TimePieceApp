@@ -12,4 +12,6 @@
     <string name="title_publications">Publications</string>
     <string name="title_sales">Sales</string>
     <string name="title_shopping">Shopping</string>
+    <string name="title_activity_tour">TourActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
