@@ -22,6 +22,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*  Set the original theme style after used the SplashTheme style defined in the Manifest for
+        the MainActivity.
+         */
+        setTheme(R.style.AppTheme);
+
         executed = TimePieceSharedPreferences.getExecuted(MainActivity.this);
         if (!executed){
             /* --- This will create the intent to pass information of the context to the TourActivity,

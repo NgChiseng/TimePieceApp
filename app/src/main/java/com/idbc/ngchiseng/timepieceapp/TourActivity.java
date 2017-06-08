@@ -179,28 +179,6 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tour, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     /**
      * A placeholder fragment containing a simple view used for to change the images and information
      * of each screen in the tour.
@@ -222,9 +200,6 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         private TextView loginLink;
         private Button joinUp;
 
-        public PlaceholderFragment() {
-        }
-
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -239,7 +214,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
 
         /*  Method that search in the tour_imgs array and link the image corresponding in the fragments
         container, for show their.
-            @date[23/05/2017]
+            @date[08/06/2017]
             @author[ChiSeng Ng]
             @param [LayoutInfater] inflater Receive the .xml context and will instance it, for permit to
             add it into the Views Hierarchy
@@ -276,6 +251,14 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
             return rootView;
         }
 
+        /*  Method that handler the event handler with the event listener defined corresponding, in this
+        case is used for to edit the TimePieceSharePreferences's "executed" preference in "true", and
+        start the activity corresponding.
+            @date[08/06/2017]
+            @author[ChiSeng Ng]
+            @param [View] view View or widget that represent the button corresponding in this context.
+            @return [void]
+        */
         @Override
         public void onClick(View view) {
             TimePieceSharedPreferences.setExecuted(getContext(), true);
@@ -315,19 +298,5 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
             return 4;
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-                case 3:
-                    return "SECTION 4";
-            }
-            return null;
-        }
     }
 }
