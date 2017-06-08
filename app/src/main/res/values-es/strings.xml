@@ -11,4 +11,9 @@
     <string name="title_publications">Publicaciones</string>
     <string name="title_sales">Ventas</string>
     <string name="title_shopping">Compras</string>
+    <string name="skip">Saltar</string>
+    <string name="end">Fin</string>
+    <string name="login_link">- Iniciar Sesión</string>
+    <string name="login_question">¿Ya eres miembro?</string>
+    <string name="title_join">Unete</string>
 </resources>

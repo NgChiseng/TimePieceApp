@@ -8,37 +8,84 @@
     android:fitsSystemWindows="true"
     tools:context="com.idbc.ngchiseng.timepieceapp.TourActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|center">
 
+        <ImageView
+            android:id="@+id/page0"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+
+            app:srcCompat="@android:drawable/radiobutton_on_background"
+            android:layout_alignTop="@+id/page1"
+            android:layout_toLeftOf="@+id/page1"
+            android:layout_toStartOf="@+id/page1" />
+
+        <ImageView
+            android:id="@+id/page1"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            app:srcCompat="@android:drawable/radiobutton_off_background"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/page2"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            app:srcCompat="@android:drawable/radiobutton_off_background"
+            android:layout_alignTop="@+id/page1"
+            android:layout_toRightOf="@+id/page1"
+            android:layout_toEndOf="@+id/page1" />
+
+        <ImageView
+            android:id="@+id/page3"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            app:srcCompat="@android:drawable/radiobutton_off_background"
+            android:layout_alignTop="@+id/page2"
+            android:layout_toRightOf="@+id/page2"
+            android:layout_toEndOf="@+id/page2" />
+
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip"
+            android:fontFamily="monospace"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end"
+            android:fontFamily="monospace"
+            android:gravity="end|center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_gravity="end|center"
+            android:textColor="#ffffff"
+            android:visibility="invisible"
+            android:layout_alignBaseline="@+id/skip"
+            android:layout_alignBottom="@+id/skip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
