@@ -42,16 +42,19 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
      */
     private TextView end;
     private TextView skip;
-    private TextView loginQuestion;
-    private TextView loginLink;
-    private Button joinUp;
-    private ImageView page0;
-    private ImageView page1;
-    private ImageView page2;
-    private ImageView page3;
+    private ImageView dotPage0;
+    private ImageView dotPage1;
+    private ImageView dotPage2;
+    private ImageView dotPage3;
     private ImageView[] dots;
 
-
+    /*  Method that will onCreate the tout activity, link its component, and implements the
+    onClickListener for receive the click request.
+        @date[07/06/2017]
+        @author[ChiSeng Ng]
+        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @return [void]
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,15 +69,11 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
          */
         end = (TextView) findViewById(R.id.end);
         skip = (TextView) findViewById(R.id.skip);
-        loginQuestion = (TextView) findViewById(R.id.login_question);
-        loginLink = (TextView) findViewById(R.id.login_link);
-        joinUp = (Button) findViewById(R.id.join);
-
-        page0 = (ImageView) findViewById(R.id.page0);
-        page1 = (ImageView) findViewById(R.id.page1);
-        page2 = (ImageView) findViewById(R.id.page2);
-        page3 = (ImageView) findViewById(R.id.page3);
-        dots = new ImageView[]{page0, page1, page2, page3};
+        dotPage0 = (ImageView) findViewById(R.id.dot_page0);
+        dotPage1 = (ImageView) findViewById(R.id.dot_page1);
+        dotPage2 = (ImageView) findViewById(R.id.dot_page2);
+        dotPage3 = (ImageView) findViewById(R.id.dot_page3);
+        dots = new ImageView[]{dotPage0, dotPage1, dotPage2, dotPage3};
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -128,9 +127,6 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                  */
                 skip.setVisibility(position == 3 ? View.INVISIBLE : View.VISIBLE);
                 end.setVisibility(position == 3 ? View.VISIBLE : View.INVISIBLE);
-                loginQuestion.setVisibility(position == 0 ? View.VISIBLE : View.INVISIBLE);
-                loginLink.setVisibility(position == 0 ? View.VISIBLE : View.INVISIBLE);
-                joinUp.setVisibility(position == 0 ? View.VISIBLE : View.INVISIBLE);
 
             }
 
@@ -150,83 +146,38 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
 
         /* --- This will activate the listener to the START button
          */
-        end.setOnClickListener(this);/*new View.OnClickListener() {
-
-              Method that handler the this event handler with the event listener defined, in this
-            case is used for edit the TourSharePreferences's "visited" preference in "true", an start
-            the activity corresponding(MainActivity for now).
-                @date[23/05/2017]
-                @author[ChiSeng Ng]
-                @param [View] view View or widget that represent the START button in this context.
-                @return [void]
-
-            @Override
-            public void onClick(View view) {
-
-                SharedPreferences.Editor editor = getSharedPreferences("Tour", 0).edit();
-                editor.putBoolean("visited", true);
-                editor.apply();
-                Intent i = new Intent(TourActivity.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
-            }
-        });
+        end.setOnClickListener(this);
 
         /* --- This will activate the listener to the SKIP button
          */
-        skip.setOnClickListener(this);/*new View.OnClickListener() {
+        skip.setOnClickListener(this);
 
-            /*  Method that handler the this event handler with the event listener defined, in this
-            case is used for edit the TourSharePreferences's "visited" preference in "true", an start
-            the activity corresponding(MainActivity for now).
-                @date[23/05/2017]
-                @author[ChiSeng Ng]
-                @param [View] view View or widget that represent the SKIP button in this context.
-                @return [void]
-
-            @Override
-            public void onClick(View view) {
-
-                SharedPreferences.Editor editor = getSharedPreferences("Tour", 0).edit();
-                editor.putBoolean("visited", true);
-                editor.apply();
-                Intent i = new Intent(TourActivity.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                finish();
-            }
-        }); */
-
-        joinUp.setOnClickListener(this);
-        loginLink.setOnClickListener(this);
     }
 
+
+    /*  Method that handler the event handler with the event listener defined corresponding, in this
+    case is used for to edit the TimePieceSharePreferences's "executed" preference in "true", and
+    start the activity corresponding.
+        @date[08/06/2017]
+        @author[ChiSeng Ng]
+        @param [View] view View or widget that represent the button corresponding in this context.
+        @return [void]
+    */
     @Override
-    public void onClick(View view){
-        if (view.getId() == R.id.end){
+    public void onClick(View view) {
+        TimePieceSharedPreferences.setExecuted(TourActivity.this, true);
+        if (view.getId() == R.id.end) {
             Intent i = new Intent(TourActivity.this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
             finish();
-        } else if (view.getId() == R.id.skip){
-            Intent i = new Intent(TourActivity.this, MainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-        } else if (view.getId() == R.id.join){
-            Intent i = new Intent(TourActivity.this, MainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-        } else if (view.getId() == R.id.login_link){
+        } else if (view.getId() == R.id.skip) {
             Intent i = new Intent(TourActivity.this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
             finish();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -251,9 +202,10 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * A placeholder fragment containing a simple view used for to change the images and information
+     * of each screen in the tour.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -266,6 +218,9 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         */
         private ImageView img;
         private Integer[] tour_imgs = {R.drawable.products, R.drawable.services, R.drawable.donates, R.drawable.rating};
+        private TextView loginQuestion;
+        private TextView loginLink;
+        private Button joinUp;
 
         public PlaceholderFragment() {
         }
@@ -295,6 +250,23 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tour, container, false);
 
+            loginQuestion = (TextView) rootView.findViewById(R.id.login_question);
+            loginLink = (TextView) rootView.findViewById(R.id.login_link);
+            joinUp = (Button) rootView.findViewById(R.id.join);
+
+            if (getArguments().getInt(ARG_SECTION_NUMBER) == 1){
+                loginQuestion.setVisibility(View.VISIBLE);
+                loginLink.setVisibility(View.VISIBLE);
+                joinUp.setVisibility(View.VISIBLE);
+
+                loginLink.setOnClickListener(this);
+                joinUp.setOnClickListener(this);
+
+            } else {
+                loginQuestion.setVisibility(View.INVISIBLE);
+                loginLink.setVisibility(View.INVISIBLE);
+                joinUp.setVisibility(View.INVISIBLE);
+            }
             /* ---Declare and link the container widget ImageView, that will contain the background
             image corresponding to show in the tour_imgs array.
              */
@@ -303,7 +275,22 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
 
             return rootView;
         }
+
+        @Override
+        public void onClick(View view) {
+            TimePieceSharedPreferences.setExecuted(getContext(), true);
+            if (view.getId() == R.id.join) {
+                Intent i = new Intent(getContext(), MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            } else if (view.getId() == R.id.login_link) {
+                Intent i = new Intent(getContext(), MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        }
     }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -324,7 +311,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
 
