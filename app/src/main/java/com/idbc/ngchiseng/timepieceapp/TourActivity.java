@@ -171,12 +171,12 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         TimePieceSharedPreferences.setExecuted(TourActivity.this, true);
 
         if (view.getId() == R.id.end) {
-            Intent i = new Intent(TourActivity.this, MainActivity.class);
+            Intent i = new Intent(TourActivity.this, LoginActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
 
         } else if (view.getId() == R.id.skip) {
-            Intent i = new Intent(TourActivity.this, MainActivity.class);
+            Intent i = new Intent(TourActivity.this, LoginActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
 
@@ -277,10 +277,10 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
 
             } else if (view.getId() == R.id.login_link) {
-                Intent i = new Intent(getContext(), MainActivity.class);
+                Intent i = new Intent(getContext(), LoginActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
-                
+
             }
         }
     }
