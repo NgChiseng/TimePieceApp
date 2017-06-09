@@ -113,7 +113,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
             public void onPageSelected(int position) {
 
                 /* --- This will mark the button corresponding toque page marked in the scroll bar
-                of the screen.
+                of the screen, and update the other buttons.
                  */
                 for (int i = 0; i <= 3; i++) {
                     dots[i].setImageResource(
@@ -165,18 +165,23 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
     */
     @Override
     public void onClick(View view) {
+        /*
+            This will update the executed preference to avoid the initial tour appear
+         */
         TimePieceSharedPreferences.setExecuted(TourActivity.this, true);
+
         if (view.getId() == R.id.end) {
             Intent i = new Intent(TourActivity.this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-            finish();
+
         } else if (view.getId() == R.id.skip) {
             Intent i = new Intent(TourActivity.this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
-            finish();
+
         }
+        finish();
     }
 
     /**
@@ -261,15 +266,21 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         */
         @Override
         public void onClick(View view) {
+            /*
+                This will update the executed preference to avoid the initial tour appear
+            */
             TimePieceSharedPreferences.setExecuted(getContext(), true);
+
             if (view.getId() == R.id.join) {
                 Intent i = new Intent(getContext(), MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
+
             } else if (view.getId() == R.id.login_link) {
                 Intent i = new Intent(getContext(), MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
+                
             }
         }
     }
