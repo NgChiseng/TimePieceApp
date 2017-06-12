@@ -79,9 +79,9 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        /**
+        /*
          * This will instance the tour's pages listener and define the behavior of each them
-         */
+        */
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
 
@@ -174,14 +174,15 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
             Intent i = new Intent(TourActivity.this, LoginActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+            finish();
 
         } else if (view.getId() == R.id.skip) {
             Intent i = new Intent(TourActivity.this, LoginActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+            finish();
 
         }
-        finish();
     }
 
     /**
@@ -276,6 +277,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
 
+
             } else if (view.getId() == R.id.login_link) {
                 Intent i = new Intent(getContext(), LoginActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -290,9 +292,9 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

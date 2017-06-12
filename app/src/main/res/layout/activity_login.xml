@@ -14,9 +14,10 @@
         android:layout_marginTop="57dp"
         app:srcCompat="@drawable/logo_mockup"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/logo"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,28 +25,36 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:drawableLeft="@drawable/ic_email"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email"
+        android:imeOptions="actionNext"
         android:hint="@string/email" />
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_password_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_email"
+        android:layout_alignStart="@+id/login_email"
+        android:layout_marginTop="15dp"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true">
     <EditText
         android:id="@+id/login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_below="@+id/login_email"
-        android:layout_alignStart="@+id/login_email"
-        android:layout_marginTop="15dp"
-        android:drawableLeft="@drawable/ic_lock"
+        android:drawableStart="@drawable/ic_lock"
         android:hint="@string/password"/>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/login_password"
-        android:layout_below="@+id/login_password"
+        android:layout_alignStart="@+id/login_password_layout"
+        android:layout_below="@+id/login_password_layout"
         android:layout_marginTop="33dp"
         android:text="@string/login" />
 
@@ -53,7 +62,7 @@
         android:id="@+id/login_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/login_password"
+        android:layout_alignEnd="@+id/login_password_layout"
         android:layout_alignTop="@+id/login_button"
         android:text="@string/sign_up" />
 
@@ -66,23 +75,13 @@
         android:layout_marginTop="38dp"
         android:text="@string/forgot_password" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleContentDescription="@string/title_home"
-        app:passwordToggleDrawable="@drawable/ic_menu_share"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorAccent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/login_button">
-    <EditText
-        android:id="@+id/editText4"
+    <ProgressBar
+        android:id="@+id/login_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/login_button"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password"/>
-    </android.support.design.widget.TextInputLayout>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
 </RelativeLayout>

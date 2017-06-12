@@ -13,7 +13,13 @@
     <string name="title_shopping">Compras</string>
     <string name="skip">Saltar</string>
     <string name="end">Fin</string>
-    <string name="login_link">- Iniciar Sesión</string>
+    <string name="login_link"><u>- Iniciar Sesión</u></string>
     <string name="login_question">¿Ya eres miembro?</string>
     <string name="title_join">Unete</string>
+    <string name="email">Correo</string>
+    <string name="forgot_password"><u>¿Olvido su Contraseña?</u></string>
+    <string name="password">Contraseña</string>
+    <string name="sign_up">Registro</string>
+    <string name="login">Iniciar</string>
+    <string name="email_invalid">Este correo es invalido</string>
 </resources>
