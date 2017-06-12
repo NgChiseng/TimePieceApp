@@ -17,7 +17,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Boolean executed;
+    private Boolean executed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

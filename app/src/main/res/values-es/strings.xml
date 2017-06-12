@@ -22,4 +22,6 @@
     <string name="sign_up">Registro</string>
     <string name="login">Iniciar</string>
     <string name="email_invalid">Este correo es invalido</string>
+    <string name="password_reset_msg">Introduzca su correo, y le enviaremos un mensaje para recuperar su contraseña.</string>
+    <string name="submit">Enviar</string>
 </resources>

@@ -17,11 +17,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     /*
     This will declare the all widgets or elements of the Login screen.
      */
-    AutoCompleteTextView emailField;
-    EditText passwordField;
-    TextView forgotPassword;
-    Button logIn,logUp;
-    ProgressBar logProgressBar;
+    private AutoCompleteTextView emailField;
+    private EditText passwordField;
+    private TextView forgotPassword;
+    private Button logIn,logUp;
+    private ProgressBar logProgressBar;
 
     /*  Method that will onCreate the login activity, link its component, and implements the
     onClickListener for receive the click request.

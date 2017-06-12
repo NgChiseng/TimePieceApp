@@ -14,6 +14,7 @@
     <string name="logo">TimePiece Logo</string>
     <string name="sign_up">Sign Up</string>
     <string name="password">Password</string>
+    <string name="password_reset_msg">Enter your email address, and we will send you an email to recover your password.</string>
     <string name="title_donations">Donations</string>
     <string name="title_home">Home</string>
     <string name="title_join">Join Up</string>
@@ -23,7 +24,7 @@
     <string name="title_sales">Sales</string>
     <string name="title_shopping">Shopping</string>
     <string name="title_activity_tour">TourActivity</string>
-
+    <string name="submit">Submit</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="skip">Skip</string>
 
