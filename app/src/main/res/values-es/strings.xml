@@ -12,9 +12,6 @@
     <string name="title_sales">Ventas</string>
     <string name="title_shopping">Compras</string>
     <string name="skip">Saltar</string>
-    <string name="end">Fin</string>
-    <string name="login_link"><u>- Iniciar Sesión</u></string>
-    <string name="login_question">¿Ya eres miembro?</string>
     <string name="title_join">Unete</string>
     <string name="email">Correo</string>
     <string name="forgot_password"><u>¿Olvido su Contraseña?</u></string>
@@ -24,4 +21,12 @@
     <string name="email_invalid">Este correo es invalido</string>
     <string name="password_reset_msg">Introduzca su correo, y le enviaremos un mensaje para recuperar su contraseña.</string>
     <string name="submit">Enviar</string>
+    <string name="tour_msg_01">Has la diferencia, se parte de una única experiencia social en su estilo.</string>
+    <string name="tour_msg_02">Ayuda a la comunidad con tus donaciones.</string>
+    <string name="tour_msg_03">Ofrece tu conocimiento, productos y/o servicioes en la tienda.</string>
+    <string name="tour_msg_04">Mejora tu ranking y conoce personas interesantes.</string>
+    <string name="tour_title_01">ÚNETE A TIEMEPIECE</string>
+    <string name="tour_title_02">DONA</string>
+    <string name="tour_title_03">OFRECE Y GANA</string>
+    <string name="tour_title_04">CRECE CADA DÍA</string>
 </resources>

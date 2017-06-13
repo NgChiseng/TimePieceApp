@@ -12,81 +12,67 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/SkyBlue"
+        android:background="@drawable/bg_tour"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="48dp"
         android:layout_gravity="bottom|center">
 
         <ImageView
             android:id="@+id/dot_page0"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-
-            app:srcCompat="@android:drawable/radiobutton_on_background"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/dot_page1"
-            android:layout_toLeftOf="@+id/dot_page1"
-            android:layout_toStartOf="@+id/dot_page1" />
+            android:layout_marginStart="105dp"
+            app:srcCompat="@android:drawable/radiobutton_on_background" />
 
         <ImageView
             android:id="@+id/dot_page1"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            app:srcCompat="@android:drawable/radiobutton_off_background"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@+id/dot_page0"
+            app:srcCompat="@android:drawable/radiobutton_off_background" />
 
         <ImageView
             android:id="@+id/dot_page2"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            app:srcCompat="@android:drawable/radiobutton_off_background"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+
             android:layout_alignTop="@+id/dot_page1"
-            android:layout_toRightOf="@+id/dot_page1"
-            android:layout_toEndOf="@+id/dot_page1" />
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@+id/dot_page1"
+            app:srcCompat="@android:drawable/radiobutton_off_background" />
 
         <ImageView
             android:id="@+id/dot_page3"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            app:srcCompat="@android:drawable/radiobutton_off_background"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_alignTop="@+id/dot_page2"
-            android:layout_toRightOf="@+id/dot_page2"
-            android:layout_toEndOf="@+id/dot_page2" />
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/dot_page2"
+            app:srcCompat="@android:drawable/radiobutton_off_background" />
 
         <TextView
             android:id="@+id/skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="44dp"
+            android:layout_toEndOf="@+id/dot_page3"
             android:text="@string/skip"
-            android:fontFamily="monospace"
-            android:gravity="start"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_gravity="start"
-            android:textColor="#ffffff"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textColor="@color/White" />
 
-        <TextView
-            android:id="@+id/end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/end"
-            android:fontFamily="monospace"
-            android:gravity="end|center"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_gravity="end|center"
-            android:textColor="#ffffff"
-            android:visibility="invisible"
-            android:layout_alignBaseline="@+id/skip"
-            android:layout_alignBottom="@+id/skip"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/skip"
+            app:srcCompat="@drawable/arrow" />
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

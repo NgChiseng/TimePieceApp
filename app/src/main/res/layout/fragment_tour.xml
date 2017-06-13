@@ -10,42 +10,29 @@
 
     <ImageView
         android:id="@+id/app_img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="94dp"
+        android:layout_width="270dp"
+        android:layout_height="420dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/login_question"
-        android:layout_width="wrap_content"
+        android:id="@+id/title_text"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="@string/login_question"
-        android:layout_marginEnd="18dp"
-        android:layout_marginTop="42dp"
-        android:layout_below="@+id/join"
-        android:layout_alignEnd="@+id/join"
-        android:visibility="invisible"/>
-
-    <Button
-        android:id="@+id/join"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/app_img"
+        android:layout_alignBottom="@+id/app_img"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:visibility="invisible"
-        android:text="@string/title_join" />
+        android:layout_marginBottom="96dp"
+        android:gravity="center"
+         />
 
     <TextView
-        android:id="@+id/login_link"
-        android:layout_width="wrap_content"
+        android:id="@+id/content_text"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="@string/login_link"
-        android:layout_alignBaseline="@+id/login_question"
-        android:layout_alignBottom="@+id/login_question"
-        android:layout_toEndOf="@+id/join"
-        android:layout_marginStart="12dp"
-        android:visibility="invisible"/>
+        android:layout_alignTop="@+id/title_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        />
 
 </RelativeLayout>

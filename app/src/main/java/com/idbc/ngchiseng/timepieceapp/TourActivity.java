@@ -1,5 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class TourActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
@@ -40,7 +44,6 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * This will define the elements used in each screen of the tour
      */
-    private TextView end;
     private TextView skip;
     private ImageView dotPage0;
     private ImageView dotPage1;
@@ -58,6 +61,15 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        This will define the fonts calling CalligraphyConfig() method to change the letter font
+        defined in the assets/fonts/ directory.
+         */
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/MyriadPro-Regular.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         setContentView(R.layout.activity_tour);
 
         // Create the adapter that will return a fragment for each of the three
@@ -67,7 +79,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         /* --- This will to link the layout elements with this activity for their future use, and
         create the dots array and append in this, all the pages.
          */
-        end = (TextView) findViewById(R.id.end);
+
         skip = (TextView) findViewById(R.id.skip);
         dotPage0 = (ImageView) findViewById(R.id.dot_page0);
         dotPage1 = (ImageView) findViewById(R.id.dot_page1);
@@ -101,9 +113,8 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
 
             }
 
-            /*  Method that will be invoked when each page becomes selected. Animation is not
-            necessarily complete. In this case is set the visibility of LogIn Link and the SKIP,
-            Join and End buttons.
+            /*  Method that will be invoked when each page becomes selected. In this case is used
+            mark the dot button corresponding.
                 @date[07/06/2017]
                 @author[ChiSeng Ng]
                 @param [int] position Position index of the new selected page.
@@ -121,13 +132,6 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                                     android.R.drawable.radiobutton_off_background
                     );
                 }
-
-                /* --- This will configure the visibility of the fragments elements in each screen
-                of the app.
-                 */
-                skip.setVisibility(position == 3 ? View.INVISIBLE : View.VISIBLE);
-                end.setVisibility(position == 3 ? View.VISIBLE : View.INVISIBLE);
-
             }
 
             /*  Method called when the scroll state changes. Useful for discovering when the user
@@ -144,10 +148,6 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        /* --- This will activate the listener to the START button
-         */
-        end.setOnClickListener(this);
-
         /* --- This will activate the listener to the SKIP button
          */
         skip.setOnClickListener(this);
@@ -157,7 +157,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
 
     /*  Method that handler the event handler with the event listener defined corresponding, in this
     case is used for to edit the TimePieceSharePreferences's "executed" preference in "true", and
-    start the activity corresponding.
+    start the activity corresponding, in this case, is the login activity for the skip button.
         @date[08/06/2017]
         @author[ChiSeng Ng]
         @param [View] view View or widget that represent the button corresponding in this context.
@@ -170,41 +170,34 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
          */
         TimePieceSharedPreferences.setExecuted(TourActivity.this, true);
 
-        if (view.getId() == R.id.end) {
-            Intent i = new Intent(TourActivity.this, LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-
-        } else if (view.getId() == R.id.skip) {
-            Intent i = new Intent(TourActivity.this, LoginActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-            finish();
-
-        }
+        Intent i = new Intent(TourActivity.this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+        finish();
     }
 
     /**
      * A placeholder fragment containing a simple view used for to change the images and information
      * of each screen in the tour.
      */
-    public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
+    public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /* ---This will declare the variable img that will save each image will show in each fragment
-        corresponding and also will declare the tour_imgs array to save the references of the draw
-        images.
+        /* ---This will declare the variables that will save each value will show in each fragment
+        corresponding and also will declare the arrays to save the references of the draw
+        images or string messages.
         */
         private ImageView img;
-        private Integer[] tour_imgs = {R.drawable.products, R.drawable.services, R.drawable.donates, R.drawable.rating};
-        private TextView loginQuestion;
-        private TextView loginLink;
-        private Button joinUp;
+        private TextView title;
+        private TextView msg;
+        private Integer[] tour_imgs = {R.drawable.tour_01, R.drawable.tour_02, R.drawable.tour_03, R.drawable.tour_04};
+        private Integer[] tour_titles = {R.string.tour_title_01, R.string.tour_title_02, R.string.tour_title_03, R.string.tour_title_04};
+        private Integer [] tour_msgs = {R.string.tour_msg_01, R.string.tour_msg_02, R.string.tour_msg_03, R.string.tour_msg_04};
+
 
         /**
          * Returns a new instance of this fragment for the given section
@@ -231,62 +224,28 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tour, container, false);
 
-            loginQuestion = (TextView) rootView.findViewById(R.id.login_question);
-            loginLink = (TextView) rootView.findViewById(R.id.login_link);
-            joinUp = (Button) rootView.findViewById(R.id.join);
-
-            if (getArguments().getInt(ARG_SECTION_NUMBER) == 1){
-                loginQuestion.setVisibility(View.VISIBLE);
-                loginLink.setVisibility(View.VISIBLE);
-                joinUp.setVisibility(View.VISIBLE);
-
-                loginLink.setOnClickListener(this);
-                joinUp.setOnClickListener(this);
-
-            } else {
-                loginQuestion.setVisibility(View.INVISIBLE);
-                loginLink.setVisibility(View.INVISIBLE);
-                joinUp.setVisibility(View.INVISIBLE);
-            }
             /* ---Declare and link the container widget ImageView, that will contain the background
             image corresponding to show in the tour_imgs array.
              */
             img = (ImageView) rootView.findViewById(R.id.app_img);
             img.setBackgroundResource(tour_imgs[getArguments().getInt(ARG_SECTION_NUMBER) - 1]);
 
+             /* ---Declare and link the container widget TextView, that will contain the text
+            corresponding to show in the tour_title array.
+             */
+            title = (TextView) rootView.findViewById(R.id.title_text);
+            title.setText(getString(tour_titles[getArguments().getInt(ARG_SECTION_NUMBER) - 1]));
+
+             /* ---Declare and link the container widget TextView, that will contain the text
+            corresponding to show in the tour_msgs array.
+             */
+            msg = (TextView) rootView.findViewById(R.id.content_text);
+            msg.setText(getString(tour_msgs[getArguments().getInt(ARG_SECTION_NUMBER) - 1]));
+
             return rootView;
         }
 
-        /*  Method that handler the event handler with the event listener defined corresponding, in this
-        case is used for to edit the TimePieceSharePreferences's "executed" preference in "true", and
-        start the activity corresponding.
-            @date[08/06/2017]
-            @author[ChiSeng Ng]
-            @param [View] view View or widget that represent the button corresponding in this context.
-            @return [void]
-        */
-        @Override
-        public void onClick(View view) {
-            /*
-                This will update the executed preference to avoid the initial tour appear
-            */
-            TimePieceSharedPreferences.setExecuted(getContext(), true);
-
-            if (view.getId() == R.id.join) {
-                Intent i = new Intent(getContext(), MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-
-
-            } else if (view.getId() == R.id.login_link) {
-                Intent i = new Intent(getContext(), LoginActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-
-            }
-        }
     }
-
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -310,6 +269,18 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
             // Show 4 total pages.
             return 4;
         }
+    }
 
+    /*  Method that use the Calligraphy dependence to attach the base context and to can change the
+    letter's font corresponding.
+           @date[13/06/2017]
+           @reference [https://github.com/chrisjenx/Calligraphy/]
+           @author[ChiSeng Ng]
+           @param [Context] newBase Base Context of the Parent Activity.
+           @return [void]
+   */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
