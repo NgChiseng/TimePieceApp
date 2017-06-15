@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -126,11 +127,27 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
                 /* --- This will mark the button corresponding toque page marked in the scroll bar
                 of the screen, and update the other buttons.
                  */
-                for (int i = 0; i <= 3; i++) {
-                    dots[i].setImageResource(
-                            i == position ? android.R.drawable.radiobutton_on_background :
-                                    android.R.drawable.radiobutton_off_background
-                    );
+                switch (position) {
+                    case 0:
+                        dots[0].setImageResource(android.R.drawable.radiobutton_on_background);
+                        dots[1].setImageResource(android.R.drawable.radiobutton_off_background);
+                        break;
+                    case 1:
+                        dots[1].setImageResource(android.R.drawable.radiobutton_on_background);
+                        dots[0].setImageResource(android.R.drawable.radiobutton_off_background);
+                        dots[2].setImageResource(android.R.drawable.radiobutton_off_background);
+                        break;
+                    case 2:
+                        dots[2].setImageResource(android.R.drawable.radiobutton_on_background);
+                        dots[1].setImageResource(android.R.drawable.radiobutton_off_background);
+                        dots[3].setImageResource(android.R.drawable.radiobutton_off_background);
+                        break;
+                    case 3:
+                        dots[3].setImageResource(android.R.drawable.radiobutton_on_background);
+                        dots[2].setImageResource(android.R.drawable.radiobutton_off_background);
+                        break;
+                    default:
+                        break;
                 }
             }
 
@@ -173,7 +190,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = new Intent(TourActivity.this, LoginActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
-        finish();
+        //finish();
     }
 
     /**
