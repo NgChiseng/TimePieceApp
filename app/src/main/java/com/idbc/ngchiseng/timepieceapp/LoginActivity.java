@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case (R.id.login_signup):
-                Intent intentSingUp = new Intent(this, MainActivity.class);
+                Intent intentSingUp = new Intent(this, RegisterActivity.class);
                 intentSingUp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentSingUp);
                 //finish();

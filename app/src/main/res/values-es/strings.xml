@@ -33,4 +33,6 @@
     <string name="login_msg">Compra y vende generando conciencia social</string>
     <string name="login_sing_up"><u>Regístrate</u></string>
     <string name="sign_up_fb">REGÍSTRATRE CON <b>FACEBOOK</b></string>
+    <string name="phone">Teléfono</string>
+    <string name="name_complete">Nombre Completo</string>
 </resources>
