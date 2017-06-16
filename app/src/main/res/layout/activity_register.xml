@@ -7,31 +7,8 @@
     android:background="@drawable/bg_register"
     tools:context="com.idbc.ngchiseng.timepieceapp.RegisterActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/signup_password_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:hintEnabled="false"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/White"
-        android:layout_below="@+id/name_complete"
-        android:layout_alignStart="@+id/name_complete">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/signup_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/White"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:textColor="@color/White"
-            android:textColorHint="@color/White" />
-    </android.support.design.widget.TextInputLayout>
-
     <EditText
-        android:id="@+id/name_complete"
+        android:id="@+id/signup_name_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="86dp"
@@ -45,6 +22,30 @@
         android:layout_marginEnd="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/signup_password_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/White"
+        android:layout_below="@+id/signup_name_complete"
+        android:layout_alignStart="@+id/signup_name_complete">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/signup_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:backgroundTint="@color/White"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="@color/White"
+            android:textColorHint="@color/White" />
+    </android.support.design.widget.TextInputLayout>
 
     <EditText
         android:id="@+id/signup_email"
@@ -72,7 +73,7 @@
         android:backgroundTint="@color/White"
         android:inputType="phone"
         android:hint="@string/phone"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionDone"
         android:layout_below="@+id/signup_email"
         android:layout_alignStart="@+id/signup_email" />
 
@@ -80,9 +81,10 @@
         android:id="@+id/signup_btn"
         android:layout_width="260dp"
         android:layout_height="45dp"
+        android:textAlignment="center"
         android:background="@drawable/btn_ppal"
         android:textColor="@color/White"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="29dp"
         android:text="@string/sign_up"
         android:layout_below="@+id/signup_phone"
         android:layout_centerHorizontal="true" />
@@ -91,20 +93,21 @@
         android:id="@+id/signup_btn_fb"
         android:layout_width="260dp"
         android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/signup_btn"
         android:layout_marginBottom="14dp"
+        android:textAlignment="center"
         android:background="@drawable/btn_fb"
         android:textColor="@color/White"
-        android:text="@string/sign_up_fb" />
+        android:text="@string/sign_up_fb"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/signup_btn" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/user"
-        android:layout_alignBottom="@+id/name_complete"
-        android:layout_toStartOf="@+id/name_complete" />
+        android:layout_alignBottom="@+id/signup_name_complete"
+        android:layout_toStartOf="@+id/signup_name_complete" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -129,4 +132,12 @@
         app:srcCompat="@drawable/phone"
         android:layout_alignBottom="@+id/signup_phone"
         android:layout_toStartOf="@+id/signup_phone" />
+
+    <ProgressBar
+        android:id="@+id/signup_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
