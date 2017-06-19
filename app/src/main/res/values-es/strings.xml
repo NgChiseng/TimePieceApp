@@ -35,4 +35,8 @@
     <string name="sign_up_fb">REGISTRO CON <b>FACEBOOK</b></string>
     <string name="phone">Teléfono</string>
     <string name="name_complete">Nombre Completo</string>
+    <string name="main_announces">%1$d anuncios</string>
+    <string name="main_donations"><b>DONACIONES</b></string>
+    <string name="main_products"><b>PRODUCTOS</b></string>
+    <string name="main_services"><b>SERVICIOS</b></string>
 </resources>

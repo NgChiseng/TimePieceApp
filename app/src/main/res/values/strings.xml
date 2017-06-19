@@ -13,6 +13,10 @@
     <string name="login_sing_up"><u>Sing Up</u></string>
     <string name="logo">TimePiece Logo</string>
     <string name="login_msg">Buy and sell generating social awareness</string>
+    <string name="main_products"><b>PRODUCTS</b></string>
+    <string name="main_services"><b>SERVICES</b></string>
+    <string name="main_donations"><b>DONATIONS</b></string>
+    <string name="main_announces">%1$d announces</string>
     <string name="name_complete">Name Complete</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_fb">SIGN UP WITH <b>FACEBOOK</b></string>

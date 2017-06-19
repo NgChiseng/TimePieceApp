@@ -11,55 +11,130 @@
     tools:showIn="@layout/app_bar_main">
 
     <RelativeLayout
+        android:id="@+id/main_products"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView17"
+            android:id="@+id/imageView8"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/productos" />
+
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:text="@string/main_products"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_above="@+id/main_products_announces"
+            android:layout_alignEnd="@+id/main_products_announces" />
+
+        <TextView
+            android:id="@+id/main_products_announces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_centerVertical="true"
-            app:srcCompat="@drawable/productss" />
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/gray"/>
     </RelativeLayout>
 
     <View
-        android:layout_width="fill_parent"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
         android:layout_height="1dp"
         android:background="@color/gray" />
 
     <RelativeLayout
+        android:id="@+id/main_services"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView19"
+            android:id="@+id/imageView9"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="14dp"
+            app:srcCompat="@drawable/servicios"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:text="@string/main_services"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_above="@+id/main_services_announces"
+            android:layout_alignEnd="@+id/main_services_announces" />
+
+        <TextView
+            android:id="@+id/main_services_announces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_centerVertical="true"
-            app:srcCompat="@drawable/services" />
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/gray"/>
     </RelativeLayout>
 
     <View
-        android:layout_width="fill_parent"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
         android:layout_height="1dp"
         android:background="@color/gray" />
 
     <RelativeLayout
+        android:id="@+id/main_donations"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView20"
+            android:id="@+id/imageView10"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/donaciones" />
+
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:text="@string/main_donations"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_above="@+id/main_donations_announces"
+            android:layout_alignEnd="@+id/main_donations_announces" />
+
+        <TextView
+            android:id="@+id/main_donations_announces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_centerVertical="true"
-            app:srcCompat="@drawable/donates" />
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/gray"/>
     </RelativeLayout>
 
 </LinearLayout>
