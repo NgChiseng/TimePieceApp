@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity
     private ImageView shoppingBag;
     private TextView productsAnnounces,servicesAnnounces,donationsAnnounces;
 
+    FragmentManager mFragmentManager;
+    FragmentTransaction mFragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+
+        mFragmentManager = getSupportFragmentManager();
 
         executed = TimePieceSharedPreferences.getExecuted(MainActivity.this);
         if (!executed){
@@ -148,7 +155,8 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()){
             case (R.id.main_products):
-                Toast.makeText(view.getContext(), "Click Products" , Toast.LENGTH_LONG).show();
+                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).commit();
                 break;
             case (R.id.main_services):
                 Toast.makeText(view.getContext(), "Click Services" , Toast.LENGTH_LONG).show();
