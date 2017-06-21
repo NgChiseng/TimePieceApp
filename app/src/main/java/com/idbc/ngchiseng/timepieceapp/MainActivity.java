@@ -159,7 +159,8 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).commit();
                 break;
             case (R.id.main_services):
-                Toast.makeText(view.getContext(), "Click Services" , Toast.LENGTH_LONG).show();
+                FragmentTransaction fragmentTransactions = mFragmentManager.beginTransaction();
+                fragmentTransactions.replace(R.id.fragment_container,new ServicesFragment()).commit();
                 break;
             case (R.id.main_donations):
                 Toast.makeText(view.getContext(), "Click Donations" , Toast.LENGTH_LONG).show();

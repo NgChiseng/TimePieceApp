@@ -24,7 +24,6 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             app:srcCompat="@drawable/productos" />
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -51,7 +50,7 @@
 
     <View
         android:layout_gravity="center"
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:background="@color/gray" />
 
@@ -96,7 +95,7 @@
 
     <View
         android:layout_gravity="center"
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:background="@color/gray" />
 
@@ -137,5 +136,4 @@
             android:textAlignment="center"
             android:textColor="@color/gray"/>
     </RelativeLayout>
-
 </LinearLayout>

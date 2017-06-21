@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.idbc.ngchiseng.timepieceapp.ProductsFragment">
 
     <RelativeLayout
@@ -24,16 +23,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:id="@+id/searchView2"
+            android:id="@+id/products_search"
             android:iconifiedByDefault="false"
-            android:background="@drawable/search_box"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"/>
+            android:background="@drawable/search_box" />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/searchView2"
+            android:layout_below="@+id/products_search"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
