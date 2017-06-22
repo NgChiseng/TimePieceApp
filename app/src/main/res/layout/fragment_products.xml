@@ -12,26 +12,28 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_products"
-            android:textColor="@color/black"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp" />
+            android:layout_marginTop="18dp"
+            android:text="@string/main_products"
+            android:textColor="@color/black" />
 
         <SearchView
-            android:layout_width="wrap_content"
+            android:id="@+id/products_search"
+            android:layout_width="278dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/search_box"
+            android:iconifiedByDefault="false"
+            android:searchIcon="@drawable/search"
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:id="@+id/products_search"
-            android:iconifiedByDefault="false"
-            android:background="@drawable/search_box" />
+            android:layout_marginTop="15dp" />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/products_search"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
