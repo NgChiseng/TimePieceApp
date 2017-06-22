@@ -24,35 +24,38 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             app:srcCompat="@drawable/productos" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_products"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textColor="@color/black"
             android:layout_above="@+id/main_products_announces"
-            android:layout_alignEnd="@+id/main_products_announces" />
+            android:layout_alignEnd="@+id/main_products_announces"
+            android:gravity="center"
+            android:text="@string/main_products"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/main_products_announces"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/gray"/>
-    </RelativeLayout>
+            android:textColor="@color/gray" />
 
-    <View
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
+        <View
+            android:layout_width="280dp"
+            android:layout_height="0.5dp"
+            android:background="@color/gray"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/main_services"
@@ -91,13 +94,15 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/gray"/>
-    </RelativeLayout>
 
-    <View
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
+        <View
+            android:layout_width="280dp"
+            android:layout_height="0.5dp"
+            android:background="@color/gray"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/main_donations"
