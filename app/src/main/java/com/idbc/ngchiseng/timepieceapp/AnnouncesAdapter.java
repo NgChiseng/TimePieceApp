@@ -56,6 +56,7 @@ public abstract class AnnouncesAdapter extends BaseAdapter {
 
         if(view == null){
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = vi.inflate(idListLayout,null);
         }
 
         onEntry (entries.get(position), view);
@@ -85,6 +86,9 @@ public abstract class AnnouncesAdapter extends BaseAdapter {
     public Object getItem(int position){
         return entries.get(position);
     }
+
+    @Override
+    public long getItemId(int position) { return System.identityHashCode(entries.get(position));}
 
     /*  Abstract Method that will be extender in the fragment or activity in the will use, for
     handler the components corresponding in the ElementView(In this case announce.xml). This is for

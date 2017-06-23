@@ -7,102 +7,66 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ProductsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ProductsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ProductsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public ProductsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductsFragment newInstance(String param1, String param2) {
-        ProductsFragment fragment = new ProductsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private ListView listAnnounces;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false);
-    }
+        final View productsView = inflater.inflate(R.layout.fragment_products, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+        // Initialized ArrayList of Announces
+        ArrayList<Announce> data = new ArrayList<Announce>();
 
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-    */
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+        /*  This block will obtain and add the date corresponding to each Announce object on the
+        ArrayList of Announces.
+         */
+        data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Carlos Lopez", "Altamira,Caracas", "$25/Persona" ));
+        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$42/hr" ));
+        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carlos Lopez", "A domicilio", "$25/hr" ));
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        /*  This will handler the ArrayList of Announces and the data inside its with the screen list
+        and components o widgets, using the AnnouncesAdapter.
+         */
+        listAnnounces = (ListView) productsView.findViewById(R.id.products_list);
+        listAnnounces.setAdapter(new AnnouncesAdapter(getContext(), R.layout.announce, data) {
+
+            /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
+            the respective elements and handlers.
+             */
+            @Override
+            public void onEntry(Object entry, View view) {
+
+                if (entry != null){
+
+                    ImageView announceImage = (ImageView) view.findViewById(R.id.announce_image);
+                    announceImage.setImageResource(((Announce) entry).getImage());
+
+                    TextView announceTitle = (TextView) view.findViewById(R.id.announce_title);
+                    announceTitle.setText(((Announce) entry).getAnnounceTitle());
+
+                    TextView announceOwner = (TextView) view.findViewById(R.id.announce_owner);
+                    announceOwner.setText(((Announce) entry).getAnnounceOwner());
+
+                    TextView announceAddress = (TextView) view.findViewById(R.id.announce_address);
+                    announceAddress.setText(((Announce) entry).getAnnounceAddress());
+
+                    TextView announcePrice = (TextView) view.findViewById(R.id.announce_price);
+                    announcePrice.setText(((Announce) entry).getAnnouncePrice());
+                }
+            }
+        });
+
+        return productsView;
     }
 }

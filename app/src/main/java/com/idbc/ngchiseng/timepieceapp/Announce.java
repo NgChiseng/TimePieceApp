@@ -13,8 +13,8 @@ public class Announce {
     it is more efficient, but maybe less secure. The other form is make each variable like private
     and implements each get's method corresponding.
      */
-    public int idImage;
-    public String announceTitle, announceOwner, announceAddress, announcePrice;
+    private int idImage;
+    private String announceTitle, announceOwner, announceAddress, announcePrice;
 
     public Announce(int idImage, String announceTitle, String announceOwner, String announceAddress, String announcePrice){
         this.idImage = idImage;
@@ -23,4 +23,18 @@ public class Announce {
         this.announceAddress = announceAddress;
         this.announcePrice = announcePrice;
     }
+
+    /*  This are the get's method used for return the values of each attribute of the class
+
+     */
+    public int getImage(){ return idImage; }
+
+    public String getAnnounceTitle() { return announceTitle; }
+
+    public String getAnnounceOwner() { return announceOwner; }
+
+    public String getAnnounceAddress() { return announceAddress; }
+
+    public String getAnnouncePrice() { return announcePrice; }
+
 }

@@ -30,10 +30,16 @@
             android:layout_marginTop="15dp" />
 
         <ListView
+            android:id="@+id/products_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/products_search"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:background="@color/White"
+            android:divider="@color/White"
+            android:dividerHeight="16dp"
+            android:padding="16dp"
+            android:scrollbarStyle="outsideOverlay"/>
 
     </RelativeLayout>
 
