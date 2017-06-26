@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         defined in the assets/fonts/ directory.
          */
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/MyriadPro-Regular.otf")
+                .setDefaultFontPath("MyriadPro-SemiExt.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

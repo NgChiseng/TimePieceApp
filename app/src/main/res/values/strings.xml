@@ -13,9 +13,9 @@
     <string name="login_sing_up"><u>Sing Up</u></string>
     <string name="logo">TimePiece Logo</string>
     <string name="login_msg">Buy and sell generating social awareness</string>
-    <string name="main_products"><b>PRODUCTS</b></string>
-    <string name="main_services"><b>SERVICES</b></string>
-    <string name="main_donations"><b>DONATIONS</b></string>
+    <string name="main_products">PRODUCTS</string>
+    <string name="main_services">SERVICES</string>
+    <string name="main_donations">DONATIONS</string>
     <string name="main_announces">%1$d announces</string>
     <string name="name_complete">Name Complete</string>
     <string name="sign_up">Sign Up</string>
@@ -31,10 +31,10 @@
     <string name="title_sales">Sales</string>
     <string name="title_shopping">Shopping</string>
     <string name="title_activity_tour">TourActivity</string>
-    <string name="tour_title_01"><b>JOIN TO TIMEPIECE</b></string>
-    <string name="tour_title_02"><b>DONATES</b></string>
-    <string name="tour_title_03"><b>OFFERS AND WIN</b></string>
-    <string name="tour_title_04"><b>GROWS DAY TO DAY</b></string>
+    <string name="tour_title_01">JOIN TO TIMEPIECE</string>
+    <string name="tour_title_02">DONATES</string>
+    <string name="tour_title_03">OFFERS AND WIN</string>
+    <string name="tour_title_04">GROWS DAY TO DAY</string>
     <string name="tour_msg_01">Make the difference, be part of a unique social experience in its style.</string>
     <string name="tour_msg_02">Helps to the community with your donations.</string>
     <string name="tour_msg_03">Offers your products and/or services in the store.</string>
