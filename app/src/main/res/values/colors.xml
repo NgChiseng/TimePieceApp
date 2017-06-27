@@ -6,5 +6,6 @@
     <color name="barWhite">#FFFFFF</color>
     <color name="White">#F6F7F9</color>
     <color name="black">#1D1B1B</color>
+    <color name="announce_banner">#5abcd8</color>
     <color name="gray">#BDBDBC</color>
 </resources>

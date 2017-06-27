@@ -25,10 +25,10 @@
     <string name="tour_msg_02">Ayuda a la comunidad con tus donaciones.</string>
     <string name="tour_msg_03">Ofrece tus productos y/o servicios en la tienda.</string>
     <string name="tour_msg_04">Mejora tu ranking y conoce personas interesantes.</string>
-    <string name="tour_title_01"><b>ÚNETE A TIEMEPIECE</b></string>
-    <string name="tour_title_02"><b>DONA</b></string>
-    <string name="tour_title_03"><b>OFRECE Y GANA</b></string>
-    <string name="tour_title_04"><b>CRECE CADA DÍA</b></string>
+    <string name="tour_title_01">ÚNETE A TIEMEPIECE</string>
+    <string name="tour_title_02">DONA</string>
+    <string name="tour_title_03">OFRECE Y GANA</string>
+    <string name="tour_title_04">CRECE CADA DÍA</string>
     <string name="login_fb">INICIAR CON <b>FACEBOOK</b></string>
     <string name="login_msg">Compra y vende generando conciencia social</string>
     <string name="login_sing_up"><u>Regístrate</u></string>
@@ -36,7 +36,7 @@
     <string name="phone">Teléfono</string>
     <string name="name_complete">Nombre Completo</string>
     <string name="main_announces">%1$d anuncios</string>
-    <string name="main_donations"><b>DONACIONES</b></string>
-    <string name="main_products"><b>PRODUCTOS</b></string>
-    <string name="main_services"><b>SERVICIOS</b></string>
+    <string name="main_donations">DONACIONES</string>
+    <string name="main_products">PRODUCTOS</string>
+    <string name="main_services">SERVICIOS</string>
 </resources>

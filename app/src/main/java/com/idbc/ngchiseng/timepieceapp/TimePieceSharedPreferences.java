@@ -19,6 +19,9 @@ public class TimePieceSharedPreferences {
     static final String EXECUTED = "executed";
     static final String AUTH_TOKEN= "auth_token";
 
+    /* This define the default SharedPreference that will return in case of error. It is necessary
+    for implements SharedPreference in a Class.
+     */
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }

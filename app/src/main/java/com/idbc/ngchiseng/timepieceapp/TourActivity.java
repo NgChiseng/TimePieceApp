@@ -52,7 +52,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView dotPage3;
     private ImageView[] dots;
 
-    /*  Method that will onCreate the tout activity, link its component, and implements the
+    /*  Method that will onCreate the tour activity, link its component, and implements the
     onClickListener for receive the click request.
         @date[07/06/2017]
         @author[ChiSeng Ng]
@@ -67,7 +67,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         defined in the assets/fonts/ directory.
          */
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/MyriadPro-Regular.otf")
+                .setDefaultFontPath("fonts/MyriadPro-SemiExt.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
