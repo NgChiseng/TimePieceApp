@@ -15,9 +15,19 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PasswordResetActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * This will define the elements used in password reset screen.
+     */
     private AutoCompleteTextView emailField;
     private Button submitButton;
 
+    /*  Method that will onCreate the password reset activity, link its component, and implements
+    the onClickListener for receive the click request.
+        @date[12/06/2017]
+        @author[ChiSeng Ng]
+        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @return [void]
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +36,7 @@ public class PasswordResetActivity extends AppCompatActivity implements View.OnC
         defined in the assets/fonts/ directory.
          */
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/MyriadPro-Regular.otf")
+                .setDefaultFontPath("fonts/MyriadPro-SemiExt.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

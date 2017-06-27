@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 
-public class ProductsFragment extends Fragment {
+public class DonationsFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listAnnounces;
@@ -33,7 +33,7 @@ public class ProductsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View productsView = inflater.inflate(R.layout.fragment_products, container, false);
+        final View donationsView = inflater.inflate(R.layout.fragment_donations, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
@@ -48,7 +48,7 @@ public class ProductsFragment extends Fragment {
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
-        listAnnounces = (ListView) productsView.findViewById(R.id.products_list);
+        listAnnounces = (ListView) donationsView.findViewById(R.id.donations_list);
         listAnnounces.setAdapter(new AnnouncesAdapter(getContext(), R.layout.announce, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
@@ -77,6 +77,6 @@ public class ProductsFragment extends Fragment {
             }
         });
 
-        return productsView;
+        return donationsView;
     }
 }

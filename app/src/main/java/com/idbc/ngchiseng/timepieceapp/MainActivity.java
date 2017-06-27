@@ -25,14 +25,27 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    /*  This will declare the global variables that are going to use in the main Activity */
     private Boolean executed;
     private RelativeLayout mainProducts,mainServices,mainDonations;
     private ImageView shoppingBag;
     private TextView productsAnnounces,servicesAnnounces,donationsAnnounces;
 
+    /*  This will declare the fragment manager variable for the fragments invocations. */
     FragmentManager mFragmentManager;
-    FragmentTransaction mFragmentTransaction;
 
+    /*  Method that will onCreate the main activity, link its component, and implements the
+    onClickListener for receive the click request. In this case also will:
+    - Implement the App's SplashTheme function.
+    - Verify if is the first time that the user start the App for to show the Initial Tour.
+    - Verify if the user is logged.
+    - Implement and render the main screen.
+    - Call the activities and fragments corresponding(in the navigation menu and other).
+        @date[07/06/2017]
+        @author[ChiSeng Ng]
+        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @return [void]
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +60,20 @@ public class MainActivity extends AppCompatActivity
         defined in the assets/fonts/ directory.
          */
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("MyriadPro-SemiExt.otf")
+                .setDefaultFontPath("fonts/MyriadPro-SemiExt.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
 
+        /*  This will initialize the fragment manager */
         mFragmentManager = getSupportFragmentManager();
 
+        /*  This will get the executed preferences value(true or false) */
         executed = TimePieceSharedPreferences.getExecuted(MainActivity.this);
+
+        /*  This will verify if is the first time that the user start the App for show the Initial
+        Tour.
+         */
         if (!executed){
             /* --- This will create the intent to pass information of the context to the TourActivity,
             close the old activities on the Activities stack, put the TourActivity in top of the
@@ -107,6 +126,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*  Method that will implements the onBackPressed events(when pressed the default back button on
+    the mobile) for the main activity. In this case, if the navigation's menu is opened will close
+    it and if navigation's menu is closed will close the App or will return to the previous activity
+    existing.
+        @date[07/06/2017]
+        @author[ChiSeng Ng]
+        @param [none]
+        @return [void]
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -117,6 +145,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*  Method that will call the navigation's menu fragments and events corresponding.
+        @date[07/06/2017]
+        @author[ChiSeng Ng]
+        @param [MenuItem] item Item corresponding on the navigation's menu.
+        @return [boolean] Always is true in this case.
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -124,7 +158,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            //finish();
         } else if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_publications) {
@@ -153,17 +190,19 @@ public class MainActivity extends AppCompatActivity
    */
     @Override
     public void onClick(View view) {
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+
         switch (view.getId()){
+
             case (R.id.main_products):
-                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).commit();
+                fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.main_services):
-                FragmentTransaction fragmentTransactions = mFragmentManager.beginTransaction();
-                fragmentTransactions.replace(R.id.fragment_container,new ServicesFragment()).commit();
+                fragmentTransaction.replace(R.id.fragment_container,new ServicesFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.main_donations):
-                Toast.makeText(view.getContext(), "Click Donations" , Toast.LENGTH_LONG).show();
+                fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.bag_icon):
                 Toast.makeText(view.getContext(), "Click Shopping Bag" , Toast.LENGTH_LONG).show();

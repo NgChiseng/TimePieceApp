@@ -87,6 +87,14 @@ public abstract class AnnouncesAdapter extends BaseAdapter {
         return entries.get(position);
     }
 
+
+    /*  Method that will return the elements's identifiers corresponding to the position on the
+    ArrayList.
+           @date[22/06/2017]
+           @author[ChiSeng Ng]
+           @param [int] position Position of an element on the entries ArrayList.
+           @return [long] An element identifier.
+   */
     @Override
     public long getItemId(int position) { return System.identityHashCode(entries.get(position));}
 

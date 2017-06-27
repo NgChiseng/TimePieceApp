@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.idbc.ngchiseng.timepieceapp.ServicesFragment">
+    tools:context="com.idbc.ngchiseng.timepieceapp.DonationsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,11 +15,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="18dp"
-            android:text="@string/main_services"
+            android:text="@string/main_donations"
             android:textColor="@color/black" />
 
         <SearchView
-            android:id="@+id/services_search"
+            android:id="@+id/donations_search"
             android:layout_width="278dp"
             android:layout_height="wrap_content"
             android:background="@drawable/search_box"
@@ -30,10 +30,10 @@
             android:layout_marginTop="15dp" />
 
         <ListView
-            android:id="@+id/services_list"
+            android:id="@+id/donations_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/services_search"
+            android:layout_below="@+id/donations_search"
             android:layout_centerHorizontal="true"
             android:background="@color/White"
             android:divider="@color/White"

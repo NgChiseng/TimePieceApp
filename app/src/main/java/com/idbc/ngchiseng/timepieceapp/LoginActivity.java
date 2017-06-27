@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         defined in the assets/fonts/ directory.
          */
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/MyriadPro-Regular.otf")
+                .setDefaultFontPath("fonts/MyriadPro-SemiExt.otf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
