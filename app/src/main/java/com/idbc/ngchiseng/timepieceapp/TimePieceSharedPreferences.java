@@ -11,18 +11,18 @@ import android.preference.PreferenceManager;
  * only in the first time that the application is executed.
  */
 
-class TimePieceSharedPreferences {
+public class TimePieceSharedPreferences {
 
     /*
         Static Keys of each SharedPreferences
     */
-    private static final String EXECUTED = "executed";
-    private static final String AUTH_TOKEN= "auth_token";
+    static final String EXECUTED = "executed";
+    static final String AUTH_TOKEN= "auth_token";
 
     /* This define the default SharedPreference that will return in case of error. It is necessary
     for implements SharedPreference in a Class.
      */
-    private static SharedPreferences getSharedPreferences(Context ctx) {
+    static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }
 
@@ -32,7 +32,7 @@ class TimePieceSharedPreferences {
         @param [Context] ctx Context of the Activity that call the corresponding method.
         @return [Value]
     */
-    private static Boolean getExecuted(Context ctx) {
+    public static Boolean getExecuted(Context ctx) {
         return getSharedPreferences(ctx).getBoolean(EXECUTED, false);
     }
 
@@ -43,7 +43,7 @@ class TimePieceSharedPreferences {
         @param [Type_Value] <Value> Value belonging to each SharedPreferences.
         @return [Void]
     */
-    private static void setExecuted(Context ctx, Boolean value) {
+    public static void setExecuted(Context ctx, Boolean value) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putBoolean(EXECUTED, value);
         editor.apply();
