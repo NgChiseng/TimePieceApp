@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -173,7 +175,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_donations) {
 
         } else if (id == R.id.nav_log_out) {
-
+            LoginManager.getInstance().logOut();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -13,6 +14,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -27,6 +38,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView forgotPassword,signUp;
     private Button logIn,logInFb;
     private ProgressBar logProgressBar;
+
+    private LoginButton loginButtonFb;
+    private CallbackManager callbackManager;
+    AccessTokenTracker accessTokenTracker;
+    AccessToken accessToken;
 
     /*  Method that will onCreate the login activity, link its component, and implements the
     onClickListener for receive the click request.
@@ -57,10 +73,60 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         logInFb = (Button) findViewById(R.id.login_fb);
         logProgressBar = (ProgressBar) findViewById(R.id.login_progressBar);
 
+        loginButtonFb = (LoginButton) findViewById(R.id.login_buttonfb);
+
         forgotPassword.setOnClickListener(this);
         signUp.setOnClickListener(this);
         logIn.setOnClickListener(this);
+
         logInFb.setOnClickListener(this);
+        //  This will manage the facebook log in answers(if was success,cancel or occur an error)
+        callbackManager = CallbackManager.Factory.create();
+        loginButtonFb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d("TAG", "facebook:onSuccess:" + loginResult);
+                //handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+            @Override
+            public void onCancel() {
+                Log.d("TAG", "facebook:onCancel");
+                // ...
+            }
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("TAG", "facebook:onError", error);
+                // ...
+            }
+        });
+    }
+
+    /* Facebook Handler
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithCredential", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                        //...
+                    }
+        });
+    }
+    Nota: este handler es un ejemplo de usar la authenticacion con fireBase*/
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     /*  Method that handler the event handler with the event listener defined corresponding, in this
@@ -102,10 +168,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case (R.id.login_fb):
-                Intent intentFb = new Intent(this, MainActivity.class);
+                /* Intent intentFb = new Intent(this, MainActivity.class);
                 intentFb.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intentFb);
-                //finish();
+                //finish(); */
+                loginButtonFb.performClick();
                 break;
 
             default:
