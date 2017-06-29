@@ -28,6 +28,8 @@ import com.facebook.login.widget.LoginButton;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static java.security.AccessController.getContext;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     /*
@@ -85,17 +87,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButtonFb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("TAG", "facebook:onSuccess:" + loginResult);
+                Log.d("FB", "facebook:onSuccess:" + loginResult);
+                Intent intentFb = new Intent(getBaseContext(), MainActivity.class);
+                intentFb.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentFb);
+                //finish();
                 //handleFacebookAccessToken(loginResult.getAccessToken());
             }
             @Override
             public void onCancel() {
-                Log.d("TAG", "facebook:onCancel");
+                Log.d("FB", "facebook:onCancel");
                 // ...
             }
             @Override
             public void onError(FacebookException error) {
-                Log.d("TAG", "facebook:onError", error);
+                Log.d("FB", "facebook:onError", error);
                 // ...
             }
         });
@@ -168,10 +174,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case (R.id.login_fb):
-                /* Intent intentFb = new Intent(this, MainActivity.class);
-                intentFb.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intentFb);
-                //finish(); */
                 loginButtonFb.performClick();
                 break;
 

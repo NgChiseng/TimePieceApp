@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private EditText nameField, emailField, phoneField;
     private TextInputEditText passwordField;
-    private Button signUp, signUpFb;
+    private Button signUp;
     private ProgressBar progressBar;
 
     /*  Method that will onCreate the tout activity, link its component, and implements the
@@ -51,11 +51,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         emailField = (EditText) findViewById(R.id.signup_email);
         phoneField = (EditText) findViewById(R.id.signup_phone);
         signUp = (Button) findViewById(R.id.signup_btn);
-        signUpFb = (Button) findViewById(R.id.signup_btn_fb);
         progressBar = (ProgressBar) findViewById(R.id.signup_progressBar);
 
         signUp.setOnClickListener(this);
-        signUpFb.setOnClickListener(this);
     }
 
     /*  Method that handler the event handler with the event listener defined corresponding, in this
@@ -67,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     */
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.signup_btn){
             if (isValidEmail(emailField.getText().toString())) {
                 Intent intentSignUp = new Intent(this, LoginActivity.class);
                 intentSignUp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -76,12 +73,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 Toast.makeText(v.getContext(), R.string.email_invalid , Toast.LENGTH_LONG).show();
             }
-        } else {
-            Intent intentFb = new Intent(this, LoginActivity.class);
-            intentFb.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intentFb);
-            //finish();
-        }
     }
 
     /*  Method that take a string, and evaluate it, to determine if it is an email.

@@ -190,7 +190,7 @@ public class TourActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = new Intent(TourActivity.this, LoginActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
-        //finish();
+        finish();
     }
 
     /**

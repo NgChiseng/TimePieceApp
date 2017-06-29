@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -86,45 +87,55 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
             finish();
         } else {
-            setContentView(R.layout.activity_main);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.setDrawerListener(toggle);
-            toggle.syncState();
-
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener(this);
-
-            /* This will handler the elements of the Main screen with the variables corresponding,
-            that will use later.
+            /*  This will verify if the user is logged then start the main screen, and if him not
+            then start the loginActivity.
              */
-            mainProducts = (RelativeLayout) findViewById(R.id.main_products);
-            mainServices = (RelativeLayout) findViewById(R.id.main_services);
-            mainDonations = (RelativeLayout) findViewById(R.id.main_donations);
-            shoppingBag = (ImageView) findViewById(R.id.bag_icon);
-            productsAnnounces = (TextView) findViewById(R.id.main_products_announces);
-            servicesAnnounces = (TextView) findViewById(R.id.main_services_announces);
-            donationsAnnounces = (TextView) findViewById(R.id.main_donations_announces);
+            if (AccessToken.getCurrentAccessToken() != null) {
+                setContentView(R.layout.activity_main);
+                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
 
-            /* This will put the value corresponding to the number of announce that will result of
-            the query on the API.
-             */
-            Resources res = getResources();
-            String text = String.format(res.getString(R.string.main_announces), 0);
-            productsAnnounces.setText(text);
-            text = String.format(res.getString(R.string.main_announces), 4);
-            servicesAnnounces.setText(text);
-            text = String.format(res.getString(R.string.main_announces), 1);
-            donationsAnnounces.setText(text);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                        this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                drawer.setDrawerListener(toggle);
+                toggle.syncState();
 
-            mainProducts.setOnClickListener(this);
-            mainServices.setOnClickListener(this);
-            mainDonations.setOnClickListener(this);
-            shoppingBag.setOnClickListener(this);
+                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                navigationView.setNavigationItemSelectedListener(this);
+
+                /* This will handler the elements of the Main screen with the variables corresponding,
+                that will use later.
+                */
+                mainProducts = (RelativeLayout) findViewById(R.id.main_products);
+                mainServices = (RelativeLayout) findViewById(R.id.main_services);
+                mainDonations = (RelativeLayout) findViewById(R.id.main_donations);
+                shoppingBag = (ImageView) findViewById(R.id.bag_icon);
+                productsAnnounces = (TextView) findViewById(R.id.main_products_announces);
+                servicesAnnounces = (TextView) findViewById(R.id.main_services_announces);
+                donationsAnnounces = (TextView) findViewById(R.id.main_donations_announces);
+
+                /* This will put the value corresponding to the number of announce that will result of
+                the query on the API.
+                */
+                Resources res = getResources();
+                String text = String.format(res.getString(R.string.main_announces), 0);
+                productsAnnounces.setText(text);
+                text = String.format(res.getString(R.string.main_announces), 4);
+                servicesAnnounces.setText(text);
+                text = String.format(res.getString(R.string.main_announces), 1);
+                donationsAnnounces.setText(text);
+
+                mainProducts.setOnClickListener(this);
+                mainServices.setOnClickListener(this);
+                mainDonations.setOnClickListener(this);
+                shoppingBag.setOnClickListener(this);
+            } else {
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
+            }
         }
     }
 
@@ -176,6 +187,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_log_out) {
             LoginManager.getInstance().logOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
