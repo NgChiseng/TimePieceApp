@@ -107,28 +107,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    /* Facebook Handler
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        }
-                        //...
-                    }
-        });
-    }
-    Nota: este handler es un ejemplo de usar la authenticacion con fireBase*/
 
 
+    /*  Method that will redirect the login's result to the callbackManager created in the
+    onCreate() method.
+        @date[29/06/2017]
+        @author[ChiSeng Ng]
+        @param [int] requestCode Code of the request in the login event.
+        @param [int] resultCode Code resulting in the login event's request.
+        @param [Intent] data Intent with the data obtained in the succes login event's request.
+        @return [void]
+    */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
