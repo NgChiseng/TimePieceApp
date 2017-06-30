@@ -8,17 +8,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="170dp"
         android:background="@color/announce_banner">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/servicios"
-            android:layout_marginStart="46dp"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_marginStart="46dp"
+            android:src="@drawable/servicios" />
 
         <LinearLayout
             android:layout_width="140dp"
@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/profile_image"
             android:orientation="vertical">
-        
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -36,117 +36,168 @@
                     android:id="@+id/profile_name"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textColor="@color/barWhite"
+                    android:text="Carlos Lopez"/>
 
                 <ImageView
                     android:id="@+id/profile_edit"
                     android:layout_width="30dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/editar"/>
 
             </LinearLayout>
-            
+
             <TextView
                 android:id="@+id/profile_email"
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
-            
+                android:layout_height="20dp"
+                android:textColor="@color/barWhite"
+                android:text="clopez@gmail.com"/>
+
             <TextView
                 android:id="@+id/profile_phone"
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
-            
+                android:layout_height="20dp"
+                android:textColor="@color/barWhite"
+                android:text="04129876544"/>
+
             <TextView
                 android:id="@+id/profile_address"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent"
+                android:textColor="@color/barWhite"
+                android:text="Av. Principal de los Ruices, Edif. Betania, piso 3, Apto 3A. \n Caracas,Venezula."/>
         </LinearLayout>
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_profile">
+        android:background="@drawable/bg_profile"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
-            app:srcCompat="@drawable/circulo_2" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/circulo_1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/circulo_2" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/circulo_3" />
+            </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/imageView11"
-            android:layout_marginStart="48dp"
-            app:srcCompat="@drawable/circulo_1" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray"
+                    android:text="@string/profile_announces"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray"
+                    android:text="@string/main_donations"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray"
+                    android:text="@string/profile_purchases"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/imageView11"
-            android:layout_marginEnd="54dp"
-            app:srcCompat="@drawable/circulo_3" />
+                <TextView
+                    android:id="@+id/profile_announces"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/barWhite"
+                    android:text="40" />
+                <TextView
+                    android:id="@+id/profile_donations"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/barWhite"
+                    android:text="6" />
+                <TextView
+                    android:id="@+id/profile_purchases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/barWhite"
+                    android:text="2" />
+            </LinearLayout>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="TextView"
-            android:layout_below="@+id/imageView11"
-            android:layout_alignStart="@+id/textView9" />
+        <!-- The RelativeLayout is for control the fitChart size -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView5"
-            android:layout_marginEnd="24dp"
-            android:layout_toStartOf="@+id/textView5"
-            android:text="TextView" />
+            <com.txusballesteros.widgets.FitChart
+                android:id="@+id/profile_fitChart"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:strokeSize="5dp" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView5"
-            android:layout_marginStart="26dp"
-            android:layout_toEndOf="@+id/textView5"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/profile_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:textColor="@color/barWhite"
+                android:text="48" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="TextView"
-            android:layout_below="@+id/textView5"
-            android:layout_centerHorizontal="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_total"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/gray"
+                android:text="@string/profile_total" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView7"
-            android:layout_alignTop="@+id/textView9"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView8"
-            android:layout_alignTop="@+id/textView9"
-            android:text="TextView" />
-    </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -8,4 +8,5 @@
     <color name="black">#1D1B1B</color>
     <color name="announce_banner">#5abcd8</color>
     <color name="gray">#BDBDBC</color>
+    <color name="transparent">#00000000</color>
 </resources>

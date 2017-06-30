@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
         if (id == R.id.nav_home) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -176,6 +177,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             //finish();
         } else if (id == R.id.nav_profile) {
+            fragmentTransaction.replace(R.id.fragment_container,new ProfileFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_publications) {
 
