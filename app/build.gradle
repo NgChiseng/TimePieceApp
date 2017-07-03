@@ -30,5 +30,7 @@ dependencies {
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.github.javiersantos:FitChart:1.1'
     testCompile 'junit:junit:4.12'
 }
