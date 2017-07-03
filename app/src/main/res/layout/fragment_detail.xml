@@ -1,13 +1,156 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.idbc.ngchiseng.timepieceapp.DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/first_item"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/detail_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            fontPath="fonts/MyriadPro-SemiboldCond.otf"
+            android:text="$25.00/persona"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carlos Lopez"/>
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        android:text="Av. Principal de Altamira, Qta. Virgen del Valle, Caracas" />
 
-</FrameLayout>
+    <View
+        android:layout_width="295dp"
+        android:layout_height="0.5dp"
+        android:background="@color/gray"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            fontPath="fonts/MyriadPro-SemiboldCond.otf"
+            android:text="Clases de Cocina"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_add"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_rest"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="295dp"
+        android:layout_height="0.5dp"
+        android:background="@color/gray"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/announce_banner"
+        android:textAlignment="center"
+        android:textColor="@color/barWhite"
+        android:text="@string/detail_shopping"/>
+
+    <View
+        android:layout_width="295dp"
+        android:layout_height="0.5dp"
+        android:background="@color/gray"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:paddingTop="15dp"
+        android:paddingStart="10dp"
+        android:text="@string/detail_description"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        android:text="@string/detail_info"/>
+
+    <View
+        android:layout_width="295dp"
+        android:layout_height="0.5dp"
+        android:background="@color/gray"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/gray"/>
+</LinearLayout>
