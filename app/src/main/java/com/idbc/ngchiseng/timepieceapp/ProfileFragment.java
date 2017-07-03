@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
@@ -52,9 +53,9 @@ public class ProfileFragment extends Fragment {
         profileEdit = (ImageView) profileView.findViewById(R.id.profile_edit);
 
         /*  This will obtain and set the values are going to show in the profile */
-        numberAnnounces = 45;
-        numberDonations = 49;
-        numberPurchases = 60;
+        numberAnnounces = 40;
+        numberDonations = 6;
+        numberPurchases = 2;
         numberTotal = numberAnnounces + numberDonations + numberPurchases;
 
         /* This will set the corresponding values to show on the profile screen */
@@ -64,7 +65,8 @@ public class ProfileFragment extends Fragment {
         profileTotal.setText(Integer.toString(numberTotal));
 
         /* This will create the list array that is going to save each profile data that wil show on
-         the screen
+         the screen. This function is implemented using a fitChart library:
+         @reference https://github.com/javiersantos/FitChart
         */
         List<FitChartValue> values = new ArrayList<>();
 
@@ -108,6 +110,16 @@ public class ProfileFragment extends Fragment {
         fitChart.setMaxValue(numberTotal);
         fitChart.setValues(values);
 
+        /* This will set the image obtained in the server or facebook profile */
+        profileImage.setImageResource(R.drawable.servicios);
+
+        profileEdit.setOnClickListener(this);
+
         return profileView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(v.getContext(), "Click Edit Profile" , Toast.LENGTH_LONG).show();
     }
 }
