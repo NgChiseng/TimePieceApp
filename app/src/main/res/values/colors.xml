@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="announce_banner">#5abcd8</color>
+    <color name="barWhite">#FFFFFF</color>
+    <color name="black">#1D1B1B</color>
+    <color name="circle1">#4ed7c5</color>
+    <color name="circle2">#ee8f6e</color>
+    <color name="circle3">#ff3162</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="barWhite">#FFFFFF</color>
-    <color name="White">#F6F7F9</color>
-    <color name="black">#1D1B1B</color>
-    <color name="announce_banner">#5abcd8</color>
     <color name="gray">#BDBDBC</color>
+    <color name="White">#F6F7F9</color>
     <color name="transparent">#00000000</color>
+
 </resources>
