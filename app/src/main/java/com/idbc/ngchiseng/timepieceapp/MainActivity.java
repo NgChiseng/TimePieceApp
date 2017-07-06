@@ -29,7 +29,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        ProductsFragment.OnProductsFragmentInteractionListener {
+        ProductsFragment.OnProductsFragmentInteractionListener,
+        ServicesFragment.OnServicesFragmentInteractionListener,
+        DonationsFragment.OnDonationsFragmentInteractionListener {
 
     /*  This will declare the global variables that are going to use in the main Activity */
     private Boolean executed;
@@ -264,13 +266,93 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
+        String announcePrice = announce.getAnnouncePrice();
+        String announceName = announce.getAnnounceOwner();
+        String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
          */
         Bundle bundle = new Bundle();
-        bundle.putInt("ImageId",announceImageId);
+        bundle.putInt("ImageId", announceImageId);
+        bundle.putString("Price", announcePrice);
+        bundle.putString("Name", announceName);
+        bundle.putString("Address", announceAddress);
+        bundle.putString("Title",announceTitle);
+        DetailFragment detailFragment = new DetailFragment();
+        detailFragment.setArguments(bundle);
+
+        /* This will create and execute the manager transaction, that will call and replace the
+         actual Fragment with the fragment corresponding.
+          */
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, detailFragment).addToBackStack(null).commit();
+    }
+
+    /*  Implementation of the method corresponding to the OnServicesFragmentInteractionListener
+    interface in the ServicesFragment, that will invoke the detail fragment with the announce and its
+    data corresponding.
+           @date[06/07/2017]
+           @author[ChiSeng Ng]
+           @param [Announce] announce Announce with the data that will pass to the DetailFragment.
+           @return [void]
+   */
+    @Override
+    public void onServicesFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announcePrice = announce.getAnnouncePrice();
+        String announceName = announce.getAnnounceOwner();
+        String announceAddress = announce.getAnnounceAddress();
+        String announceTitle = announce.getAnnounceTitle();
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        DetailFragment through a bundle object.
+         */
+        Bundle bundle = new Bundle();
+        bundle.putInt("ImageId", announceImageId);
+        bundle.putString("Price", announcePrice);
+        bundle.putString("Name", announceName);
+        bundle.putString("Address", announceAddress);
+        bundle.putString("Title",announceTitle);
+        DetailFragment detailFragment = new DetailFragment();
+        detailFragment.setArguments(bundle);
+
+        /* This will create and execute the manager transaction, that will call and replace the
+         actual Fragment with the fragment corresponding.
+          */
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, detailFragment).addToBackStack(null).commit();
+    }
+
+    /*  Implementation of the method corresponding to the OnDonationsFragmentInteractionListener
+    interface in the DonationsFragment, that will invoke the detail fragment with the announce and its
+    data corresponding.
+           @date[06/07/2017]
+           @author[ChiSeng Ng]
+           @param [Announce] announce Announce with the data that will pass to the DetailFragment.
+           @return [void]
+   */
+    @Override
+    public void onDonationsFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announcePrice = announce.getAnnouncePrice();
+        String announceName = announce.getAnnounceOwner();
+        String announceAddress = announce.getAnnounceAddress();
+        String announceTitle = announce.getAnnounceTitle();
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        DetailFragment through a bundle object.
+         */
+        Bundle bundle = new Bundle();
+        bundle.putInt("ImageId", announceImageId);
+        bundle.putString("Price", announcePrice);
+        bundle.putString("Name", announceName);
+        bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
