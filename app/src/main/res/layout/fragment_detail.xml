@@ -9,8 +9,7 @@
         android:id="@+id/detail_image"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/first_item"/>
+        android:scaleType="centerCrop"/>
 
 
     <LinearLayout
@@ -32,10 +31,10 @@
             android:text="$25.00/persona"/>
 
         <TextView
+            android:id="@+id/detail_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="Carlos Lopez Mendez Lucho"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 
