@@ -8,6 +8,9 @@
 
     <string name="app_name">TimePieceApp</string>
     <string name="action_settings">Settings</string>
+    <string name="detail_description">DESCRIPTION</string>
+    <string name="detail_info">General Information</string>
+    <string name="detail_shopping">Add to the bag</string>
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="email_invalid">This email is invalid</string>
@@ -26,6 +29,9 @@
     <string name="sign_up_fb">SIGN UP WITH <b>FACEBOOK</b></string>
     <string name="password">Password</string>
     <string name="password_reset_msg">Enter your email address, and we will send you an email to recover your password.</string>
+    <string name="profile_announces">ANNOUNCES</string>
+    <string name="profile_total">TOTAL</string>
+    <string name="profile_purchases">PURCHASES</string>
     <string name="title_donations">Donations</string>
     <string name="title_home">Home</string>
     <string name="title_join">Join Up</string>
