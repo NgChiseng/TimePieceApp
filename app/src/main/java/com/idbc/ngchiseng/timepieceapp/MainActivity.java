@@ -229,7 +229,10 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.bag_icon):
-                Toast.makeText(view.getContext(), "Click Shopping Bag" , Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, ShoppingBagActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
                 break;
             default:
                 break;

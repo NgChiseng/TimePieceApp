@@ -44,4 +44,5 @@
     <string name="detail_shopping">Agregar a la bolsa</string>
     <string name="detail_description">DESCRIPCIÓN</string>
     <string name="detail_info">Información General</string>
+    <string name="shopping_pay">PAGAR</string>
 </resources>
