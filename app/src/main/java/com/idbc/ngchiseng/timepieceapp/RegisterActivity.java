@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     onClickListener for receive the click request.
         @date[15/06/2017]
         @author[ChiSeng Ng]
-        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @param [Bundle] savedInstanceState InstanceState of the activity.
         @return [void]
      */
     @Override

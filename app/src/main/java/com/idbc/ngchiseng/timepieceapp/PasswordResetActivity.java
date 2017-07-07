@@ -25,7 +25,7 @@ public class PasswordResetActivity extends AppCompatActivity implements View.OnC
     the onClickListener for receive the click request.
         @date[12/06/2017]
         @author[ChiSeng Ng]
-        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @param [Bundle] savedInstanceState InstanceState of the activity.
         @return [void]
      */
     @Override

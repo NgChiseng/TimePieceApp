@@ -31,7 +31,7 @@ public class ServicesFragment extends Fragment {
         @author[ChiSeng Ng]
         @param [LayoutInflater] inflater The layout inflater corresponding of the caller Activity.
         @param [ViewGroup] container The viewGroup that will content the fragment on the layout.
-        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @param [Bundle] savedInstanceState InstanceState of the activity.
         @return [View] The inflated an rendered view that will show its on the screen.
      */
     @Override

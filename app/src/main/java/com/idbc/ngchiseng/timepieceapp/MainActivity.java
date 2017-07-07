@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     - Call the activities and fragments corresponding(in the navigation menu and other).
         @date[07/06/2017]
         @author[ChiSeng Ng]
-        @param [Bundle] savedInstanceState InstanceState of the tour activity.
+        @param [Bundle] savedInstanceState InstanceState of the activity.
         @return [void]
      */
     @Override
