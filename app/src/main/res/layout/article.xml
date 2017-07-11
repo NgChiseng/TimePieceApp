@@ -62,20 +62,22 @@
         android:layout_gravity="center">
 
         <ImageView
+            android:id="@+id/article_sum"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/btn_add"
             android:layout_gravity="center"/>
         <TextView
+            android:id="@+id/article_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:text="2" />
+            android:paddingBottom="5dp"/>
         <ImageView
+            android:id="@+id/article_subtraction"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/btn_rest"

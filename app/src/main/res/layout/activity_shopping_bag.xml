@@ -45,12 +45,12 @@
     </ListView>
 
     <TextView
+        android:id="@+id/shopping_total"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/barWhite"
         android:gravity="center"
-        android:textAlignment="gravity"
-        android:text="$ 117.00"/>
+        android:textAlignment="gravity" />
 
     <Button
         android:id="@+id/shopping_bag_btn"

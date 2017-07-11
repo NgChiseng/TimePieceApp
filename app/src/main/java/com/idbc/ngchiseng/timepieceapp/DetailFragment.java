@@ -39,6 +39,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         String name = getArguments().getString("Name");
         String address = getArguments().getString("Address");
         String title = getArguments().getString("Title");
+        String description = getArguments().getString("Description");
 
         // Inflate the layout for this fragment
         final View detailView = inflater.inflate(R.layout.fragment_detail, container, false);
@@ -61,6 +62,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         announceName.setText(name);
         announceAddress.setText(address);
         announceTitle.setText(title);
+        announceDescription.setText(description);
         numberItems.setText(Integer.toString(numberItemsActual));
 
         announceButton.setOnClickListener(this);

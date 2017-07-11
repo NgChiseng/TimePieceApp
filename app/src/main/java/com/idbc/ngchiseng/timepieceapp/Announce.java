@@ -14,14 +14,28 @@ public class Announce {
     and implements each get's method corresponding.
      */
     private int idImage;
-    private String announceTitle, announceOwner, announceAddress, announcePrice;
+    private String announceTitle, announceOwner, announceAddress, announceCurrency, announcePrice, announceUnit, announceOthers;
 
-    public Announce(int idImage, String announceTitle, String announceOwner, String announceAddress, String announcePrice){
+    public Announce(int idImage, String announceTitle, String announceOwner, String announceAddress, String announceCurrency, String announcePrice, String announceUnit, String announceOthers){
         this.idImage = idImage;
         this.announceTitle = announceTitle;
         this.announceOwner = announceOwner;
         this.announceAddress = announceAddress;
+        this.announceCurrency = announceCurrency;
         this.announcePrice = announcePrice;
+        this.announceUnit = announceUnit;
+        this.announceOthers = announceOthers;
+    }
+
+    /* This will override the variation of each announce object */
+    public Announce(int idImage, String announceTitle, String announceOwner, String announceAddress, String announceCurrency, String announcePrice, String announceUnit){
+        this.idImage = idImage;
+        this.announceTitle = announceTitle;
+        this.announceOwner = announceOwner;
+        this.announceAddress = announceAddress;
+        this.announceCurrency = announceCurrency;
+        this.announcePrice = announcePrice;
+        this.announceUnit = announceUnit;
     }
 
     /*  This are the get's method used for return the values of each attribute of the class
@@ -35,6 +49,19 @@ public class Announce {
 
     public String getAnnounceAddress() { return announceAddress; }
 
-    public String getAnnouncePrice() { return announcePrice; }
+    public String getAnnounceCurrency() { return announceCurrency; }
 
+    public int getAnnouncePrice() { return Integer.parseInt(announcePrice); }
+
+    public String getAnnounceUnit() { return announceUnit; }
+
+    public String getAnnounceOthers() { return announceOthers; }
+
+    public int getAnnounceNumOthers() { return Integer.parseInt(announceOthers); }
+
+    public String getAnnouncePriceComplete() { return (announceCurrency + announcePrice + "\\" + announceUnit); }
+
+    public void setSumOne() { this.announceOthers = Integer.toString(1 + Integer.parseInt(announceOthers)); }
+
+    public void setSubtractOne() { this.announceOthers = Integer.toString(Integer.parseInt(announceOthers) - 1); }
 }

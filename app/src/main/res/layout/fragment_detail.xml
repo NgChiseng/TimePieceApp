@@ -150,8 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="13sp"
-            android:padding="10dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl."/>
+            android:padding="10dp"/>
 
         <View
             android:layout_width="match_parent"

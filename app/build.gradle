@@ -32,5 +32,6 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.javiersantos:FitChart:1.1'
+    compile 'com.wdullaer:swipeactionadapter:2.0.0'
     testCompile 'junit:junit:4.12'
 }

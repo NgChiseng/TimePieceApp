@@ -269,10 +269,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePrice();
+        String announcePrice = announce.getAnnouncePriceComplete();
         String announceName = announce.getAnnounceOwner();
         String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
+        String announceDescription = announce.getAnnounceOthers();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -283,6 +284,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("Name", announceName);
         bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
+        bundle.putString("Description", announceDescription);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
 
@@ -306,10 +308,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePrice();
+        String announcePrice = announce.getAnnouncePriceComplete();
         String announceName = announce.getAnnounceOwner();
         String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
+        String announceDescription = announce.getAnnounceOthers();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -320,6 +323,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("Name", announceName);
         bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
+        bundle.putString("Description", announceDescription);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
 
@@ -343,10 +347,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePrice();
+        String announcePrice = announce.getAnnouncePriceComplete();
         String announceName = announce.getAnnounceOwner();
         String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
+        String announceDescription = announce.getAnnounceOthers();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -357,6 +362,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("Name", announceName);
         bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
+        bundle.putString("Description", announceDescription);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
 
