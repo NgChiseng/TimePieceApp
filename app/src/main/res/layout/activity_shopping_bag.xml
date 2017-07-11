@@ -25,16 +25,22 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
-            android:layout_marginRight="84dp"/>
+            android:layout_marginEnd="84dp"/>
 
     </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
     <ListView
+        android:id="@+id/shopping_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@color/White"
+        android:divider="@color/White"
+        android:dividerHeight="7dp"
+        android:padding="8dp"
+        android:scrollbarStyle="outsideOverlay">
 
     </ListView>
 
