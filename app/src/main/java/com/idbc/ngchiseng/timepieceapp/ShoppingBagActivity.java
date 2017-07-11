@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
+
 import java.util.ArrayList;
 
 public class ShoppingBagActivity extends AppCompatActivity implements View.OnClickListener {
@@ -46,7 +48,8 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
         and components o widgets, using the AnnouncesAdapter.
          */
         listArticles = (ListView) findViewById(R.id.shopping_list);
-        listArticles.setAdapter(new AnnouncesAdapter(this, R.layout.article, data) {
+
+        AnnouncesAdapter myAdapter = new AnnouncesAdapter(this, R.layout.article, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
             the respective elements and handlers.
@@ -111,7 +114,18 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                     });
                 }
             }
-        });
+        };
+
+        // Wrap your content in a SwipeActionAdapter
+        SwipeActionAdapter swipeAdapter = new SwipeActionAdapter(myAdapter);
+
+        // Pass a reference of your ListView to the SwipeActionAdapter
+        swipeAdapter.setListView(listArticles);
+
+        // Set the SwipeActionAdapter as the Adapter for your ListView
+        //setListAdapter(swipeAdapter);
+        listArticles.setAdapter(swipeAdapter);
+
 
         totalPay = (TextView) findViewById(R.id.shopping_total);
         totalPay.setText("$" + totalCost);
