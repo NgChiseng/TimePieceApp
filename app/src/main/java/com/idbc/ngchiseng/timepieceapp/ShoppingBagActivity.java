@@ -1,5 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
+import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
     private ListView listArticles;
     private int totalCost = 0;
     private TextView totalPay, articleNum;
+    private SwipeActionAdapter swipeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
         toolbar.setNavigationOnClickListener(this);
 
         // Initialized ArrayList of Articles
-        ArrayList<Announce> data = new ArrayList<Announce>();
+        final ArrayList<Announce> data = new ArrayList<Announce>();
 
          /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
@@ -116,16 +119,109 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
             }
         };
 
+        /* This will create the SwipeAdapter that is going to give the sibling effect to each item
+         of the ListView and will permit delete it updating the total payment value. This function
+         is implemented using a SwipeActionAdapter library:
+         @reference https://github.com/wdullaer/SwipeActionAdapter
+        */
         // Wrap your content in a SwipeActionAdapter
-        SwipeActionAdapter swipeAdapter = new SwipeActionAdapter(myAdapter);
+        swipeAdapter = new SwipeActionAdapter(myAdapter);
 
         // Pass a reference of your ListView to the SwipeActionAdapter
         swipeAdapter.setListView(listArticles);
 
         // Set the SwipeActionAdapter as the Adapter for your ListView
-        //setListAdapter(swipeAdapter);
         listArticles.setAdapter(swipeAdapter);
 
+        // Set backgrounds for the swipe directions
+        swipeAdapter.addBackground(SwipeDirection.DIRECTION_NORMAL_LEFT, R.layout.shopping_item_left);
+        swipeAdapter.addBackground(SwipeDirection.DIRECTION_FAR_LEFT, R.layout.shopping_item_left_far);
+
+
+        /* Allows you to set the fraction of the view width that must be swiped before it is counted
+        as a far swipe. The float must be between 0 and 1. 0 makes every swipe a far swipe, 1
+        effectively disables a far swipe.
+        */
+        swipeAdapter.setFarSwipeFraction((float) 0.7);
+
+        /* Setting this to true will make the backgrounds static behind the ListView item instead of
+        sliding in from the side.
+        */
+        swipeAdapter.setFixedBackgrounds(true);
+
+        /* This is the interface that will listen the swipe gesture, and is going to work depending
+        the configuration of its methods.
+         */
+        swipeAdapter.setSwipeActionListener(new SwipeActionAdapter.SwipeActionListener() {
+
+            /*  Method that is going to return true if you want this item to be swipeable in this
+            direction.
+                @date[12/07/2017]
+                @author[ChiSeng Ng]
+                @param [int] position Position on the SwipeListViewArray.
+                @param [SwipeDirection] direction Direction read actually.
+                @reference https://github.com/wdullaer/SwipeActionAdapter
+                @return [boolean] True if the actual direction is permitted.
+            */
+            @Override
+            public boolean hasActions(int position, SwipeDirection direction) {
+                return direction.isLeft();
+            }
+
+            /*  Method that is going to return true if you want the item to be dismissed, return
+            false if it should stay visible. This method runs on the interface thread so if you want
+            to trigger any heavy actions here, put them on an ASyncThread.
+                @date[12/07/2017]
+                @author[ChiSeng Ng]
+                @param [int] position Position on the SwipeListViewArray.
+                @param [SwipeDirection] direction Direction read actually.
+                @reference https://github.com/wdullaer/SwipeActionAdapter
+                @return [boolean] True if the actual direction is permitted.
+            */
+            @Override
+            public boolean shouldDismiss(int position, SwipeDirection direction) {
+                // Only dismiss an item when swiping normal left
+                return direction == SwipeDirection.DIRECTION_FAR_LEFT;
+            }
+
+            /*  Method that triggered when all animations on the swiped items have finished. You
+            will receive an array of all swiped items, sorted in descending order with their
+            corresponding directions.
+                @date[12/07/2017]
+                @author[ChiSeng Ng]
+                @param [int array] positionList Array that will contain the position of each item.
+                @param [SwipeDirection array] directionList Array that will contain the direction of
+                each item according to the position of the positionList.
+                @reference https://github.com/wdullaer/SwipeActionAdapter
+                @return [void]
+            */
+            @Override
+            public void onSwipe(int[] positionList, SwipeDirection[] directionList) {
+                for (int i = 0; i < positionList.length; i++) {
+                    SwipeDirection direction = directionList[i];
+                    int position = positionList[i];
+
+                    if (direction == SwipeDirection.DIRECTION_FAR_LEFT) {
+                        Announce item = (Announce) swipeAdapter.getItem(position);
+                        int articlesCost = item.getAnnounceNumOthers()*item.getAnnouncePrice();
+                        totalCost = totalCost - articlesCost;
+                        totalPay.setText("$" + totalCost);
+                        Log.d("1_DataSize: ", Integer.toString(data.size()));
+                        Log.d("1_The position is:", Integer.toString(position));
+                        data.remove(position);
+                    }else if (direction == SwipeDirection.DIRECTION_NORMAL_LEFT) {
+                        Log.d("The position is:", Integer.toString(position));
+                    }
+                    swipeAdapter.notifyDataSetChanged();
+                    Log.d("DataSize: ", Integer.toString(data.size()));
+                    for (int k = 0; k < data.size() ; k++){
+                        Log.d("DataPosition: ", Integer.toString(k));
+                        Log.d("Item: ",(data.get(k)).getAnnounceTitle());
+                    }
+
+                }
+            }
+        });
 
         totalPay = (TextView) findViewById(R.id.shopping_total);
         totalPay.setText("$" + totalCost);

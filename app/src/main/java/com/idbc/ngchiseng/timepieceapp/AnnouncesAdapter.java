@@ -96,7 +96,7 @@ public abstract class AnnouncesAdapter extends BaseAdapter {
            @return [long] An element identifier.
    */
     @Override
-    public long getItemId(int position) { return System.identityHashCode(entries.get(position));}
+    public long getItemId(int position) { return position;}
 
     /*  Abstract Method that will be extender in the fragment or activity in the will use, for
     handler the components corresponding in the ElementView(In this case announce.xml). This is for
