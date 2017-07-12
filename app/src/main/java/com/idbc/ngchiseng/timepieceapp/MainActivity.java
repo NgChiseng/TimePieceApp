@@ -229,7 +229,10 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.bag_icon):
-                Toast.makeText(view.getContext(), "Click Shopping Bag" , Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, ShoppingBagActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
                 break;
             default:
                 break;
@@ -266,10 +269,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePrice();
+        String announcePrice = announce.getAnnouncePriceComplete();
         String announceName = announce.getAnnounceOwner();
         String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
+        String announceDescription = announce.getAnnounceOthers();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -280,6 +284,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("Name", announceName);
         bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
+        bundle.putString("Description", announceDescription);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
 
@@ -303,10 +308,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePrice();
+        String announcePrice = announce.getAnnouncePriceComplete();
         String announceName = announce.getAnnounceOwner();
         String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
+        String announceDescription = announce.getAnnounceOthers();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -317,6 +323,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("Name", announceName);
         bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
+        bundle.putString("Description", announceDescription);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
 
@@ -340,10 +347,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePrice();
+        String announcePrice = announce.getAnnouncePriceComplete();
         String announceName = announce.getAnnounceOwner();
         String announceAddress = announce.getAnnounceAddress();
         String announceTitle = announce.getAnnounceTitle();
+        String announceDescription = announce.getAnnounceOthers();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -354,6 +362,7 @@ public class MainActivity extends AppCompatActivity
         bundle.putString("Name", announceName);
         bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
+        bundle.putString("Description", announceDescription);
         DetailFragment detailFragment = new DetailFragment();
         detailFragment.setArguments(bundle);
 

@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 public class DetailFragment extends Fragment implements View.OnClickListener {
 
+    /*  This will declare the global variables that are going to use on the fragment. */
+    private TextView numberItems;
+    private int numberItemsActual = 1;
+
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
         @date[05/07/2017]
@@ -35,6 +39,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         String name = getArguments().getString("Name");
         String address = getArguments().getString("Address");
         String title = getArguments().getString("Title");
+        String description = getArguments().getString("Description");
 
         // Inflate the layout for this fragment
         final View detailView = inflater.inflate(R.layout.fragment_detail, container, false);
@@ -47,6 +52,9 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         TextView announceTitle = (TextView) detailView.findViewById(R.id.detail_title);
         Button announceButton = (Button) detailView.findViewById(R.id.detail_button);
         TextView announceDescription = (TextView) detailView.findViewById(R.id.detail_description);
+        numberItems = (TextView) detailView.findViewById(R.id.detail_num_items);
+        ImageView sumBtn = (ImageView) detailView.findViewById(R.id.detail_sum);
+        ImageView subtractionBtn = (ImageView) detailView.findViewById(R.id.detail_subtraction);
 
         /* This will set the date corresponding to show it on the screen */
         announceImage.setImageResource(imageId);
@@ -54,8 +62,12 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         announceName.setText(name);
         announceAddress.setText(address);
         announceTitle.setText(title);
+        announceDescription.setText(description);
+        numberItems.setText(Integer.toString(numberItemsActual));
 
         announceButton.setOnClickListener(this);
+        sumBtn.setOnClickListener(this);
+        subtractionBtn.setOnClickListener(this);
 
         return detailView;
     }
@@ -69,6 +81,20 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
    */
     @Override
     public void onClick(View view) {
-        Toast.makeText(view.getContext(), "Click add to Shopping Bag" , Toast.LENGTH_LONG).show();
+        switch (view.getId()) {
+            case (R.id.detail_sum):
+                numberItemsActual = numberItemsActual + 1;
+                numberItems.setText(Integer.toString(numberItemsActual));
+                break;
+            case (R.id.detail_subtraction):
+                if (numberItemsActual > 1){
+                    numberItemsActual = numberItemsActual - 1;
+                    numberItems.setText(Integer.toString(numberItemsActual));
+                }
+                break;
+            default:
+                Toast.makeText(view.getContext(), "Click add to Shopping Bag" , Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 }

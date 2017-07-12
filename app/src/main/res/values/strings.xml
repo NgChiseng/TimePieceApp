@@ -27,6 +27,7 @@
     <string name="name_complete">Name Complete</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_fb">SIGN UP WITH <b>FACEBOOK</b></string>
+    <string name="shopping_pay">TO PAY</string>
     <string name="password">Password</string>
     <string name="password_reset_msg">Enter your email address, and we will send you an email to recover your password.</string>
     <string name="profile_announces">ANNOUNCES</string>
@@ -55,5 +56,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="shopping_delete">Delete</string>
 
 </resources>

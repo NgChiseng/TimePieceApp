@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    tools:context="com.idbc.ngchiseng.timepieceapp.ShoppingBagActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/barWhite"
+        app:navigationIcon="@drawable/ic_arrow_back_black"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_marginEnd="84dp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ListView
+        android:id="@+id/shopping_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/White"
+        android:divider="@color/White"
+        android:dividerHeight="7dp"
+        android:padding="8dp"
+        android:scrollbarStyle="outsideOverlay">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/shopping_total"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/barWhite"
+        android:gravity="center"
+        android:textAlignment="gravity" />
+
+    <Button
+        android:id="@+id/shopping_bag_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/circle1"
+        android:textAlignment="center"
+        android:textColor="@color/barWhite"
+        android:text="@string/shopping_pay"/>
+</LinearLayout>
