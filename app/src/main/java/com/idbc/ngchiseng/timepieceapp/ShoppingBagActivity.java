@@ -201,24 +201,19 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                     SwipeDirection direction = directionList[i];
                     int position = positionList[i];
 
+                    /* This will handler que Direction_Far_Left event, obtain the item corresponding,
+                    calculate its cost per quantity, subtract that cost of the total cost and update
+                    its in the screen, delete the object of the array, and call to the
+                    notifyDateSetChanged() method for that the Adapter update the screen.
+                    */
                     if (direction == SwipeDirection.DIRECTION_FAR_LEFT) {
                         Announce item = (Announce) swipeAdapter.getItem(position);
                         int articlesCost = item.getAnnounceNumOthers()*item.getAnnouncePrice();
                         totalCost = totalCost - articlesCost;
                         totalPay.setText("$" + totalCost);
-                        Log.d("1_DataSize: ", Integer.toString(data.size()));
-                        Log.d("1_The position is:", Integer.toString(position));
                         data.remove(position);
-                    }else if (direction == SwipeDirection.DIRECTION_NORMAL_LEFT) {
-                        Log.d("The position is:", Integer.toString(position));
                     }
                     swipeAdapter.notifyDataSetChanged();
-                    Log.d("DataSize: ", Integer.toString(data.size()));
-                    for (int k = 0; k < data.size() ; k++){
-                        Log.d("DataPosition: ", Integer.toString(k));
-                        Log.d("Item: ",(data.get(k)).getAnnounceTitle());
-                    }
-
                 }
             }
         });
