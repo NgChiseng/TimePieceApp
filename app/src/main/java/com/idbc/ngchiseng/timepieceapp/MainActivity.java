@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container,new ProfileFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_publications) {
+            fragmentTransaction.replace(R.id.fragment_container,new PublicationFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_shopping) {
 
