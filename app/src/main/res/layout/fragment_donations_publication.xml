@@ -4,10 +4,16 @@
     android:layout_height="match_parent"
     tools:context="com.idbc.ngchiseng.timepieceapp.DonationsPublicationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/publication_donations_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/White"
+        android:divider="@color/White"
+        android:dividerHeight="7dp"
+        android:padding="8dp"
+        android:scrollbarStyle="outsideOverlay">
+
+    </ListView>
 
 </FrameLayout>

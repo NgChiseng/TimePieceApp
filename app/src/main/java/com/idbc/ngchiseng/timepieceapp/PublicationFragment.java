@@ -53,7 +53,7 @@ public class PublicationFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) publicationsView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) publicationsView.findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) publicationsView.findViewById(R.id.publications_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
