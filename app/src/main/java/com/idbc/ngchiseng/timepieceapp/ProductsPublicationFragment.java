@@ -1,7 +1,5 @@
 package com.idbc.ngchiseng.timepieceapp;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -32,7 +30,7 @@ public class ProductsPublicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View productsPublicationView = inflater.inflate(R.layout.fragment_products_publication, container, false);
+        final View productsPublicationView = inflater.inflate(R.layout.fragment_publication_products, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();

@@ -31,7 +31,7 @@ public class ServicesPublicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View servicesPublicationView = inflater.inflate(R.layout.fragment_services_publication, container, false);
+        final View servicesPublicationView = inflater.inflate(R.layout.fragment_publication_services, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();

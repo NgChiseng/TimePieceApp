@@ -33,7 +33,7 @@ public class DonationsPublicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View donationsPublicationView = inflater.inflate(R.layout.fragment_donations_publication, container, false);
+        final View donationsPublicationView = inflater.inflate(R.layout.fragment_publication_donations, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
