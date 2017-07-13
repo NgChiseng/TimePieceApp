@@ -1,5 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class ProductsPublicationFragment extends Fragment {
+public class PublicationServicesFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
@@ -30,7 +31,7 @@ public class ProductsPublicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View productsPublicationView = inflater.inflate(R.layout.fragment_publication_products, container, false);
+        final View servicesPublicationView = inflater.inflate(R.layout.fragment_publication_services, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
@@ -38,12 +39,14 @@ public class ProductsPublicationFragment extends Fragment {
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Fecha creacion: 24-03-2017", "Fecha modificacion: 24-03-2017", "$", "44", "Unidad"));
+        data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Fecha creacion: 24-03-2017", "Fecha modificacion: 24-03-2017", "$", "25", "Persona"));
+        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Fecha creacion: 14-03-2017", "Fecha modificacion: 13-07-2017", "$", "42", "hr"));
+        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Fecha creacion: 04-01-2017", "Fecha modificacion: 11-01-2010", "$", "25", "hr"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
-        listTabItems = (ListView) productsPublicationView.findViewById(R.id.publication_product_list);
+        listTabItems = (ListView) servicesPublicationView.findViewById(R.id.publication_services_list);
         listTabItems.setAdapter(new AnnouncesAdapter(getContext(), R.layout.tab_item, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
@@ -72,7 +75,7 @@ public class ProductsPublicationFragment extends Fragment {
             }
         });
 
-        return productsPublicationView;
+        return servicesPublicationView;
     }
 
 }

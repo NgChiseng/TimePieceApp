@@ -1,6 +1,5 @@
 package com.idbc.ngchiseng.timepieceapp;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,9 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-
-public class DonationsPublicationFragment extends Fragment {
-
+public class PublicationProductsFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
@@ -33,7 +30,7 @@ public class DonationsPublicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View donationsPublicationView = inflater.inflate(R.layout.fragment_publication_donations, container, false);
+        final View productsPublicationView = inflater.inflate(R.layout.fragment_publication_products, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
@@ -41,12 +38,12 @@ public class DonationsPublicationFragment extends Fragment {
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        //data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Fecha creacion: 24-03-2017", "Fecha modificacion: 24-03-2017", "$", "44", "Unidad"));
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Fecha creacion: 24-03-2017", "Fecha modificacion: 24-03-2017", "$", "44", "Unidad"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
-        listTabItems = (ListView) donationsPublicationView.findViewById(R.id.publication_donations_list);
+        listTabItems = (ListView) productsPublicationView.findViewById(R.id.publication_product_list);
         listTabItems.setAdapter(new AnnouncesAdapter(getContext(), R.layout.tab_item, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
@@ -75,7 +72,7 @@ public class DonationsPublicationFragment extends Fragment {
             }
         });
 
-        return donationsPublicationView;
+        return productsPublicationView;
     }
 
 }
