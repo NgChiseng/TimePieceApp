@@ -61,6 +61,10 @@
             android:name=".ShoppingBagActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SalesFragment"
+            android:label="@string/title_activity_sales_fragment"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
