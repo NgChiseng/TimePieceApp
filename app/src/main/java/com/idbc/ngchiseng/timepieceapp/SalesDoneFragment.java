@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PurchasesDoneFragment extends Fragment {
+public class SalesDoneFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
@@ -34,7 +34,7 @@ public class PurchasesDoneFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View purchasesDoneView = inflater.inflate(R.layout.fragment_purchases_done, container, false);
+        final View salesDoneView = inflater.inflate(R.layout.fragment_sales_done, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
@@ -44,11 +44,12 @@ public class PurchasesDoneFragment extends Fragment {
          */
         data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Servicio", "Fecha cierre: 13-07-2017", "$", "126", "3 hrs"));
         data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Servicio", "Fecha cierre: 11-01-2010", "$", "100", "4 hrs"));
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Producto", "Fecha cierre: 24-05-2009", "$", "88", "2 Unidades"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
-        listTabItems = (ListView) purchasesDoneView.findViewById(R.id.purchases_done_list);
+        listTabItems = (ListView) salesDoneView.findViewById(R.id.sales_done_list);
         listTabItems.setAdapter(new AnnouncesAdapter(getContext(), R.layout.tab_item, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
@@ -77,7 +78,6 @@ public class PurchasesDoneFragment extends Fragment {
             }
         });
 
-        return purchasesDoneView;
+        return salesDoneView;
     }
-
 }

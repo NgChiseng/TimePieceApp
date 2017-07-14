@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PurchasesDoneFragment extends Fragment {
+public class SalesProcessFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
@@ -33,8 +33,9 @@ public class PurchasesDoneFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        final View purchasesDoneView = inflater.inflate(R.layout.fragment_purchases_done, container, false);
+        final View salesProcessView = inflater.inflate(R.layout.fragment_sales_process, container, false);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
@@ -42,13 +43,15 @@ public class PurchasesDoneFragment extends Fragment {
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Servicio", "Fecha cierre: 13-07-2017", "$", "126", "3 hrs"));
-        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Servicio", "Fecha cierre: 11-01-2010", "$", "100", "4 hrs"));
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Producto", "Fecha pago: 24-05-2017", "$", "88", "2 Unidades"));
+        data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Servicio", "Fecha pago: 15-06-2017", "$", "25", "1 Persona"));
+        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Servicio", "Fecha pago: 13-07-2017", "$", "126", "3 hrs"));
+        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Servicio", "Fecha pago: 11-07-2010", "$", "100", "4 hrs"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
-        listTabItems = (ListView) purchasesDoneView.findViewById(R.id.purchases_done_list);
+        listTabItems = (ListView) salesProcessView.findViewById(R.id.sales_process_list);
         listTabItems.setAdapter(new AnnouncesAdapter(getContext(), R.layout.tab_item, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
@@ -77,7 +80,7 @@ public class PurchasesDoneFragment extends Fragment {
             }
         });
 
-        return purchasesDoneView;
+        return salesProcessView;
     }
 
 }

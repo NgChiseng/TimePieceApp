@@ -142,7 +142,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
         as a far swipe. The float must be between 0 and 1. 0 makes every swipe a far swipe, 1
         effectively disables a far swipe.
         */
-        swipeAdapter.setFarSwipeFraction((float) 0.7);
+        swipeAdapter.setFarSwipeFraction((float) 0.5);
 
         /* Setting this to true will make the backgrounds static behind the ListView item instead of
         sliding in from the side.

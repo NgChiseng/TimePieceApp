@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                         this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                drawer.setDrawerListener(toggle);
                 toggle.syncState();
 
                 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -124,11 +123,11 @@ public class MainActivity extends AppCompatActivity
                 the query on the API.
                 */
                 Resources res = getResources();
-                String text = String.format(res.getString(R.string.main_announces), 0);
+                String text = String.format(res.getString(R.string.main_announces), 1);
                 productsAnnounces.setText(text);
-                text = String.format(res.getString(R.string.main_announces), 4);
+                text = String.format(res.getString(R.string.main_announces), 3);
                 servicesAnnounces.setText(text);
-                text = String.format(res.getString(R.string.main_announces), 1);
+                text = String.format(res.getString(R.string.main_announces), 0);
                 donationsAnnounces.setText(text);
 
                 mainProducts.setOnClickListener(this);
@@ -191,6 +190,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container,new PurchasesFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_sales) {
+            fragmentTransaction.replace(R.id.fragment_container,new SalesFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_donations) {
 
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_container,new ServicesFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.main_donations):
-                fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.fragment_container,new DonationsFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.bag_icon):
                 Intent intent = new Intent(this, ShoppingBagActivity.class);
