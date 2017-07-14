@@ -47,7 +47,8 @@ public class DonationsFragment extends Fragment {
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar envío con el vendedor", "$", "44", "Par", "" ));
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar envío con el vendedor", "$", "44", "Par", "A" ));
 
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list

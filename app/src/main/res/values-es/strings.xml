@@ -50,4 +50,6 @@
     <string name="purchases_process">En proceso</string>
     <string name="donations_done">Hechas</string>
     <string name="donations_received">Recibidas</string>
+    <string name="finalize">Finalizar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

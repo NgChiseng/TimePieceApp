@@ -1,5 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 
 import android.support.v4.app.Fragment;
@@ -11,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PurchasesFragment extends Fragment {
+public class PurchasesFragment extends Fragment implements PurchasesProcessFragment.OnPurchasesProcessFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -81,5 +82,42 @@ public class PurchasesFragment extends Fragment {
             }
             return null;
         }
+    }
+
+    /* This block will be used for implement all the interfaces's methods corresponding to each
+    nested fragment corresponding to this parent fragment.
+     */
+
+    /*  Implementation of the method corresponding to the OnPurchasesProcessFragmentInteractionListener
+    interface in the PurchasesProcessFragment, that will invoke the InProcessDetail activity with
+    the announce and its data corresponding.
+        @date[14/07/2017]
+        @author[ChiSeng Ng]
+        @param [Announce] announce Announce with the data that will pass to the
+        InProcessDetailActivity.
+        @return [void]
+   */
+    @Override
+    public void onPurchasesProcessFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        /*String announcePrice = announce.getAnnouncePriceComplete();
+        String announceName = announce.getAnnounceOwner();
+        String announceAddress = announce.getAnnounceAddress();*/
+        String announceTitle = announce.getAnnounceTitle();
+        //String announceDescription = announce.getAnnounceOthers();
+
+        /* This will handler the Activity corresponding */
+        Intent intent = new Intent(getActivity().getBaseContext(), InProcessDetailActivity.class);
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        InProcessDetailActivity through a bundle object.
+         */
+        //intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Title", announceTitle);
+
+        /* This will will call and execute the activity corresponding */
+        getActivity().startActivity(intent);
     }
 }
