@@ -46,7 +46,7 @@
     <string name="detail_info">Información General</string>
     <string name="shopping_pay">PAGAR</string>
     <string name="shopping_delete">Borrar</string>
-    <string name="purchases_finished">Finalizado</string>
+    <string name="purchases_finished">Finalizada</string>
     <string name="purchases_process">En proceso</string>
     <string name="donations_done">Hechas</string>
     <string name="donations_received">Recibidas</string>

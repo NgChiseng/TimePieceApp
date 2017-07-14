@@ -64,5 +64,6 @@
     <string name="donations_received">Received</string>
     <string name="donations_done">Done</string>
     <string name="title_activity_sales_fragment">SalesFragment</string>
+    <string name="title_activity_my_donations_fragment">MyDonationsFragment</string>
 
 </resources>

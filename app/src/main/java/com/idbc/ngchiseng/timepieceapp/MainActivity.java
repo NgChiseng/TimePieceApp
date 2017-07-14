@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container,new SalesFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_donations) {
+            fragmentTransaction.replace(R.id.fragment_container,new MyDonationsFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_log_out) {
             LoginManager.getInstance().logOut();
