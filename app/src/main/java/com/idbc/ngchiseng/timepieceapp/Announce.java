@@ -59,7 +59,7 @@ public class Announce {
 
     public int getAnnounceNumOthers() { return Integer.parseInt(announceOthers); }
 
-    public String getAnnouncePriceComplete() { return (announceCurrency + announcePrice + "\\" + announceUnit); }
+    public String getAnnouncePriceComplete() { return (announceCurrency + announcePrice + "/" + announceUnit); }
 
     public void setSumOne() { this.announceOthers = Integer.toString(1 + Integer.parseInt(announceOthers)); }
 

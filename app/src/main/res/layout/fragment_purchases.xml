@@ -19,7 +19,7 @@
             app:tabTextColor="@color/gray"
             app:tabSelectedTextColor="@color/announce_banner"
             app:tabIndicatorColor="@color/announce_banner"
-            app:tabMode="scrollable"
+            app:tabMode="fixed"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

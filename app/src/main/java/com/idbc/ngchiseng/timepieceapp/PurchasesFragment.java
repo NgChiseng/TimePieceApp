@@ -59,8 +59,8 @@ public class PurchasesFragment extends Fragment {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             switch (position) {
-                case 0: return new PublicationProductsFragment();
-                case 1: return new PublicationServicesFragment();
+                case 0: return new PurchasesProcessFragment();
+                case 1: return new PurchasesDoneFragment();
             }
             return null;
         }
