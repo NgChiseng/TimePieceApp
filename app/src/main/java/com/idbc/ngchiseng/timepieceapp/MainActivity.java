@@ -3,10 +3,8 @@ package com.idbc.ngchiseng.timepieceapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
@@ -272,11 +269,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();
-        String announceTitle = announce.getAnnounceTitle();
-        String announceDescription = announce.getAnnounceOthers();
+        String announcePrice = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -311,11 +308,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();
-        String announceTitle = announce.getAnnounceTitle();
-        String announceDescription = announce.getAnnounceOthers();
+        String announcePrice = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -350,11 +347,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();
-        String announceTitle = announce.getAnnounceTitle();
-        String announceDescription = announce.getAnnounceOthers();
+        String announcePrice = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.

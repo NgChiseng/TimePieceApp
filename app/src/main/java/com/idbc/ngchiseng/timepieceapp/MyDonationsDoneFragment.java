@@ -62,16 +62,16 @@ public class MyDonationsDoneFragment extends Fragment {
                     tabItemImage.setImageResource(((Announce) entry).getImage());
 
                     TextView tabItemTitle = (TextView) view.findViewById(R.id.tab_item_title);
-                    tabItemTitle.setText(((Announce) entry).getAnnounceTitle());
+                    tabItemTitle.setText(((Announce) entry).getTitle());
 
                     TextView tabItemFirstDate = (TextView) view.findViewById(R.id.tab_item_first_date);
-                    tabItemFirstDate.setText(((Announce) entry).getAnnounceOwner());
+                    tabItemFirstDate.setText(((Announce) entry).getName());
 
                     TextView tabItemSecondDate = (TextView) view.findViewById(R.id.tab_item_second_date);
-                    tabItemSecondDate.setText(((Announce) entry).getAnnounceAddress());
+                    tabItemSecondDate.setText(((Announce) entry).getAddress());
 
                     TextView tabItemPrice = (TextView) view.findViewById(R.id.tab_item_others);
-                    tabItemPrice.setText(((Announce) entry).getAnnouncePriceComplete());
+                    tabItemPrice.setText(((Announce) entry).getPriceComplete());
                 }
             }
         });

@@ -1,5 +1,7 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+import android.content.res.Resources;
+
 /**
  * Created by ChiSeng Ng Yu on 22/6/2017.
  * Class that represent the announce objects, that will use in the adapter to generate the elements
@@ -14,28 +16,72 @@ public class Announce {
     and implements each get's method corresponding.
      */
     private int idImage;
-    private String announceTitle, announceOwner, announceAddress, announceCurrency, announcePrice, announceUnit, announceOthers;
+    private String title, name, address, currency, price, unit, descriptionOrQuantity, quantity, type, firstDate, secondDate;
 
-    public Announce(int idImage, String announceTitle, String announceOwner, String announceAddress, String announceCurrency, String announcePrice, String announceUnit, String announceOthers){
+    /* Complete object with 12 params, in this case used in the PurchaseDone and SalesDone fragments */
+    public Announce(int idImage, String title, String name, String address, String currency, String price, String unit, String descriptionOrQuantity, String quantity, String type, String firstDate, String secondDate){
         this.idImage = idImage;
-        this.announceTitle = announceTitle;
-        this.announceOwner = announceOwner;
-        this.announceAddress = announceAddress;
-        this.announceCurrency = announceCurrency;
-        this.announcePrice = announcePrice;
-        this.announceUnit = announceUnit;
-        this.announceOthers = announceOthers;
+        this.title = title;
+        this.name = name;
+        this.address = address;
+        this.currency = currency;
+        this.price = price;
+        this.unit = unit;
+        this.descriptionOrQuantity = descriptionOrQuantity;
+        this.quantity = quantity;
+        this.type = type;
+        this.firstDate = firstDate;
+        this.secondDate = secondDate;
+    }
+
+    /* SemiComplete object with 11 params, in this case used in the PurchaseInProcess and SalesInProcess fragments */
+    public Announce(int idImage, String title, String name, String address, String currency, String price, String unit, String description, String quantity, String type, String firstDate){
+        this.idImage = idImage;
+        this.title = title;
+        this.name = name;
+        this.address = address;
+        this.currency = currency;
+        this.price = price;
+        this.unit = unit;
+        this.descriptionOrQuantity = description;
+        this.quantity = quantity;
+        this.type = type;
+        this.firstDate = firstDate;
+    }
+
+    /* SemiComplete object with 9 params, in this case used int the PublicationProducts and PublicationsServices fragments */
+    public Announce(int idImage, String title, String address, String currency, String price, String unit, String description, String firstDate, String secondDate){
+        this.idImage = idImage;
+        this.title = title;
+        this.address = address;
+        this.currency = currency;
+        this.price = price;
+        this.unit = unit;
+        this.descriptionOrQuantity = description;
+        this.firstDate = firstDate;
+        this.secondDate = secondDate;
+    }
+
+    public Announce(int idImage, String title, String name, String address, String currency, String price, String unit, String description){
+        this.idImage = idImage;
+        this.title = title;
+        this.name = name;
+        this.address = address;
+        this.currency = currency;
+        this.price = price;
+        this.unit = unit;
+        this.descriptionOrQuantity = description;
     }
 
     /* This will override the variation of each announce object */
-    public Announce(int idImage, String announceTitle, String announceOwner, String announceAddress, String announceCurrency, String announcePrice, String announceUnit){
+    public Announce(int idImage, String title, String name, String address, String currency, String price, String unit){
         this.idImage = idImage;
-        this.announceTitle = announceTitle;
-        this.announceOwner = announceOwner;
-        this.announceAddress = announceAddress;
-        this.announceCurrency = announceCurrency;
-        this.announcePrice = announcePrice;
-        this.announceUnit = announceUnit;
+        this.title = title;
+        this.name = name;
+        this.address = address;
+        this.currency = currency;
+        this.price = price;
+        this.unit = unit;
     }
 
     /*  This are the get's method used for return the values of each attribute of the class
@@ -43,25 +89,35 @@ public class Announce {
      */
     public int getImage(){ return idImage; }
 
-    public String getAnnounceTitle() { return announceTitle; }
+    public String getTitle() { return title; }
 
-    public String getAnnounceOwner() { return announceOwner; }
+    public String getName() { return name; }
 
-    public String getAnnounceAddress() { return announceAddress; }
+    public String getAddress() { return address; }
 
-    public String getAnnounceCurrency() { return announceCurrency; }
+    public String getCurrency() { return currency; }
 
-    public int getAnnouncePrice() { return Integer.parseInt(announcePrice); }
+    public int getPrice() { return Integer.parseInt(price); }
 
-    public String getAnnounceUnit() { return announceUnit; }
+    public String getUnit() { return unit; }
 
-    public String getAnnounceOthers() { return announceOthers; }
+    public String getDescription() { return descriptionOrQuantity; }
 
-    public int getAnnounceNumOthers() { return Integer.parseInt(announceOthers); }
+    public String getQuantity() { return quantity; }
 
-    public String getAnnouncePriceComplete() { return (announceCurrency + announcePrice + "/" + announceUnit); }
+    public String getType() { return type; }
 
-    public void setSumOne() { this.announceOthers = Integer.toString(1 + Integer.parseInt(announceOthers)); }
+    public String getFirstDate() { return firstDate; }
 
-    public void setSubtractOne() { this.announceOthers = Integer.toString(Integer.parseInt(announceOthers) - 1); }
+    public String getSecondDate() { return secondDate; }
+
+    public int getOrQuantity() { return Integer.parseInt(descriptionOrQuantity); }
+
+    public String getPriceComplete() { return (currency + price + "/" + unit); }
+
+    public String getPriceByQuantity() { return Integer.toString(Integer.parseInt(price) * Integer.parseInt(quantity)); }
+
+    public void setSumOne() { this.descriptionOrQuantity = Integer.toString(1 + Integer.parseInt(descriptionOrQuantity)); }
+
+    public void setSubtractOne() { this.descriptionOrQuantity = Integer.toString(Integer.parseInt(descriptionOrQuantity) - 1); }
 }

@@ -67,5 +67,10 @@
     <string name="title_activity_my_donations_fragment">MyDonationsFragment</string>
     <string name="cancel">Cancel</string>
     <string name="finalize">Finalize</string>
+    <string name="price_and_acquisitions">%1$s  %2$s Acquisitions</string>
+    <string name="payment_date">Payment Date: %1$s</string>
+    <string name="total_paid">"$ %1$s Paid "</string>
+    <string name="acquisitions">%1$s Acquisitions</string>
+    <string name="seller_name">Seller: %1$s</string>
 
 </resources>

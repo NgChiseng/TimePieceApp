@@ -2,6 +2,7 @@ package com.idbc.ngchiseng.timepieceapp;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,9 +23,9 @@ public class PurchasesProcessFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
-
+    private String text;
     /* Declaration of the interface that will use to call and pass the detail data to the
-    InProcessDetailActivity through the PurchasesFragment.
+    PurchasesInProcessDetailActivity through the PurchasesFragment.
      */
     OnPurchasesProcessFragmentInteractionListener purchasesProcessInterface;
 
@@ -43,14 +44,19 @@ public class PurchasesProcessFragment extends Fragment {
         // Inflate the layout for this fragment
         final View purchasesProcessView = inflater.inflate(R.layout.fragment_purchases_process, container, false);
 
+        Resources res = getResources();
+        final String acquisitionsArg = res.getString(R.string.price_and_acquisitions);
+        final String paymentDateArg = res.getString(R.string.payment_date);
+
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
 
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Producto", "Fecha pago: 24-05-2017", "$", "88", "2 Unidades"));
-        data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Servicio", "Fecha pago: 15-06-2017", "$", "25", "1 Persona"));
+        String description = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl.";
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar con el vendedor", "$", "88", "Unidad", description, "2", "Producto", "24-05-2017"));
+        data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Carlos Lopez", "Altamira, Caracas", "$", "25", "Persona", description, "1", "Servicio", "15-06-2017"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
@@ -70,16 +76,18 @@ public class PurchasesProcessFragment extends Fragment {
                     tabItemImage.setImageResource(((Announce) entry).getImage());
 
                     TextView tabItemTitle = (TextView) view.findViewById(R.id.tab_item_title);
-                    tabItemTitle.setText(((Announce) entry).getAnnounceTitle());
-
-                    TextView tabItemFirstDate = (TextView) view.findViewById(R.id.tab_item_first_date);
-                    tabItemFirstDate.setText(((Announce) entry).getAnnounceOwner());
-
-                    TextView tabItemSecondDate = (TextView) view.findViewById(R.id.tab_item_second_date);
-                    tabItemSecondDate.setText(((Announce) entry).getAnnounceAddress());
+                    tabItemTitle.setText(((Announce) entry).getTitle());
 
                     TextView tabItemPrice = (TextView) view.findViewById(R.id.tab_item_others);
-                    tabItemPrice.setText(((Announce) entry).getAnnouncePriceComplete());
+                    text = String.format(acquisitionsArg, ((Announce) entry).getPriceComplete(), ((Announce) entry).getQuantity());
+                    tabItemPrice.setText(text);
+
+                    TextView tabItemType = (TextView) view.findViewById(R.id.tab_item_first_date);
+                    tabItemType.setText(((Announce) entry).getType());
+
+                    TextView tabItemPaymentDate = (TextView) view.findViewById(R.id.tab_item_second_date);
+                    text = String.format(paymentDateArg, ((Announce) entry).getFirstDate());
+                    tabItemPaymentDate.setText(text);
                 }
             }
         });

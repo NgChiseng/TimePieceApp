@@ -94,7 +94,7 @@ public class PurchasesFragment extends Fragment implements PurchasesProcessFragm
         @date[14/07/2017]
         @author[ChiSeng Ng]
         @param [Announce] announce Announce with the data that will pass to the
-        InProcessDetailActivity.
+        PurchasesInProcessDetailActivity.
         @return [void]
    */
     @Override
@@ -102,20 +102,28 @@ public class PurchasesFragment extends Fragment implements PurchasesProcessFragm
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        /*String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();*/
-        String announceTitle = announce.getAnnounceTitle();
-        //String announceDescription = announce.getAnnounceOthers();
+        String announcePriceComplete = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceQuantity = announce.getQuantity();
+        String announceTotal = announce.getPriceByQuantity();
+        String announceDescription = announce.getDescription();
 
         /* This will handler the Activity corresponding */
-        Intent intent = new Intent(getActivity().getBaseContext(), InProcessDetailActivity.class);
+        Intent intent = new Intent(getActivity().getBaseContext(), PurchasesInProcessDetailActivity.class);
 
         /* This will put each value obtained with the key corresponding, for pass them to the
-        InProcessDetailActivity through a bundle object.
+        PurchasesInProcessDetailActivity through a bundle object.
          */
-        //intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Price", announcePriceComplete);
+        intent.putExtra("Name", announceName);
+        intent.putExtra("Address", announceAddress);
         intent.putExtra("Title", announceTitle);
+        intent.putExtra("Quantity", announceQuantity);
+        intent.putExtra("Total", announceTotal);
+        intent.putExtra("Description", announceDescription);
 
         /* This will will call and execute the activity corresponding */
         getActivity().startActivity(intent);
