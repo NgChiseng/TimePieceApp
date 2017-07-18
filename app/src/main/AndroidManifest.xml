@@ -61,7 +61,8 @@
             android:name=".ShoppingBagActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PurchasesInProcessDetailActivity"></activity>
+        <activity android:name=".PurchasesInProcessDetailActivity" />
+        <activity android:name=".SalesInProcessDetailActivity"></activity>
     </application>
 
 </manifest>

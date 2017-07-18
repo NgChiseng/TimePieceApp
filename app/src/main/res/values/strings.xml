@@ -72,5 +72,9 @@
     <string name="total_paid">"$ %1$s Paid "</string>
     <string name="acquisitions">%1$s Acquisitions</string>
     <string name="seller_name">Seller: %1$s</string>
+    <string name="price_and_sales">%1$s %2$s Sales</string>
+    <string name="buyer_name">Buyer: %1$s</string>
+    <string name="sales">%1$s Sales</string>
+    <string name="finish_date">Finish Date: %1$s</string>
 
 </resources>

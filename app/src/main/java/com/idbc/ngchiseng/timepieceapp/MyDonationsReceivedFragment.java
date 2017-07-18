@@ -42,7 +42,7 @@ public class MyDonationsReceivedFragment extends Fragment {
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Servicio", "Fecha cierre: 13-07-2017", "$", "126", "3 hrs"));
+        //data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Servicio", "Fecha cierre: 13-07-2017", "$", "126", "3 hrs"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.

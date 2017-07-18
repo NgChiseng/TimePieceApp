@@ -57,4 +57,8 @@
     <string name="total_paid">$ %1$s Pagados</string>
     <string name="acquisitions">%1$s Adquisiciones</string>
     <string name="seller_name">Vendedor: %1$s</string>
+    <string name="price_and_sales">%1$s %2$s Ventas</string>
+    <string name="buyer_name">Comprador: %1$s</string>
+    <string name="sales">%1$s Ventas</string>
+    <string name="finish_date">Fecha Cierre: %1$s</string>
 </resources>

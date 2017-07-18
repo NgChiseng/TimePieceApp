@@ -1,6 +1,7 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ public class SalesDoneFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
+    private String text;
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
@@ -36,15 +38,29 @@ public class SalesDoneFragment extends Fragment {
         // Inflate the layout for this fragment
         final View salesDoneView = inflater.inflate(R.layout.fragment_sales_done, container, false);
 
+        /* This will obtain the resource for setting the formatting String in each Item view */
+        Resources res = getResources();
+        final String salesArg = res.getString(R.string.price_and_sales);
+        final String finishDateArg = res.getString(R.string.finish_date);
+
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
 
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Servicio", "Fecha cierre: 13-07-2017", "$", "126", "3 hrs"));
-        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Servicio", "Fecha cierre: 11-01-2010", "$", "100", "4 hrs"));
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Producto", "Fecha cierre: 24-05-2009", "$", "88", "2 Unidades"));
+        String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget " +
+                "nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique." +
+                " Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed" +
+                " venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet " +
+                "neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices " +
+                "posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus " +
+                "sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie" +
+                " tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel " +
+                "dignissim erat, vitae malesuada nisl.";
+        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$", "126", "hrs", description, "3", "Servicio", "13-07-2017", "14-07-2017"));
+        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carlos Lopez", "A domicilio", "$", "100", "hrs", description, "4", "Servicio", "11-07-2010", "26-07-2010"));
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar con el vendedor", "$", "88", "Unidad", description, "2", "Producto", "24-05-2017", "30-07-2018"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
@@ -66,14 +82,16 @@ public class SalesDoneFragment extends Fragment {
                     TextView tabItemTitle = (TextView) view.findViewById(R.id.tab_item_title);
                     tabItemTitle.setText(((Announce) entry).getTitle());
 
-                    TextView tabItemFirstDate = (TextView) view.findViewById(R.id.tab_item_first_date);
-                    tabItemFirstDate.setText(((Announce) entry).getName());
-
-                    TextView tabItemSecondDate = (TextView) view.findViewById(R.id.tab_item_second_date);
-                    tabItemSecondDate.setText(((Announce) entry).getAddress());
-
                     TextView tabItemPrice = (TextView) view.findViewById(R.id.tab_item_others);
-                    tabItemPrice.setText(((Announce) entry).getPriceComplete());
+                    text = String.format(salesArg, ((Announce) entry).getPriceComplete(), ((Announce) entry).getQuantity());
+                    tabItemPrice.setText(text);
+
+                    TextView tabItemType = (TextView) view.findViewById(R.id.tab_item_first_date);
+                    tabItemType.setText(((Announce) entry).getType());
+
+                    TextView tabItemFinishDate = (TextView) view.findViewById(R.id.tab_item_second_date);
+                    text = String.format(finishDateArg, ((Announce) entry).getFirstDate());
+                    tabItemFinishDate.setText(text);
                 }
             }
         });
