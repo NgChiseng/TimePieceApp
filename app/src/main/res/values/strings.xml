@@ -76,5 +76,6 @@
     <string name="buyer_name">Buyer: %1$s</string>
     <string name="sales">%1$s Sales</string>
     <string name="finish_date">Finish Date: %1$s</string>
+    <string name="create_question">I want to create:</string>
 
 </resources>

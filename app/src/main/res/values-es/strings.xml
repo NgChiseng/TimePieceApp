@@ -61,4 +61,5 @@
     <string name="buyer_name">Comprador: %1$s</string>
     <string name="sales">%1$s Ventas</string>
     <string name="finish_date">Fecha Cierre: %1$s</string>
+    <string name="create_question">Quiero crear:</string>
 </resources>

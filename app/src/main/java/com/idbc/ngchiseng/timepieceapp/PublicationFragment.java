@@ -1,5 +1,8 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.support.annotation.StringDef;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +55,20 @@ public class PublicationFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+
+                // Declaration of the alert dialog
+                AlertDialog.Builder publicationSelector = new AlertDialog.Builder(getActivity(),R.style.ListAlertDialogStyle);
+                publicationSelector.setTitle(R.string.create_question);
+                Resources res = getResources();
+                String [] optionsArray = { res.getString(R.string.main_products), res.getString(R.string.main_services), res.getString(R.string.main_donations), res.getString(R.string.cancel)};
+                publicationSelector.setItems(optionsArray, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                publicationSelector.create().show();
             }
         });
 
