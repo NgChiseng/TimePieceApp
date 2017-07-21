@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PurchasesFragment extends Fragment implements PurchasesProcessFragment.OnPurchasesProcessFragmentInteractionListener {
+public class PurchasesFragment extends Fragment implements PurchasesProcessFragment.OnPurchasesProcessFragmentInteractionListener, PurchasesDoneFragment.OnPurchasesDoneFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -123,6 +123,51 @@ public class PurchasesFragment extends Fragment implements PurchasesProcessFragm
         intent.putExtra("Title", announceTitle);
         intent.putExtra("Quantity", announceQuantity);
         intent.putExtra("Total", announceTotal);
+        intent.putExtra("Description", announceDescription);
+
+        /* This will will call and execute the activity corresponding */
+        getActivity().startActivity(intent);
+    }
+
+    /*  Implementation of the method corresponding to the OnPurchasesDoneFragmentInteractionListener
+    interface in the PurchasesDoneFragment, that will invoke the DoneDetail activity with
+    the announce and its data corresponding.
+        @date[21/07/2017]
+        @author[ChiSeng Ng]
+        @param [Announce] announce Announce with the data that will pass to the
+        PurchasesDoneDetailActivity.
+        @return [void]
+   */
+    @Override
+    public void onPurchasesDoneFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announcePriceComplete = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceQuantity = announce.getQuantity();
+        String announceTotal = announce.getPriceByQuantity();
+        String announcePaymentDate = announce.getFirstDate();
+        String announceFinishDate = announce.getSecondDate();
+        String announceDescription = announce.getDescription();
+
+        /* This will handler the Activity corresponding */
+        Intent intent = new Intent(getActivity().getBaseContext(), PurchasesDoneDetailActivity.class);
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        PurchasesInProcessDetailActivity through a bundle object.
+         */
+        intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Price", announcePriceComplete);
+        intent.putExtra("Name", announceName);
+        intent.putExtra("Address", announceAddress);
+        intent.putExtra("Title", announceTitle);
+        intent.putExtra("Quantity", announceQuantity);
+        intent.putExtra("Total", announceTotal);
+        intent.putExtra("PaymentDate", announcePaymentDate);
+        intent.putExtra("FinishDate", announceFinishDate);
         intent.putExtra("Description", announceDescription);
 
         /* This will will call and execute the activity corresponding */

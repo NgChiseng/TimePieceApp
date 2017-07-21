@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SalesDoneDetailActivity extends AppCompatActivity {
+public class PurchasesDoneDetailActivity extends AppCompatActivity {
 
     /*  Method that will onCreate the tout activity, link its component, and implements the
     onClickListener for receive the click request.
@@ -21,7 +21,7 @@ public class SalesDoneDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sales_done_detail);
+        setContentView(R.layout.activity_purchases_done_detail);
 
         Resources res = getResources();
 
@@ -55,10 +55,10 @@ public class SalesDoneDetailActivity extends AppCompatActivity {
         /* This will set each value to the view component corresponding in the layout */
         announceImage.setImageResource(imageId);
         announcePrice.setText(price);
-        announceName.setText(String.format(res.getString(R.string.buyer_name),name));
+        announceName.setText(String.format(res.getString(R.string.seller_name),name));
         announceAddress.setText(address);
         announceTitle.setText(title);
-        announceNumItems.setText(String.format(res.getString(R.string.sales) , quantity));
+        announceNumItems.setText(String.format(res.getString(R.string.acquisitions) , quantity));
         announceTotal.setText(String.format(res.getString(R.string.total_paid) , total));
         announcePaymentDate.setText(String.format(res.getString(R.string.payment_date), paymentDate));
         announceFinishDate.setText(String.format(res.getString(R.string.finish_date), finishDate));

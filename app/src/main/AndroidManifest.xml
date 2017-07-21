@@ -63,7 +63,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PurchasesInProcessDetailActivity" />
         <activity android:name=".SalesInProcessDetailActivity" />
-        <activity android:name=".SalesDoneDetailActivity"></activity>
+        <activity android:name=".SalesDoneDetailActivity" />
+        <activity android:name=".PurchasesDoneDetailActivity"></activity>
     </application>
 
 </manifest>
