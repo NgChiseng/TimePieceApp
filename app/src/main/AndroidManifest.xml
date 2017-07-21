@@ -62,7 +62,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PurchasesInProcessDetailActivity" />
-        <activity android:name=".SalesInProcessDetailActivity"></activity>
+        <activity android:name=".SalesInProcessDetailActivity" />
+        <activity android:name=".SalesDoneDetailActivity"></activity>
     </application>
 
 </manifest>

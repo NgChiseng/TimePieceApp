@@ -105,7 +105,7 @@ public class SalesProcessFragment extends Fragment {
         });
 
         /* Declaration and implementation of the item listener that will get the item that was
-        clicked and call the products interface method that will be implemented in the MainActivity.
+        clicked and call the products interface method that will be implemented in the SalesFragment.
          */
         listTabItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
