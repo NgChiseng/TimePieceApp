@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class PublicationFragment extends Fragment {
 
@@ -60,12 +61,31 @@ public class PublicationFragment extends Fragment {
                 // Declaration of the alert dialog
                 AlertDialog.Builder publicationSelector = new AlertDialog.Builder(getActivity(),R.style.ListAlertDialogStyle);
                 publicationSelector.setTitle(R.string.create_question);
+                // This will obtain, initialize, define and set the resource values corresponding.
                 Resources res = getResources();
-                String [] optionsArray = { res.getString(R.string.main_products), res.getString(R.string.main_services), res.getString(R.string.main_donations), res.getString(R.string.cancel)};
+                String [] optionsArray = { res.getString(R.string.main_products), res.getString(R.string.main_services), res.getString(R.string.main_donations) };
+                // This will handler the behavior corresponding to each option.
                 publicationSelector.setItems(optionsArray, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        switch (which) {
+                            case 0:
+                                Toast.makeText(getContext(), "Click Create Products" , Toast.LENGTH_LONG).show();
+                                break;
+                            case 1:
+                                Toast.makeText(getContext(), "Click Create Services" , Toast.LENGTH_LONG).show();
+                                break;
+                            case 2:
+                                Toast.makeText(getContext(), "Click Create Donations" , Toast.LENGTH_LONG).show();
+                                break;
+                        }
+                    }
+                });
+                // This will define and handler the cancel option.
+                publicationSelector.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
                     }
                 });
                 publicationSelector.create().show();

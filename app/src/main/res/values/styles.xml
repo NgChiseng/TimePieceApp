@@ -29,12 +29,6 @@
     <!-- This block will be used for setting the list alert dialog style. -->
     <style name="ListAlertDialogStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:textAlignment">center</item>
-        <item name="android:windowTitleStyle">@style/ListAlertDialogTitleStyle</item>
-    </style>
-    <style name="ListAlertDialogTitleStyle">
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@color/circle1</item>
-        <item name="android:colorBackground">@color/circle1</item>
     </style>
     <!-- End Block -->
 </resources>
