@@ -53,10 +53,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PasswordResetActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible"/>
         <activity
             android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible"/>
         <activity
             android:name=".ShoppingBagActivity"
             android:screenOrientation="portrait"
@@ -64,7 +66,11 @@
         <activity android:name=".PurchasesInProcessDetailActivity" />
         <activity android:name=".SalesInProcessDetailActivity" />
         <activity android:name=".SalesDoneDetailActivity" />
-        <activity android:name=".PurchasesDoneDetailActivity"></activity>
+        <activity android:name=".PurchasesDoneDetailActivity" />
+        <activity android:name=".CreateProductActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
+        />
     </application>
 
 </manifest>

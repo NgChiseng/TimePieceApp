@@ -62,4 +62,9 @@
     <string name="sales">%1$s Ventas</string>
     <string name="finish_date">Fecha Cierre: %1$s</string>
     <string name="create_question">Quiero crear:</string>
+    <string name="create_price">Precio</string>
+    <string name="create_unit">Unidad</string>
+    <string name="create_address">Direccion</string>
+    <string name="create_title">Titulo</string>
+    <string name="create_description">Descripcion</string>
 </resources>

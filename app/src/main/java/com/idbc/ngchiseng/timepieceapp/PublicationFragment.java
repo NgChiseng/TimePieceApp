@@ -1,6 +1,7 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.StringDef;
 import android.support.design.widget.TabLayout;
@@ -70,7 +71,10 @@ public class PublicationFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                Toast.makeText(getContext(), "Click Create Products" , Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getContext(), CreateProductActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                //finish();
                                 break;
                             case 1:
                                 Toast.makeText(getContext(), "Click Create Services" , Toast.LENGTH_LONG).show();

@@ -1,6 +1,7 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,9 @@ import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ShoppingBagActivity extends AppCompatActivity implements View.OnClickListener {
 
     /*  This will declare the variables that are going to use on the activity. */
@@ -27,6 +31,17 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        This will define the fonts calling CalligraphyConfig() method to change the letter font
+        defined in the assets/fonts/ directory.
+         */
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/MyriadPro-SemiExt.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
         setContentView(R.layout.activity_shopping_bag);
 
         /* This will manage the toolbar configuration and addressing. */
@@ -237,5 +252,18 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
         } else {
             super.onBackPressed();
         }
+    }
+
+    /*  Method that use the Calligraphy dependence to attach the base context and to can change the
+    letter's font corresponding.
+           @date[25/07/2017]
+           @reference [https://github.com/chrisjenx/Calligraphy/]
+           @author[ChiSeng Ng]
+           @param [Context] newBase Base Context of the Parent Activity.
+           @return [void]
+   */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
