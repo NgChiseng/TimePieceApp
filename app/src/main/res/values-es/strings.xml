@@ -67,4 +67,7 @@
     <string name="create_address">Direccion</string>
     <string name="create_title">Titulo</string>
     <string name="create_description">Descripcion</string>
+    <string name="camera">CÁMARA</string>
+    <string name="gallery">GALERÍA</string>
+    <string name="upload">Subir de:</string>
 </resources>

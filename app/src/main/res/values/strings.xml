@@ -82,5 +82,8 @@
     <string name="create_address">Address</string>
     <string name="create_title">Title</string>
     <string name="create_description">Description</string>
+    <string name="camera">CAMERA</string>
+    <string name="gallery">GALLERY</string>
+    <string name="upload">Upload from:</string>
 
 </resources>

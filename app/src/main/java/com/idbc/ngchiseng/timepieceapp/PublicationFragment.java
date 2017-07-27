@@ -58,13 +58,11 @@ public class PublicationFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 // Declaration of the alert dialog
                 AlertDialog.Builder publicationSelector = new AlertDialog.Builder(getActivity(),R.style.ListAlertDialogStyle);
                 publicationSelector.setTitle(R.string.create_question);
-                // This will obtain, initialize, define and set the resource values corresponding.
-                Resources res = getResources();
-                String [] optionsArray = { res.getString(R.string.main_products), res.getString(R.string.main_services), res.getString(R.string.main_donations) };
+
+                String [] optionsArray = { getString(R.string.main_products), getString(R.string.main_services), getString(R.string.main_donations) };
                 // This will handler the behavior corresponding to each option.
                 publicationSelector.setItems(optionsArray, new DialogInterface.OnClickListener() {
                     @Override
