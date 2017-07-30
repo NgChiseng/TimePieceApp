@@ -69,13 +69,16 @@ public class PublicationFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                Intent intent = new Intent(getContext(), CreateProductActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                Intent intentProduct = new Intent(getContext(), CreateProductActivity.class);
+                                intentProduct.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intentProduct);
                                 //finish();
                                 break;
                             case 1:
-                                Toast.makeText(getContext(), "Click Create Services" , Toast.LENGTH_LONG).show();
+                                Intent intentService = new Intent(getContext(), CreateServiceActivity.class);
+                                intentService.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intentService);
+                                //finish();
                                 break;
                             case 2:
                                 Toast.makeText(getContext(), "Click Create Donations" , Toast.LENGTH_LONG).show();
