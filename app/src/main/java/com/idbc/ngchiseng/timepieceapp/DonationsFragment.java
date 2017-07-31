@@ -1,6 +1,7 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -40,21 +41,35 @@ public class DonationsFragment extends Fragment {
         // Inflate the layout for this fragment
         final View donationsView = inflater.inflate(R.layout.fragment_donations, container, false);
 
+        /* This will obtain the resource for setting the formatting String in each Item view */
+        Resources res = getResources();
+        final String collectedWord = res.getString(R.string.donation_collected);
+        final String requiredWord = res.getString(R.string.donation_required);
+
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
 
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar envío con el vendedor", "$", "44", "Par", "" ));
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar envío con el vendedor", "$", "44", "Par", "A" ));
+        String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget " +
+                "nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. " +
+                "Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed " +
+                "venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet " +
+                "neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere " +
+                "cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. " +
+                "Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, " +
+                "lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim " +
+                "erat, vitae malesuada nisl.";
+        data.add(new Announce(R.drawable.first_item, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, "", "59", requiredWord ));
+
 
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
         listAnnounces = (ListView) donationsView.findViewById(R.id.donations_list);
-        listAnnounces.setAdapter(new AnnouncesAdapter(getContext(), R.layout.announce, data) {
+        listAnnounces.setAdapter(new AnnouncesAdapter(getContext(), R.layout.announce_donation, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
             the respective elements and handlers.
@@ -64,20 +79,21 @@ public class DonationsFragment extends Fragment {
 
                 if (entry != null){
 
-                    ImageView announceImage = (ImageView) view.findViewById(R.id.announce_image);
+                    ImageView announceImage = (ImageView) view.findViewById(R.id.announce_donation_image);
                     announceImage.setImageResource(((Announce) entry).getImage());
 
-                    TextView announceTitle = (TextView) view.findViewById(R.id.announce_title);
+                    TextView announceTitle = (TextView) view.findViewById(R.id.announce_donation_title);
                     announceTitle.setText(((Announce) entry).getTitle());
 
-                    TextView announceOwner = (TextView) view.findViewById(R.id.announce_owner);
-                    announceOwner.setText(((Announce) entry).getName());
+                    TextView announceOwner = (TextView) view.findViewById(R.id.announce_donation_owner);
+                    announceOwner.setText(((Announce) entry).getAddress());
 
-                    TextView announceAddress = (TextView) view.findViewById(R.id.announce_address);
-                    announceAddress.setText(((Announce) entry).getAddress());
+                    TextView announceCollected = (TextView) view.findViewById(R.id.announce_donation_collected);
+                    announceCollected.setText(((Announce) entry).getCollectedDonation());
 
-                    TextView announcePrice = (TextView) view.findViewById(R.id.announce_price);
-                    announcePrice.setText(((Announce) entry).getPriceComplete());
+                    TextView announceRequired = (TextView) view.findViewById(R.id.announce_donation_required);
+                    announceRequired.setText(((Announce) entry).getRequiredDonation());
+
                 }
             }
         });
@@ -85,13 +101,13 @@ public class DonationsFragment extends Fragment {
         /* Declaration and implementation of the item listener that will get the item that was
         clicked and call the products interface method that will be implemented in the MainActivity.
          */
-        listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Announce selected = (Announce) parent.getItemAtPosition(position);
                 donationsInterface.onDonationsFragmentInteraction(selected);
             }
-        });
+        });*/
 
         return donationsView;
     }

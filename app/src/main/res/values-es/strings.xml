@@ -72,4 +72,6 @@
     <string name="upload">Subir de:</string>
     <string name="cause"><u>Causa:</u></string>
     <string name="donation_raise">A recaudar: $</string>
+    <string name="donation_required">Requeridos</string>
+    <string name="donation_collected">Recolectado</string>
 </resources>

@@ -87,5 +87,7 @@
     <string name="upload">Upload from:</string>
     <string name="cause"><u>Cause:</u></string>
     <string name="donation_raise">To raise: $</string>
+    <string name="donation_required">Required</string>
+    <string name="donation_collected">Collected</string>
 
 </resources>
