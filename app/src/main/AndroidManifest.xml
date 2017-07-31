@@ -77,9 +77,13 @@
             android:name=".CreateProductActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
-        <activity android:name=".CreateServiceActivity"
+        <activity
+            android:name=".CreateServiceActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustResize"/>
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
+        <activity android:name=".CreateDonationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
     </application>
 
 </manifest>

@@ -70,4 +70,6 @@
     <string name="camera">CÁMARA</string>
     <string name="gallery">GALERÍA</string>
     <string name="upload">Subir de:</string>
+    <string name="cause"><u>Causa:</u></string>
+    <string name="donation_raise">A recaudar: $</string>
 </resources>

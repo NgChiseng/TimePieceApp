@@ -85,5 +85,7 @@
     <string name="camera">CAMERA</string>
     <string name="gallery">GALLERY</string>
     <string name="upload">Upload from:</string>
+    <string name="cause"><u>Cause:</u></string>
+    <string name="donation_raise">To raise: $</string>
 
 </resources>

@@ -81,7 +81,10 @@ public class PublicationFragment extends Fragment {
                                 //finish();
                                 break;
                             case 2:
-                                Toast.makeText(getContext(), "Click Create Donations" , Toast.LENGTH_LONG).show();
+                                Intent intentDonation = new Intent(getContext(), CreateDonationActivity.class);
+                                intentDonation.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intentDonation);
+                                //finish();
                                 break;
                         }
                     }
