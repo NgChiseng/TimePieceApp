@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class MyDonationsFragment extends Fragment implements MyDonationsReceivedFragment.OnMyDonationsReceivedFragmentInteractionListener {
+public class MyDonationsFragment extends Fragment implements MyDonationsReceivedFragment.OnMyDonationsReceivedFragmentInteractionListener, MyDonationsDoneFragment.OnMyDonationsDoneFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -125,7 +125,7 @@ public class MyDonationsFragment extends Fragment implements MyDonationsReceived
         Intent intent = new Intent(getActivity().getBaseContext(), MyDonationsReceivedDetailActivity.class);
 
         /* This will put each value obtained with the key corresponding, for pass them to the
-        PurchasesInProcessDetailActivity through a bundle object.
+        MyDonationsReceivedDetailActivity through a bundle object.
          */
         intent.putExtra("ImageId", announceImageId);
         intent.putExtra("Received", announceReceivedAmount);
@@ -133,6 +133,45 @@ public class MyDonationsFragment extends Fragment implements MyDonationsReceived
         intent.putExtra("Title", announceTitle);
         intent.putExtra("Required", announceRequired);
         intent.putExtra("ReceptionDate", announceReceptionDate);
+        intent.putExtra("Description", announceDescription);
+
+        /* This will will call and execute the activity corresponding */
+        getActivity().startActivity(intent);
+    }
+
+    /*  Implementation of the method corresponding to the OnMyDonationsDoneFragmentInteractionListener
+    interface in the MyDonationsDoneFragment, that will invoke the MyDonationsDoneDetail activity with
+    the announce and its data corresponding.
+        @date[01/08/2017]
+        @author[ChiSeng Ng]
+        @param [Announce] announce Announce with the data that will pass to the
+        MyDonationsDoneDetailActivity.
+        @return [void]
+   */
+    @Override
+    public void onMyDonationsDoneFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announceDoneAmount = announce.getCurrencyPrice();
+        String announceName = announce.getName();
+        String announceTitle = announce.getTitle();
+        String announceRequired = announce.getCurrencyUnit();
+        String announceDonationDate = announce.getAddress();
+        String announceDescription = announce.getDescription();
+
+        /* This will handler the Activity corresponding */
+        Intent intent = new Intent(getActivity().getBaseContext(), MyDonationsDoneDetailActivity.class);
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        MyDonationsDoneDetailActivity through a bundle object.
+         */
+        intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Done", announceDoneAmount);
+        intent.putExtra("Name", announceName);
+        intent.putExtra("Title", announceTitle);
+        intent.putExtra("Required", announceRequired);
+        intent.putExtra("DonationDate", announceDonationDate);
         intent.putExtra("Description", announceDescription);
 
         /* This will will call and execute the activity corresponding */

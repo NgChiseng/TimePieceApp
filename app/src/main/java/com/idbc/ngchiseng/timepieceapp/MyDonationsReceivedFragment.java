@@ -26,12 +26,12 @@ public class MyDonationsReceivedFragment extends Fragment {
     private String text;
 
     /* Declaration of the interface that will use to call and pass the detail data to the
-    MyDonationsReceivedDetailActivity through the SalesFragment.
+    MyDonationsReceivedDetailActivity through the MyDonationsFragment.
      */
     OnMyDonationsReceivedFragmentInteractionListener myDonationsReceivedInterface;
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
-    the render to the main Activity.
+    the render to the main Fragment.
         @date[13/07/2017]
         @author[ChiSeng Ng]
         @param [LayoutInflater] inflater The layout inflater corresponding of the caller Activity.
@@ -90,7 +90,6 @@ public class MyDonationsReceivedFragment extends Fragment {
 
                     TextView tabItemPrice = (TextView) view.findViewById(R.id.tab_item_others);
                     text = String.format(donationReceived, ((Announce) entry).getCurrencyPrice());
-
                     tabItemPrice.setText(text);
 
                     TextView tabItemFirstDate = (TextView) view.findViewById(R.id.tab_item_first_date);
