@@ -75,4 +75,11 @@
     <string name="donation_required">Requeridos</string>
     <string name="donation_collected">Recolectado</string>
     <string name="amount_to_donate">Monto a Donar</string>
+    <string name="donation_item_received">%1$s Recibidos</string>
+    <string name="donation_item_required">%1$s Requeridos</string>
+    <string name="donation_item_donated">%1$s Donados</string>
+    <string name="reception_date">Fecha Recepcion: %1$s</string>
+    <string name="donation_date">Fecha Donacion: %1$s</string>
+    <string name="donor_name">Donante: %1$s</string>
+    <string name="beneficiary_name">Beneficiario: %1$s</string>
 </resources>

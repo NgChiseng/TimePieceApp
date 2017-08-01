@@ -74,7 +74,7 @@ public class Announce {
         this.descriptionOrQuantity = description;
     }
 
-    /* SemiComplete object with 8 params, in this case used in the BagShopping of the Products and Services collected by the user to pay. */
+    /* SemiComplete object with 7 params, in this case used in the BagShopping of the Products and Services collected by the user to pay. */
     public Announce(int idImage, String title, String name, String address, String currency, String price, String unit){
         this.idImage = idImage;
         this.title = title;
@@ -115,6 +115,10 @@ public class Announce {
     public int getOrQuantity() { return Integer.parseInt(descriptionOrQuantity); }
 
     public String getPriceComplete() { return (currency + price + "/" + unit); }
+
+    public String getCurrencyPrice() { return (currency + price); }
+
+    public String getCurrencyUnit() { return (currency + unit); }
 
     public String getPriceByQuantity() { return Integer.toString(Integer.parseInt(price) * Integer.parseInt(quantity)); }
 

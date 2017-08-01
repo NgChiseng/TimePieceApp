@@ -90,5 +90,12 @@
     <string name="donation_required">Required</string>
     <string name="donation_collected">Collected</string>
     <string name="amount_to_donate">Amount to Donate</string>
+    <string name="donation_item_received">%1$s Received</string>
+    <string name="donation_item_required">%1$s Required</string>
+    <string name="donation_item_donated">%1$s Donated</string>
+    <string name="reception_date">Reception Date: %1$s</string>
+    <string name="donation_date">Donation Date: %1$s</string>
+    <string name="donor_name">Donor: %1$s</string>
+    <string name="beneficiary_name">Beneficiary: %1$s</string>
 
 </resources>
