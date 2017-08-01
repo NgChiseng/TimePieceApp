@@ -74,4 +74,5 @@
     <string name="donation_raise">A recaudar: $</string>
     <string name="donation_required">Requeridos</string>
     <string name="donation_collected">Recolectado</string>
+    <string name="amount_to_donate">Monto a Donar</string>
 </resources>

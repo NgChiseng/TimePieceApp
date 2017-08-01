@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity
                 productsAnnounces.setText(text);
                 text = String.format(res.getString(R.string.main_announces), 3);
                 servicesAnnounces.setText(text);
-                text = String.format(res.getString(R.string.main_announces), 0);
+                text = String.format(res.getString(R.string.main_announces), 1);
                 donationsAnnounces.setText(text);
 
                 mainProducts.setOnClickListener(this);
@@ -347,9 +347,6 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getPriceComplete();
-        String announceName = announce.getName();
-        String announceAddress = announce.getAddress();
         String announceTitle = announce.getTitle();
         String announceDescription = announce.getDescription();
 
@@ -358,12 +355,9 @@ public class MainActivity extends AppCompatActivity
          */
         Bundle bundle = new Bundle();
         bundle.putInt("ImageId", announceImageId);
-        bundle.putString("Price", announcePrice);
-        bundle.putString("Name", announceName);
-        bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
         bundle.putString("Description", announceDescription);
-        DetailFragment detailFragment = new DetailFragment();
+        DetailDonationFragment detailFragment = new DetailDonationFragment();
         detailFragment.setArguments(bundle);
 
         /* This will create and execute the manager transaction, that will call and replace the

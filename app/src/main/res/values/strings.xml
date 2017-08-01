@@ -89,5 +89,6 @@
     <string name="donation_raise">To raise: $</string>
     <string name="donation_required">Required</string>
     <string name="donation_collected">Collected</string>
+    <string name="amount_to_donate">Amount to Donate</string>
 
 </resources>

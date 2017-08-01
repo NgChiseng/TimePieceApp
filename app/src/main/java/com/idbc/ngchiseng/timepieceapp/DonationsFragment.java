@@ -61,7 +61,7 @@ public class DonationsFragment extends Fragment {
                 "Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, " +
                 "lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim " +
                 "erat, vitae malesuada nisl.";
-        data.add(new Announce(R.drawable.first_item, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, "", "59", requiredWord ));
+        data.add(new Announce(R.drawable.first_item, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, "A", "59", requiredWord ));
 
 
 
@@ -101,13 +101,13 @@ public class DonationsFragment extends Fragment {
         /* Declaration and implementation of the item listener that will get the item that was
         clicked and call the products interface method that will be implemented in the MainActivity.
          */
-        /*listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Announce selected = (Announce) parent.getItemAtPosition(position);
                 donationsInterface.onDonationsFragmentInteraction(selected);
             }
-        });*/
+        });
 
         return donationsView;
     }
