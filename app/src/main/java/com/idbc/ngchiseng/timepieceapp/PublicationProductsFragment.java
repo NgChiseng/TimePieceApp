@@ -1,5 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ public class PublicationProductsFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
+    private String text;
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
@@ -32,13 +34,27 @@ public class PublicationProductsFragment extends Fragment {
         // Inflate the layout for this fragment
         final View productsPublicationView = inflater.inflate(R.layout.fragment_publication_products, container, false);
 
+        /* This will obtain the resource for setting the formatting String in each Item view */
+        Resources res = getResources();
+        final String creationDate = res.getString(R.string.creation_date);
+        final String modificationDate = res.getString(R.string.modification_date);
+
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
 
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Fecha creacion: 24-03-2017", "Fecha modificacion: 24-03-2017", "$", "44", "Unidad"));
+        String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget " +
+                "nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique." +
+                " Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed" +
+                " venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet " +
+                "neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices " +
+                "posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus " +
+                "sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie" +
+                " tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel " +
+                "dignissim erat, vitae malesuada nisl.";
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Coordinar envío con el vendedor" , "$", "44", "Unidad", description, "24-03-2017", "24-03-2017"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
@@ -60,14 +76,16 @@ public class PublicationProductsFragment extends Fragment {
                     TextView tabItemTitle = (TextView) view.findViewById(R.id.tab_item_title);
                     tabItemTitle.setText(((Announce) entry).getTitle());
 
-                    TextView tabItemFirstDate = (TextView) view.findViewById(R.id.tab_item_first_date);
-                    tabItemFirstDate.setText(((Announce) entry).getName());
-
-                    TextView tabItemSecondDate = (TextView) view.findViewById(R.id.tab_item_second_date);
-                    tabItemSecondDate.setText(((Announce) entry).getAddress());
-
                     TextView tabItemPrice = (TextView) view.findViewById(R.id.tab_item_others);
                     tabItemPrice.setText(((Announce) entry).getPriceComplete());
+
+                    TextView tabItemFirstDate = (TextView) view.findViewById(R.id.tab_item_first_date);
+                    text = String.format(creationDate, ((Announce) entry).getFirstDate());
+                    tabItemFirstDate.setText(text);
+
+                    TextView tabItemSecondDate = (TextView) view.findViewById(R.id.tab_item_second_date);
+                    text = String.format(modificationDate, ((Announce) entry).getSecondDate());
+                    tabItemSecondDate.setText(text);
                 }
             }
         });

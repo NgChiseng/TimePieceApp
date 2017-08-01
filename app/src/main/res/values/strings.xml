@@ -97,5 +97,7 @@
     <string name="donation_date">Donation Date: %1$s</string>
     <string name="donor_name">Donor: %1$s</string>
     <string name="beneficiary_name">Beneficiary: %1$s</string>
+    <string name="creation_date">Creation Date: %1$s</string>
+    <string name="modification_date">Modification Date: %1$s</string>
 
 </resources>
