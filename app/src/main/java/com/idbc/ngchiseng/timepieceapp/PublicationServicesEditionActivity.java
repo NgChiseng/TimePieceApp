@@ -3,6 +3,7 @@ package com.idbc.ngchiseng.timepieceapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class CreateServiceActivity extends AppCompatActivity implements View.OnClickListener {
+public class PublicationServicesEditionActivity extends AppCompatActivity implements View.OnClickListener {
 
     /* This will define the variables that will use in the creation of the service */
     private ImageView serviceImage;
@@ -31,9 +32,9 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
     private static final int REQUEST_CAMERA = 0;
     private static final int SELECT_FILE = 1;
 
-    /*  Method that will onCreate of the CreateService activity, link its component, and implements the
+    /*  Method that will onCreate of the PublicationservicesEdition activity, link its component, and implements the
     onClickListener for receive the click request.
-        @date[25/07/2017]
+        @date[02/08/2017]
         @author[ChiSeng Ng]
         @param [Bundle] savedInstanceState InstanceState of the activity.
         @return [void]
@@ -52,7 +53,20 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
                 .build()
         );
 
-        setContentView(R.layout.activity_create_service);
+        setContentView(R.layout.activity_publication_services_edition);
+
+        Resources res = getResources();
+
+        /* Data that received corresponding to the PurchasesFragment of each methods´s through
+        interfaces.
+        */
+        Intent intent = getIntent();
+        int imageId = (int) intent.getExtras().get("ImageId");
+        String price = (String) intent.getExtras().get("Price");
+        String unit = (String) intent.getExtras().get("Unit");
+        String address = (String) intent.getExtras().get("Address");
+        String title = (String) intent.getExtras().get("Title");
+        String description = (String) intent.getExtras().get("Description");
 
         /* This will manage the toolbar configuration and addressing. */
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -60,13 +74,21 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
         toolbar.setNavigationOnClickListener(this);
 
         /* This will handler the components corresponding of the layout with the variables defined. */
-        serviceImage = (ImageView) findViewById(R.id.create_service_image);
-        servicePrice = (EditText) findViewById(R.id.create_service_price);
-        serviceUnit = (EditText) findViewById(R.id.create_service_unit);
-        serviceAddress = (EditText) findViewById(R.id.create_service_address);
-        serviceTitle = (EditText) findViewById(R.id.create_service_title);
-        serviceDescription = (EditText) findViewById(R.id.create_service_description);
-        serviceBtn = (Button) findViewById(R.id.create_service_button);
+        serviceImage = (ImageView) findViewById(R.id.edit_service_image);
+        servicePrice = (EditText) findViewById(R.id.edit_service_price);
+        serviceUnit = (EditText) findViewById(R.id.edit_service_unit);
+        serviceAddress = (EditText) findViewById(R.id.edit_service_address);
+        serviceTitle = (EditText) findViewById(R.id.edit_service_title);
+        serviceDescription = (EditText) findViewById(R.id.edit_service_description);
+        serviceBtn = (Button) findViewById(R.id.edit_service_button);
+
+        /* This will set the actual values in the moment, without the modification. */
+        serviceImage.setImageResource(imageId);
+        servicePrice.setText(price);
+        serviceUnit.setText(unit);
+        serviceAddress.setText(address);
+        serviceTitle.setText(title);
+        serviceDescription.setText(description);
 
         serviceImage.setOnClickListener(this);
         serviceBtn.setOnClickListener(this);
@@ -74,17 +96,17 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
 
     /*  Method that handler the event handler with the event listener defined corresponding, in this
        case is used for to start the activity corresponding.
-           @date[25/07/2017]
+           @date[02/08/2017]
            @author[ChiSeng Ng]
            @param [View] view View or widget that represent the button corresponding in this context.
            @return [void]
    */
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.create_service_button) {
-            Toast.makeText(this, "Click Create service", Toast.LENGTH_LONG).show();
+        if (v.getId() == R.id.edit_service_button) {
+            Toast.makeText(this, "Click Edit service", Toast.LENGTH_LONG).show();
 
-        } else if (v.getId() == R.id.create_service_image) {
+        } else if (v.getId() == R.id.edit_service_image) {
             // Declaration of the alert dialog
             AlertDialog.Builder Selector = new AlertDialog.Builder(this, R.style.ListAlertDialogStyle);
             Selector.setTitle(R.string.upload);
@@ -118,7 +140,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
     }
 
     /*  Method that use for call the intent of the device camera activity and execute its.
-           @date[26/07/2017]
+           @date[02/08/2017]
            @reference [https://developer.android.com/training/camera/photobasics.html]
            @author[ChiSeng Ng]
            @param [None]
@@ -132,7 +154,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
     }
 
     /*  Method that use for call the intent of the device gallery activity and execute its.
-          @date[26/07/2017]
+          @date[02/08/2017]
           @author[ChiSeng Ng]
           @param [None]
           @return [void]
@@ -151,7 +173,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
 
     /*  Method that receive the photo encoded into the data intent as a small Bitmap in extras,
     under the key data, and finally call the methods corresponding.
-          @date[26/07/2017]
+          @date[02/08/2017]
           @author[ChiSeng Ng]
           @param [int] requestCode Integer that identify if the operation was a capture or pick
           photo.
@@ -173,7 +195,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
     /*  Method that receive the photo encoded into the data intent as a small Bitmap in extras,
     under the key data, and processes it to show them in the screen, this case was capture by the
     camera.
-          @date[26/07/2017]
+          @date[02/08/2017]
           @author[ChiSeng Ng]
           @param [Intent] data Intent with the photo encoded in a small Bitmap in extras, under the
           key data.
@@ -190,7 +212,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
     /*  Method that receive the photo encoded into the data intent as a small Bitmap in extras,
     under the key data, and processes it to show them in the screen, this case was obtain in the
     gallery.
-          @date[26/07/2017]
+          @date[02/08/2017]
           @author[ChiSeng Ng]
           @param [Intent] data Intent with the photo encoded in a small Bitmap in extras, under the
           key data.
@@ -211,7 +233,7 @@ public class CreateServiceActivity extends AppCompatActivity implements View.OnC
 
     /*  Method that use the Calligraphy dependence to attach the base context and to can change the
     letter's font corresponding.
-           @date[25/07/2017]
+           @date[02/08/2017]
            @reference [https://github.com/chrisjenx/Calligraphy/]
            @author[ChiSeng Ng]
            @param [Context] newBase Base Context of the Parent Activity.

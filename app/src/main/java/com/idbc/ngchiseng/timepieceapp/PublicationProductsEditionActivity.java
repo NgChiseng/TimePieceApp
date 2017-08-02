@@ -32,6 +32,13 @@ public class PublicationProductsEditionActivity extends AppCompatActivity implem
     private static final int REQUEST_CAMERA = 0;
     private static final int SELECT_FILE = 1;
 
+    /*  Method that will onCreate of the PublicationProductsEdition activity, link its component, and implements the
+    onClickListener for receive the click request.
+        @date[02/08/2017]
+        @author[ChiSeng Ng]
+        @param [Bundle] savedInstanceState InstanceState of the activity.
+        @return [void]
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

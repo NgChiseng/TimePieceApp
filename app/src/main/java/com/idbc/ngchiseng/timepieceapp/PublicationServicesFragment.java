@@ -1,12 +1,14 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +21,11 @@ public class PublicationServicesFragment extends Fragment {
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listTabItems;
     private String text;
+
+    /* Declaration of the interface that will use to call and pass the detail data to the
+    PublicationServicesEditionFragment through the PublicationServicesFragment.
+     */
+    OnPublicationServicesFragmentInteractionListener publicationServicesInterface;
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
@@ -93,7 +100,49 @@ public class PublicationServicesFragment extends Fragment {
             }
         });
 
+        /* Declaration and implementation of the item listener that will get the item that was
+        clicked and call the products interface method that will be implemented in the PublicationFragment.
+         */
+        listTabItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Announce selected = (Announce) parent.getItemAtPosition(position);
+                publicationServicesInterface.onPublicationServicesFragmentInteraction(selected);
+            }
+        });
+
         return servicesPublicationView;
     }
 
+    /*  Method that will be called by the system when is associated with the PublicationFragment, will
+    validate the interface called, and will return an error if fail.
+        @date[02/08/2017]
+        @author[ChiSeng Ng]
+        @param [Context] context Context that call it, in this case corresponding to the parent
+        fragment.
+        @return [Void]
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            publicationServicesInterface = (OnPublicationServicesFragmentInteractionListener) getParentFragment();
+        } catch (ClassCastException exception) {
+            throw new ClassCastException("Error in retrieving publication services data. Please try again.");
+        }
+    }
+
+    /*
+     * This interface must be implemented by parent fragments that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the parent fragment and potentially other fragments contained in that
+     * parent.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnPublicationServicesFragmentInteractionListener {
+        void onPublicationServicesFragmentInteraction(Announce announce);
+    }
 }

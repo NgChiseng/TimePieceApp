@@ -87,7 +87,9 @@
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
         <activity android:name=".MyDonationsReceivedDetailActivity" />
         <activity android:name=".MyDonationsDoneDetailActivity" />
-        <activity android:name=".PublicationProductsEditionActivity"></activity>
+        <activity android:name=".PublicationProductsEditionActivity" />
+        <activity android:name=".PublicationServicesEditionActivity" />
+        <activity android:name=".PublicationDonationsEditionActivity"></activity>
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PublicationFragment extends Fragment implements PublicationProductsFragment.OnPublicationProductsFragmentInteractionListener {
+public class PublicationFragment extends Fragment implements PublicationProductsFragment.OnPublicationProductsFragmentInteractionListener, PublicationServicesFragment.OnPublicationServicesFragmentInteractionListener, PublicationDonationsFragment.OnPublicationDonationsFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -174,6 +174,78 @@ public class PublicationFragment extends Fragment implements PublicationProducts
         intent.putExtra("Price", announcePrice);
         intent.putExtra("Unit", announceUnit);
         intent.putExtra("Address", announceAddress);
+        intent.putExtra("Title", announceTitle);
+        intent.putExtra("Description", announceDescription);
+
+        /* This will will call and execute the activity corresponding */
+        getActivity().startActivity(intent);
+    }
+
+    /*  Implementation of the method corresponding to the OnPublicationServicesFragmentInteractionListener
+    interface in the PublicationServicesFragment, that will invoke the PublicationServicesEdition activity with
+    the announce and its data corresponding.
+        @date[02/08/2017]
+        @author[ChiSeng Ng]
+        @param [Announce] announce Announce with the data that will pass to the
+        PublicationServicesActivity.
+        @return [void]
+   */
+    @Override
+    public void onPublicationServicesFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announcePrice = announce.getPrice();
+        String announceUnit = announce.getUnit();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
+
+        /* This will handler the Activity corresponding */
+        Intent intent = new Intent(getActivity().getBaseContext(), PublicationServicesEditionActivity.class);
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        PublicationServicesEditionActivity through a bundle object.
+         */
+        intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Price", announcePrice);
+        intent.putExtra("Unit", announceUnit);
+        intent.putExtra("Address", announceAddress);
+        intent.putExtra("Title", announceTitle);
+        intent.putExtra("Description", announceDescription);
+
+        /* This will will call and execute the activity corresponding */
+        getActivity().startActivity(intent);
+    }
+
+    /*  Implementation of the method corresponding to the OnPublicationDonationsFragmentInteractionListener
+    interface in the PublicationDonationsFragment, that will invoke the PublicationDonationsEdition activity with
+    the announce and its data corresponding.
+        @date[02/08/2017]
+        @author[ChiSeng Ng]
+        @param [Announce] announce Announce with the data that will pass to the
+        PublicationDonationsActivity.
+        @return [void]
+   */
+    @Override
+    public void onPublicationDonationsFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announceTitle = announce.getTitle();
+        String announceCollected = announce.getPrice();
+        String announceRequired = announce.getUnit();
+        String announceDescription = announce.getDescription();
+
+        /* This will handler the Activity corresponding */
+        Intent intent = new Intent(getActivity().getBaseContext(), PublicationDonationsEditionActivity.class);
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        PublicationServicesEditionActivity through a bundle object.
+         */
+        intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Collected", announceCollected);
+        intent.putExtra("Required", announceRequired);
         intent.putExtra("Title", announceTitle);
         intent.putExtra("Description", announceDescription);
 

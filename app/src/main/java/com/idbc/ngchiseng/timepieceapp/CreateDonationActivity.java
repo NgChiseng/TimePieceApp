@@ -31,6 +31,13 @@ public class CreateDonationActivity extends AppCompatActivity implements View.On
     private static final int REQUEST_CAMERA = 0;
     private static final int SELECT_FILE = 1;
 
+    /*  Method that will onCreate of the CreateDonation activity, link its component, and implements the
+    onClickListener for receive the click request.
+        @date[25/07/2017]
+        @author[ChiSeng Ng]
+        @param [Bundle] savedInstanceState InstanceState of the activity.
+        @return [void]
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
