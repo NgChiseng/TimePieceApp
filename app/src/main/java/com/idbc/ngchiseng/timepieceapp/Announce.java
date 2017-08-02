@@ -49,7 +49,7 @@ public class Announce {
         this.firstDate = firstDate;
     }
 
-    /* SemiComplete object with 9 params, in this case used int the PublicationProducts and PublicationsServices fragments, or in Main Donation */
+    /* SemiComplete object with 9 params, in this case used in the PublicationProducts and PublicationsServices fragments, or in Main Donation */
     public Announce(int idImage, String title, String address, String currency, String price, String unit, String description, String firstDate, String secondDate){
         this.idImage = idImage;
         this.title = title;
@@ -62,7 +62,7 @@ public class Announce {
         this.secondDate = secondDate;
     }
 
-    /* SemiComplete object with 8 params, in this case used in the main Products and Services published in the app. */
+    /* SemiComplete object with 8 params, in this case used in the publication donations fragment, main Products and Services published in the app. */
     public Announce(int idImage, String title, String name, String address, String currency, String price, String unit, String description){
         this.idImage = idImage;
         this.title = title;

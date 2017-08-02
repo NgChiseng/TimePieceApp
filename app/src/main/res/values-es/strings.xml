@@ -52,12 +52,12 @@
     <string name="donations_received">Recibidas</string>
     <string name="finalize">Finalizar</string>
     <string name="cancel">Cancelar</string>
-    <string name="price_and_acquisitions">%1$s  %2$s Adquisiciones</string>
+    <string name="price_and_acquisitions">%1$s,  %2$s Adquisiciones</string>
     <string name="payment_date">Fecha de Pago: %1$s</string>
     <string name="total_paid">$ %1$s Pagados</string>
     <string name="acquisitions">%1$s Adquisiciones</string>
     <string name="seller_name">Vendedor: %1$s</string>
-    <string name="price_and_sales">%1$s %2$s Ventas</string>
+    <string name="price_and_sales">%1$s, %2$s Ventas</string>
     <string name="buyer_name">Comprador: %1$s</string>
     <string name="sales">%1$s Ventas</string>
     <string name="finish_date">Fecha Cierre: %1$s</string>
@@ -84,4 +84,5 @@
     <string name="beneficiary_name">Beneficiario: %1$s</string>
     <string name="creation_date">Fecha Creacion: %1$s</string>
     <string name="modification_date">Fecha Modificacion: %1$s</string>
+    <string name="collected_required">%1$s Recolectados, %2$s Requeridos</string>
 </resources>

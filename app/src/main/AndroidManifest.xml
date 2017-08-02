@@ -86,7 +86,8 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
         <activity android:name=".MyDonationsReceivedDetailActivity" />
-        <activity android:name=".MyDonationsDoneDetailActivity"></activity>
+        <activity android:name=".MyDonationsDoneDetailActivity" />
+        <activity android:name=".PublicationProductsDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@
             android:textColor="@color/announce_banner"
             android:textSize="13sp"
             android:paddingTop="2dp"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"/>
 
         <TextView

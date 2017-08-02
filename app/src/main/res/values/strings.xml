@@ -67,12 +67,12 @@
     <string name="title_activity_my_donations_fragment">MyDonationsFragment</string>
     <string name="cancel">Cancel</string>
     <string name="finalize">Finalize</string>
-    <string name="price_and_acquisitions">%1$s  %2$s Acquisitions</string>
+    <string name="price_and_acquisitions">%1$s,  %2$s Acquisitions</string>
     <string name="payment_date">Payment Date: %1$s</string>
     <string name="total_paid">"$ %1$s Paid "</string>
     <string name="acquisitions">%1$s Acquisitions</string>
     <string name="seller_name">Seller: %1$s</string>
-    <string name="price_and_sales">%1$s %2$s Sales</string>
+    <string name="price_and_sales">%1$s, %2$s Sales</string>
     <string name="buyer_name">Buyer: %1$s</string>
     <string name="sales">%1$s Sales</string>
     <string name="finish_date">Finish Date: %1$s</string>
@@ -99,5 +99,6 @@
     <string name="beneficiary_name">Beneficiary: %1$s</string>
     <string name="creation_date">Creation Date: %1$s</string>
     <string name="modification_date">Modification Date: %1$s</string>
+    <string name="collected_required">%1$s Collected, %2$s Required</string>
 
 </resources>
