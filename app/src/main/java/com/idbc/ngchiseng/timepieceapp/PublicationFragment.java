@@ -2,11 +2,8 @@ package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.support.annotation.StringDef;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,9 +14,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-public class PublicationFragment extends Fragment {
+public class PublicationFragment extends Fragment implements PublicationProductsFragment.OnPublicationProductsFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -142,5 +138,46 @@ public class PublicationFragment extends Fragment {
             }
             return null;
         }
+    }
+
+    /* This block will be used for implement all the interfaces's methods corresponding to each
+    nested fragment corresponding to this parent fragment.
+     */
+
+    /*  Implementation of the method corresponding to the OnPublicationProductsFragmentInteractionListener
+    interface in the PublicationProductsFragment, that will invoke the PublicationProductsEdition activity with
+    the announce and its data corresponding.
+        @date[02/08/2017]
+        @author[ChiSeng Ng]
+        @param [Announce] announce Announce with the data that will pass to the
+        PublicationProductsActivity.
+        @return [void]
+   */
+    @Override
+    public void onPublicationProductsFragmentInteraction(Announce announce) {
+
+        /* This will get each value to the Announce objects received */
+        int announceImageId = announce.getImage();
+        String announcePrice = announce.getPrice();
+        String announceUnit = announce.getUnit();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
+
+        /* This will handler the Activity corresponding */
+        Intent intent = new Intent(getActivity().getBaseContext(), PublicationProductsEditionActivity.class);
+
+        /* This will put each value obtained with the key corresponding, for pass them to the
+        PublicationProductsEditionActivity through a bundle object.
+         */
+        intent.putExtra("ImageId", announceImageId);
+        intent.putExtra("Price", announcePrice);
+        intent.putExtra("Unit", announceUnit);
+        intent.putExtra("Address", announceAddress);
+        intent.putExtra("Title", announceTitle);
+        intent.putExtra("Description", announceDescription);
+
+        /* This will will call and execute the activity corresponding */
+        getActivity().startActivity(intent);
     }
 }

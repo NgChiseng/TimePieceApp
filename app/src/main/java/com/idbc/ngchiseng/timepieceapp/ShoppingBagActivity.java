@@ -102,7 +102,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                         public void onClick(View v) {
                             ((Announce) entry).setSumOne();
                             articleNum = (TextView) view.findViewById(R.id.article_num);
-                            totalCost = totalCost + ((Announce) entry).getPrice();
+                            totalCost = totalCost + ((Announce) entry).getPriceInt();
                             articleNum.setText(((Announce) entry).getDescription());
                             totalPay.setText("$" + totalCost);
 
@@ -123,7 +123,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                             if (((Announce) entry).getOrQuantity() > 1) {
                                 ((Announce) entry).setSubtractOne();
                                 articleNum = (TextView) view.findViewById(R.id.article_num);
-                                totalCost = totalCost - ((Announce) entry).getPrice();
+                                totalCost = totalCost - ((Announce) entry).getPriceInt();
                                 articleNum.setText(((Announce) entry).getDescription());
                                 totalPay.setText("$" + totalCost);
                             }
@@ -222,7 +222,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                     */
                     if (direction == SwipeDirection.DIRECTION_FAR_LEFT) {
                         Announce item = (Announce) swipeAdapter.getItem(position);
-                        int articlesCost = item.getOrQuantity()*item.getPrice();
+                        int articlesCost = item.getOrQuantity()*item.getPriceInt();
                         totalCost = totalCost - articlesCost;
                         totalPay.setText("$" + totalCost);
                         data.remove(position);

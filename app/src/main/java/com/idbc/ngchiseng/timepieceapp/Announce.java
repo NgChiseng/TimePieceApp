@@ -98,7 +98,9 @@ public class Announce {
 
     public String getCurrency() { return currency; }
 
-    public int getPrice() { return Integer.parseInt(price); }
+    public String getPrice() { return price; }
+
+    public int getPriceInt() { return Integer.parseInt(price); }
 
     public String getUnit() { return unit; }
 

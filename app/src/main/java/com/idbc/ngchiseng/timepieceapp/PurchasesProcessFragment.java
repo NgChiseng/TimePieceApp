@@ -104,7 +104,7 @@ public class PurchasesProcessFragment extends Fragment {
         });
 
         /* Declaration and implementation of the item listener that will get the item that was
-        clicked and call the products interface method that will be implemented in the MainActivity.
+        clicked and call the products interface method that will be implemented in the PurchasesFragment.
          */
         listTabItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -121,7 +121,8 @@ public class PurchasesProcessFragment extends Fragment {
     validate the interface called, and will return an error if fail.
         @date[14/07/2017]
         @author[ChiSeng Ng]
-        @param [Context] context Context that call it, in this case corresponding to the MainActivity.
+        @param [Context] context Context that call it, in this case corresponding to the parent
+        fragment.
         @return [Void]
      */
     @Override
