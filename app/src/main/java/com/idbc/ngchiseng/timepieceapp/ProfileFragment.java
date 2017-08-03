@@ -1,6 +1,7 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -120,6 +121,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(v.getContext(), "Click Edit Profile" , Toast.LENGTH_LONG).show();
+        if (v.getId() == R.id.profile_edit) {
+            Intent intent = new Intent(getContext(), ProfileEditActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            //finish();
+        }
     }
 }

@@ -86,4 +86,6 @@
     <string name="modification_date">Fecha Modificacion: %1$s</string>
     <string name="collected_required">%1$s Recolectados, %2$s Requeridos</string>
     <string name="donation_edit_collected">Recolectados: %1$s</string>
+    <string name="address">Dirección</string>
+    <string name="save">Guardar</string>
 </resources>

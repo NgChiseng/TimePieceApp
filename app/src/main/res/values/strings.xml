@@ -101,5 +101,7 @@
     <string name="modification_date">Modification Date: %1$s</string>
     <string name="collected_required">%1$s Collected, %2$s Required</string>
     <string name="donation_edit_collected">Collected: %1$s</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
 
 </resources>
