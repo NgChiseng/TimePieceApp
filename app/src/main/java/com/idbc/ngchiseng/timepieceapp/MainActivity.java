@@ -3,10 +3,8 @@ package com.idbc.ngchiseng.timepieceapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
@@ -103,7 +100,6 @@ public class MainActivity extends AppCompatActivity
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                         this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                drawer.setDrawerListener(toggle);
                 toggle.syncState();
 
                 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -124,9 +120,9 @@ public class MainActivity extends AppCompatActivity
                 the query on the API.
                 */
                 Resources res = getResources();
-                String text = String.format(res.getString(R.string.main_announces), 0);
+                String text = String.format(res.getString(R.string.main_announces), 1);
                 productsAnnounces.setText(text);
-                text = String.format(res.getString(R.string.main_announces), 4);
+                text = String.format(res.getString(R.string.main_announces), 3);
                 servicesAnnounces.setText(text);
                 text = String.format(res.getString(R.string.main_announces), 1);
                 donationsAnnounces.setText(text);
@@ -185,12 +181,16 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container,new ProfileFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_publications) {
+            fragmentTransaction.replace(R.id.fragment_container,new PublicationFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_shopping) {
+            fragmentTransaction.replace(R.id.fragment_container,new PurchasesFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_sales) {
+            fragmentTransaction.replace(R.id.fragment_container,new SalesFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_donations) {
+            fragmentTransaction.replace(R.id.fragment_container,new MyDonationsFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_log_out) {
             LoginManager.getInstance().logOut();
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.fragment_container,new ServicesFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.main_donations):
-                fragmentTransaction.replace(R.id.fragment_container,new ProductsFragment()).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.fragment_container,new DonationsFragment()).addToBackStack(null).commit();
                 break;
             case (R.id.bag_icon):
                 Intent intent = new Intent(this, ShoppingBagActivity.class);
@@ -269,11 +269,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();
-        String announceTitle = announce.getAnnounceTitle();
-        String announceDescription = announce.getAnnounceOthers();
+        String announcePrice = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -308,11 +308,11 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();
-        String announceTitle = announce.getAnnounceTitle();
-        String announceDescription = announce.getAnnounceOthers();
+        String announcePrice = announce.getPriceComplete();
+        String announceName = announce.getName();
+        String announceAddress = announce.getAddress();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
@@ -347,23 +347,17 @@ public class MainActivity extends AppCompatActivity
 
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
-        String announcePrice = announce.getAnnouncePriceComplete();
-        String announceName = announce.getAnnounceOwner();
-        String announceAddress = announce.getAnnounceAddress();
-        String announceTitle = announce.getAnnounceTitle();
-        String announceDescription = announce.getAnnounceOthers();
+        String announceTitle = announce.getTitle();
+        String announceDescription = announce.getDescription();
 
         /* This will put each value obtained with the key corresponding, for pass them to the
         DetailFragment through a bundle object.
          */
         Bundle bundle = new Bundle();
         bundle.putInt("ImageId", announceImageId);
-        bundle.putString("Price", announcePrice);
-        bundle.putString("Name", announceName);
-        bundle.putString("Address", announceAddress);
         bundle.putString("Title",announceTitle);
         bundle.putString("Description", announceDescription);
-        DetailFragment detailFragment = new DetailFragment();
+        DetailDonationFragment detailFragment = new DetailDonationFragment();
         detailFragment.setArguments(bundle);
 
         /* This will create and execute the manager transaction, that will call and replace the

@@ -1,7 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -47,9 +46,7 @@ public class ProductsFragment extends Fragment {
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
          */
-        data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Carlos Lopez", "Altamira,Caracas", "$", "25", "Persona", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
-        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$", "42", "hr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
-        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carlos Lopez", "A domicilio", "$", "25", "hr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
+        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar envío con el vendedor", "$", "44", "Par", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
@@ -69,16 +66,16 @@ public class ProductsFragment extends Fragment {
                     announceImage.setImageResource(((Announce) entry).getImage());
 
                     TextView announceTitle = (TextView) view.findViewById(R.id.announce_title);
-                    announceTitle.setText(((Announce) entry).getAnnounceTitle());
+                    announceTitle.setText(((Announce) entry).getTitle());
 
                     TextView announceOwner = (TextView) view.findViewById(R.id.announce_owner);
-                    announceOwner.setText(((Announce) entry).getAnnounceOwner());
+                    announceOwner.setText(((Announce) entry).getName());
 
                     TextView announceAddress = (TextView) view.findViewById(R.id.announce_address);
-                    announceAddress.setText(((Announce) entry).getAnnounceAddress());
+                    announceAddress.setText(((Announce) entry).getAddress());
 
                     TextView announcePrice = (TextView) view.findViewById(R.id.announce_price);
-                    announcePrice.setText(((Announce) entry).getAnnouncePriceComplete());
+                    announcePrice.setText(((Announce) entry).getPriceComplete());
                 }
             }
         });

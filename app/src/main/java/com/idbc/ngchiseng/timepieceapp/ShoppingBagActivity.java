@@ -1,10 +1,10 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +17,9 @@ import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ShoppingBagActivity extends AppCompatActivity implements View.OnClickListener {
 
     /*  This will declare the variables that are going to use on the activity. */
@@ -28,6 +31,17 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        This will define the fonts calling CalligraphyConfig() method to change the letter font
+        defined in the assets/fonts/ directory.
+         */
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/MyriadPro-SemiExt.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
         setContentView(R.layout.activity_shopping_bag);
 
         /* This will manage the toolbar configuration and addressing. */
@@ -66,16 +80,16 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                     articleImage.setImageResource(((Announce) entry).getImage());
 
                     TextView articleTitle = (TextView) view.findViewById(R.id.article_title);
-                    articleTitle.setText(((Announce) entry).getAnnounceTitle());
+                    articleTitle.setText(((Announce) entry).getTitle());
 
                     TextView articleSeller = (TextView) view.findViewById(R.id.article_seller);
-                    articleSeller.setText(((Announce) entry).getAnnounceOwner());
+                    articleSeller.setText(((Announce) entry).getName());
 
                     TextView articleAddress = (TextView) view.findViewById(R.id.article_address);
-                    articleAddress.setText(((Announce) entry).getAnnounceAddress());
+                    articleAddress.setText(((Announce) entry).getAddress());
 
                     TextView articlePrice = (TextView) view.findViewById(R.id.article_price);
-                    articlePrice.setText(((Announce) entry).getAnnouncePriceComplete());
+                    articlePrice.setText(((Announce) entry).getPriceComplete());
 
                     /* This will handler the sum button with the xml component corresponding, sum
                     one quantity to the entry object corresponding and sum the entry's cost to the
@@ -88,15 +102,15 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                         public void onClick(View v) {
                             ((Announce) entry).setSumOne();
                             articleNum = (TextView) view.findViewById(R.id.article_num);
-                            totalCost = totalCost + ((Announce) entry).getAnnouncePrice();
-                            articleNum.setText(((Announce) entry).getAnnounceOthers());
+                            totalCost = totalCost + ((Announce) entry).getPriceInt();
+                            articleNum.setText(((Announce) entry).getDescription());
                             totalPay.setText("$" + totalCost);
 
                         }
                     });
 
                     articleNum = (TextView) view.findViewById(R.id.article_num);
-                    articleNum.setText(((Announce) entry).getAnnounceOthers());
+                    articleNum.setText(((Announce) entry).getDescription());
 
                     /* This will handler the subtract button with the xml component corresponding,
                     subtract one quantity to the entry object corresponding and subtract the entry's
@@ -106,11 +120,11 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                     subtractionBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (((Announce) entry).getAnnounceNumOthers() > 1) {
+                            if (((Announce) entry).getOrQuantity() > 1) {
                                 ((Announce) entry).setSubtractOne();
                                 articleNum = (TextView) view.findViewById(R.id.article_num);
-                                totalCost = totalCost - ((Announce) entry).getAnnouncePrice();
-                                articleNum.setText(((Announce) entry).getAnnounceOthers());
+                                totalCost = totalCost - ((Announce) entry).getPriceInt();
+                                articleNum.setText(((Announce) entry).getDescription());
                                 totalPay.setText("$" + totalCost);
                             }
                         }
@@ -142,7 +156,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
         as a far swipe. The float must be between 0 and 1. 0 makes every swipe a far swipe, 1
         effectively disables a far swipe.
         */
-        swipeAdapter.setFarSwipeFraction((float) 0.7);
+        swipeAdapter.setFarSwipeFraction((float) 0.5);
 
         /* Setting this to true will make the backgrounds static behind the ListView item instead of
         sliding in from the side.
@@ -208,7 +222,7 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
                     */
                     if (direction == SwipeDirection.DIRECTION_FAR_LEFT) {
                         Announce item = (Announce) swipeAdapter.getItem(position);
-                        int articlesCost = item.getAnnounceNumOthers()*item.getAnnouncePrice();
+                        int articlesCost = item.getOrQuantity()*item.getPriceInt();
                         totalCost = totalCost - articlesCost;
                         totalPay.setText("$" + totalCost);
                         data.remove(position);
@@ -238,5 +252,18 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
         } else {
             super.onBackPressed();
         }
+    }
+
+    /*  Method that use the Calligraphy dependence to attach the base context and to can change the
+    letter's font corresponding.
+           @date[25/07/2017]
+           @reference [https://github.com/chrisjenx/Calligraphy/]
+           @author[ChiSeng Ng]
+           @param [Context] newBase Base Context of the Parent Activity.
+           @return [void]
+   */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

@@ -1,5 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,36 +16,39 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-
-public class DonationsFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PurchasesDoneFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
-    private ListView listAnnounces;
+    private ListView listTabItems;
+    private String text;
 
     /* Declaration of the interface that will use to call and pass the detail data to the
-    DetailFragment through the MainActivity.
+    SalesDoneDetailActivity through the SalesFragment.
      */
-    OnDonationsFragmentInteractionListener donationsInterface;
+    OnPurchasesDoneFragmentInteractionListener purchasesDoneInterface;
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
-        @date[27/06/2017]
+        @date[13/07/2017]
         @author[ChiSeng Ng]
         @param [LayoutInflater] inflater The layout inflater corresponding of the caller Activity.
         @param [ViewGroup] container The viewGroup that will content the fragment on the layout.
-        @param [Bundle] savedInstanceState InstanceState of the activity.
+        @param [Bundle] savedInstanceState InstanceState of the MainActivity.
         @return [View] The inflated an rendered view that will show its on the screen.
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View donationsView = inflater.inflate(R.layout.fragment_donations, container, false);
+        final View purchasesDoneView = inflater.inflate(R.layout.fragment_purchases_done, container, false);
 
         /* This will obtain the resource for setting the formatting String in each Item view */
         Resources res = getResources();
-        final String collectedWord = res.getString(R.string.donation_collected);
-        final String requiredWord = res.getString(R.string.donation_required);
+        final String acquisitionsArg = res.getString(R.string.price_and_acquisitions);
+        final String finishDateArg = res.getString(R.string.finish_date);
 
         // Initialized ArrayList of Announces
         ArrayList<Announce> data = new ArrayList<Announce>();
@@ -61,15 +65,14 @@ public class DonationsFragment extends Fragment {
                 "Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, " +
                 "lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim " +
                 "erat, vitae malesuada nisl.";
-        data.add(new Announce(R.drawable.first_item, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, "A", "59", requiredWord ));
-
-
+        data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$", "126", "hrs", description, "3", "Servicio", "10-07-2017", "13-07-2017"));
+        data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carloz Lopez", "A domicilio", "$", "100", "hrs", description, "4", "Servicio", "11-07-2010", "27-08-2010"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
-        listAnnounces = (ListView) donationsView.findViewById(R.id.donations_list);
-        listAnnounces.setAdapter(new AnnouncesAdapter(getContext(), R.layout.announce_donation, data) {
+        listTabItems = (ListView) purchasesDoneView.findViewById(R.id.purchases_done_list);
+        listTabItems.setAdapter(new AnnouncesAdapter(getContext(), R.layout.tab_item, data) {
 
             /* This will implement the abstract method onEntry(Implemented in AnnounceAdapter), with
             the respective elements and handlers.
@@ -79,42 +82,43 @@ public class DonationsFragment extends Fragment {
 
                 if (entry != null){
 
-                    ImageView announceImage = (ImageView) view.findViewById(R.id.announce_donation_image);
-                    announceImage.setImageResource(((Announce) entry).getImage());
+                    ImageView tabItemImage = (ImageView) view.findViewById(R.id.tab_item_image);
+                    tabItemImage.setImageResource(((Announce) entry).getImage());
 
-                    TextView announceTitle = (TextView) view.findViewById(R.id.announce_donation_title);
-                    announceTitle.setText(((Announce) entry).getTitle());
+                    TextView tabItemTitle = (TextView) view.findViewById(R.id.tab_item_title);
+                    tabItemTitle.setText(((Announce) entry).getTitle());
 
-                    TextView announceOwner = (TextView) view.findViewById(R.id.announce_donation_owner);
-                    announceOwner.setText(((Announce) entry).getAddress());
+                    TextView tabItemPrice = (TextView) view.findViewById(R.id.tab_item_others);
+                    text = String.format(acquisitionsArg, ((Announce) entry).getPriceComplete(), ((Announce) entry).getQuantity());
+                    tabItemPrice.setText(text);
 
-                    TextView announceCollected = (TextView) view.findViewById(R.id.announce_donation_collected);
-                    announceCollected.setText(((Announce) entry).getCollectedDonation());
+                    TextView tabItemType = (TextView) view.findViewById(R.id.tab_item_first_date);
+                    tabItemType.setText(((Announce) entry).getType());
 
-                    TextView announceRequired = (TextView) view.findViewById(R.id.announce_donation_required);
-                    announceRequired.setText(((Announce) entry).getRequiredDonation());
-
+                    TextView tabItemPaymentDate = (TextView) view.findViewById(R.id.tab_item_second_date);
+                    text = String.format(finishDateArg, ((Announce) entry).getSecondDate());
+                    tabItemPaymentDate.setText(text);
                 }
             }
         });
 
         /* Declaration and implementation of the item listener that will get the item that was
-        clicked and call the products interface method that will be implemented in the MainActivity.
+        clicked and call the products interface method that will be implemented in the SalesFragment.
          */
-        listAnnounces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listTabItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Announce selected = (Announce) parent.getItemAtPosition(position);
-                donationsInterface.onDonationsFragmentInteraction(selected);
+                purchasesDoneInterface.onPurchasesDoneFragmentInteraction(selected);
             }
         });
 
-        return donationsView;
+        return purchasesDoneView;
     }
 
-    /*  Method that will be called by the system when is associated with the MainActivity, will
+    /*  Method that will be called by the system when is associated with the DoneFragment, will
     validate the interface called, and will return an error if fail.
-        @date[05/07/2017]
+        @date[21/07/2017]
         @author[ChiSeng Ng]
         @param [Context] context Context that call it, in this case corresponding to the MainActivity.
         @return [Void]
@@ -123,23 +127,23 @@ public class DonationsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            donationsInterface = (OnDonationsFragmentInteractionListener) getActivity();
+            purchasesDoneInterface = (OnPurchasesDoneFragmentInteractionListener) getParentFragment();
         } catch (ClassCastException exception) {
-            throw new ClassCastException("Error in retrieving donations data. Please try again.");
+            throw new ClassCastException("Error in retrieving purchases done data. Please try again.");
         }
     }
 
     /*
-     * This interface must be implemented by activities that contain this
+     * This interface must be implemented by parent fragments that contain this
      * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
+     * to the parent fragment and potentially other fragments contained in that
+     * parent.
      * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnDonationsFragmentInteractionListener {
-        void onDonationsFragmentInteraction(Announce announce);
+    public interface OnPurchasesDoneFragmentInteractionListener {
+        void onPurchasesDoneFragmentInteraction(Announce announce);
     }
 }

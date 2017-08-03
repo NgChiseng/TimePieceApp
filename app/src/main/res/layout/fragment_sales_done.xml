@@ -1,0 +1,18 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.idbc.ngchiseng.timepieceapp.SalesDoneFragment">
+
+    <ListView
+        android:id="@+id/sales_done_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White"
+        android:divider="@color/White"
+        android:dividerHeight="7dp"
+        android:padding="8dp"
+        android:scrollbarStyle="outsideOverlay">
+    </ListView>
+
+</FrameLayout>

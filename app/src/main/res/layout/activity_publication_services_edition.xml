@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.idbc.ngchiseng.timepieceapp.PublicationServicesEditionActivity">
+
+    <include layout="@layout/my_custom_back_toolbar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/edit_service_image"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/unknownuser" />
+
+            <TextView
+                android:id="@+id/edit_service_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/edit_service_price"
+                android:layout_alignBottom="@+id/edit_service_price"
+                android:text="$"
+                android:textSize="13sp"
+                android:layout_alignStart="@+id/edit_service_view1" />
+
+            <EditText
+                android:id="@+id/edit_service_price"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_service_image"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="2dp"
+                android:layout_toRightOf="@+id/edit_service_text3"
+                android:hint="@string/create_price"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="15"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/edit_service_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/edit_service_image"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/edit_service_price"
+                android:hint="@string/create_unit"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="19"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/edit_service_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_service_unit"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:hint="@string/create_address"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="42"
+                android:maxLines="1"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/edit_service_view1"
+                android:layout_width="295dp"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/edit_service_address"
+                android:layout_centerHorizontal="true"
+                android:background="@color/gray" />
+
+            <EditText
+                android:id="@+id/edit_service_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_service_view1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:hint="@string/create_title"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="30"
+                android:maxLines="1"
+                fontPath="fonts/MyriadPro-SemiboldCond.otf"/>
+
+            <View
+                android:id="@+id/edit_service_view2"
+                android:layout_width="295dp"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/edit_service_title"
+                android:layout_centerHorizontal="true"
+                android:background="@color/gray" />
+
+            <TextView
+                android:id="@+id/edit_service_text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_service_view2"
+                android:background="@color/lightGray"
+                android:paddingStart="10dp"
+                android:paddingTop="13dp"
+                android:text="@string/detail_description" />
+
+            <TextView
+                android:id="@+id/edit_service_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_service_text1"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/detail_info" />
+
+            <View
+                android:id="@+id/edit_service_view3"
+                android:layout_width="295dp"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/edit_service_text2"
+                android:layout_centerHorizontal="true"
+                android:background="@color/gray" />
+
+            <EditText
+                android:id="@+id/edit_service_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_service_view3"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:hint="@string/create_description"
+                android:imeOptions="actionDone"
+                android:inputType="none"
+                android:maxLines="14"
+                android:maxLength="760"
+                android:textSize="13sp" />
+
+            <View
+                android:id="@+id/edit_service_view4"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/edit_service_description"
+                android:background="@color/lightGray" />
+
+            <Button
+                android:id="@+id/edit_service_button"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:layout_below="@id/edit_service_view4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/circle1"
+                android:text="@string/finalize"
+                android:textAlignment="center"
+                android:textColor="@color/barWhite" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

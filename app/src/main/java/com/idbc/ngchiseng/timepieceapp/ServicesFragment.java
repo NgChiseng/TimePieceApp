@@ -1,7 +1,6 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -68,16 +67,16 @@ public class ServicesFragment extends Fragment {
                     announceImage.setImageResource(((Announce) entry).getImage());
 
                     TextView announceTitle = (TextView) view.findViewById(R.id.announce_title);
-                    announceTitle.setText(((Announce) entry).getAnnounceTitle());
+                    announceTitle.setText(((Announce) entry).getTitle());
 
                     TextView announceOwner = (TextView) view.findViewById(R.id.announce_owner);
-                    announceOwner.setText(((Announce) entry).getAnnounceOwner());
+                    announceOwner.setText(((Announce) entry).getName());
 
                     TextView announceAddress = (TextView) view.findViewById(R.id.announce_address);
-                    announceAddress.setText(((Announce) entry).getAnnounceAddress());
+                    announceAddress.setText(((Announce) entry).getAddress());
 
                     TextView announcePrice = (TextView) view.findViewById(R.id.announce_price);
-                    announcePrice.setText(((Announce) entry).getAnnouncePriceComplete());
+                    announcePrice.setText(((Announce) entry).getPriceComplete());
                 }
             }
         });

@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/White</item>
+        <item name="colorAccent">@color/announce_banner</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textSize">16sp</item>
     </style>
@@ -26,4 +26,9 @@
         <item name="android:windowBackground">@drawable/splash_time_piece</item>
     </style>
 
+    <!-- This block will be used for setting the list alert dialog style. -->
+    <style name="ListAlertDialogStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:textAlignment">center</item>
+    </style>
+    <!-- End Block -->
 </resources>
