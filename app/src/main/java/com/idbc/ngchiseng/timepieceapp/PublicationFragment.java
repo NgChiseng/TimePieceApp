@@ -233,8 +233,8 @@ public class PublicationFragment extends Fragment implements PublicationProducts
         /* This will get each value to the Announce objects received */
         int announceImageId = announce.getImage();
         String announceTitle = announce.getTitle();
-        String announceCollected = announce.getPrice();
         String announceRequired = announce.getUnit();
+        String announceCollected = announce.getCurrencyPrice();
         String announceDescription = announce.getDescription();
 
         /* This will handler the Activity corresponding */
@@ -244,8 +244,8 @@ public class PublicationFragment extends Fragment implements PublicationProducts
         PublicationServicesEditionActivity through a bundle object.
          */
         intent.putExtra("ImageId", announceImageId);
-        intent.putExtra("Collected", announceCollected);
         intent.putExtra("Required", announceRequired);
+        intent.putExtra("Collected", announceCollected);
         intent.putExtra("Title", announceTitle);
         intent.putExtra("Description", announceDescription);
 

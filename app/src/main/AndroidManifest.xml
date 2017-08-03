@@ -87,9 +87,15 @@
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
         <activity android:name=".MyDonationsReceivedDetailActivity" />
         <activity android:name=".MyDonationsDoneDetailActivity" />
-        <activity android:name=".PublicationProductsEditionActivity" />
-        <activity android:name=".PublicationServicesEditionActivity" />
-        <activity android:name=".PublicationDonationsEditionActivity"></activity>
+        <activity android:name=".PublicationProductsEditionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".PublicationServicesEditionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".PublicationDonationsEditionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 
 </manifest>

@@ -57,7 +57,7 @@ public class PublicationProductsEditionActivity extends AppCompatActivity implem
 
         Resources res = getResources();
 
-        /* Data that received corresponding to the PurchasesFragment of each methods´s through
+        /* Data that received corresponding to the PublicationFragment of each methods´s through
         interfaces.
         */
         Intent intent = getIntent();
