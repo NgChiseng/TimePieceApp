@@ -50,13 +50,21 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         toolbar.setNavigationOnClickListener(this);
 
         /* This will handler the components corresponding of the layout with the variables defined. */
+        cardName = (EditText) findViewById(R.id.payment_card_name);
+        cardNumber = (EditText) findViewById(R.id.payment_card_number);
+        cardExpiration = (EditText) findViewById(R.id.payment_card_expiration);
+        cardCVV = (EditText) findViewById(R.id.payment_card_cvv);
+        cardholderAddress = (EditText) findViewById(R.id.payment_card_address);
+        cardholderCity = (EditText) findViewById(R.id.payment_card_city);
+        cardholderState = (EditText) findViewById(R.id.payment_card_state);
+        cardholderPostalCode = (EditText) findViewById(R.id.payment_card_postal_code);
         cardholderCountry = (AutoCompleteTextView) findViewById(R.id.payment_card_country);
         paymentBtn = (Button) findViewById(R.id.payment_card_btn);
 
         /* This will create the arrayAdapter, and set its with the values corresponding in the
          variable handled.
         */
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.countries_array_es, android.R.layout.simple_list_item_1);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.countries_array, android.R.layout.simple_list_item_1);
         cardholderCountry.setAdapter(adapter);
         cardholderCountry.setThreshold(1);
 
