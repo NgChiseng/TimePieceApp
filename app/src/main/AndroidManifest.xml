@@ -99,10 +99,12 @@
             android:name=".PublicationDonationsEditionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".ProfileEditActivity"
+        <activity
+            android:name=".ProfileEditActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/EditProfileTheme"/>
+            android:theme="@style/EditProfileTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".PaymentActivity"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.idbc.ngchiseng.timepieceapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -248,7 +249,10 @@ public class ShoppingBagActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.shopping_bag_btn){
-            Toast.makeText(v.getContext(), "Click Shopping Bag Pay" , Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            //finish();
         } else {
             super.onBackPressed();
         }
