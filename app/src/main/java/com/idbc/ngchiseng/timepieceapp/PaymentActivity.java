@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +17,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
     /* This will define the variables that will use in the creation of the product */
-    private EditText cardName, cardNumber, cardExpiration, cardCVV, cardholderAddress, cardholderCity, cardholderState, cardholderPostalCode, cardholderCountry;
+    private EditText cardName, cardNumber, cardExpiration, cardCVV, cardholderAddress, cardholderCity, cardholderState, cardholderPostalCode;
+    private AutoCompleteTextView cardholderCountry;
     private Button paymentBtn;
 
     /*  Method that will onCreate of the Payment activity, link its component, and implements the
@@ -46,25 +49,17 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(this);
 
+        /* This will handler the components corresponding of the layout with the variables defined. */
+        cardholderCountry = (AutoCompleteTextView) findViewById(R.id.payment_card_country);
         paymentBtn = (Button) findViewById(R.id.payment_card_btn);
-        /* This will handler the components corresponding of the layout with the variables defined.
-        productImage = (ImageView) findViewById(R.id.edit_product_image);
-        productPrice = (EditText) findViewById(R.id.edit_product_price);
-        productUnit = (EditText) findViewById(R.id.edit_product_unit);
-        productAddress = (EditText) findViewById(R.id.edit_product_address);
-        productTitle = (EditText) findViewById(R.id.edit_product_title);
-        productDescription = (EditText) findViewById(R.id.edit_product_description);
-        productBtn = (Button) findViewById(R.id.edit_product_button);
 
-        /* This will set the actual values in the moment, without the modification.
-        productImage.setImageResource(imageId);
-        productPrice.setText(price);
-        productUnit.setText(unit);
-        productAddress.setText(address);
-        productTitle.setText(title);
-        productDescription.setText(description);
+        /* This will create the arrayAdapter, and set its with the values corresponding in the
+         variable handled.
+        */
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.countries_array_es, android.R.layout.simple_list_item_1);
+        cardholderCountry.setAdapter(adapter);
+        cardholderCountry.setThreshold(1);
 
-        productImage.setOnClickListener(this);*/
         paymentBtn.setOnClickListener(this);
     }
 

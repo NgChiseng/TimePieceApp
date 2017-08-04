@@ -131,7 +131,7 @@
                 android:imeOptions="actionNext"
                 android:hint="@string/postal_code"/>
 
-            <Spinner
+            <AutoCompleteTextView
                 android:id="@+id/payment_card_country"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -139,8 +139,9 @@
                 android:layout_alignStart="@+id/payment_card_state"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="40dp"
-                android:prompt="@string/country">
-            </Spinner>
+                android:inputType="text"
+                android:hint="@string/country">
+            </AutoCompleteTextView>
 
             <TextView
                 android:id="@+id/payment_card_total"
