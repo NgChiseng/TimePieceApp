@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.idbc.ngchiseng.timepieceapp.ProfileRatingActivity">
+
+    <include layout="@layout/my_custom_back_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@color/announce_banner">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="39dp"
+            android:src="@drawable/unknownuser"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_centerVertical="true"
+            android:paddingStart="5dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/barWhite"
+                    android:textSize="25sp"
+                    fontPath="fonts/MyriadPro-SemiboldCond.otf"
+                    android:text="Carlos Lopez" />
+
+                <ImageView
+                    android:id="@+id/profile_edit"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:paddingStart="2dp"
+                    android:paddingTop="4dp"
+                    android:src="@drawable/editar"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/barWhite"
+                android:paddingTop="2dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="13sp"
+                android:text="clopez@gmail.com"/>
+
+            <TextView
+                android:id="@+id/profile_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/barWhite"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="13sp"
+                android:text="04129876544"/>
+
+            <TextView
+                android:id="@+id/profile_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/barWhite"
+                android:ellipsize="end"
+                android:textSize="13sp"
+                android:text="Av. Principal de los Ruices, Edif. Betania, piso 3, Apto 3A. Caracas,Venezula."/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/profile_rating_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_profile"
+        android:scrollbars="none">
+
+    </ListView>
+
+</LinearLayout>

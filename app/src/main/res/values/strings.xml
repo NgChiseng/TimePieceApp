@@ -113,5 +113,6 @@
     <string name="postal_code">Postal Code</string>
     <string name="country">Country</string>
     <string name="cardholder_address">CARDHOLDER\'S ADDRESS</string>
+    <string name="profile_rating_operation">Was %1$s: %2$s</string>
 
 </resources>

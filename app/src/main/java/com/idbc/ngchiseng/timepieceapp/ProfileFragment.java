@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         TextView profileName, profileEmail, profilePhone, profileAddress, profileAnnounces, profileDonations, profilePurchases, profileTotal;
         ImageView profileImage, profileEdit;
         int numberAnnounces, numberDonations, numberPurchases, numberTotal;
+        RelativeLayout profileRating;
 
         profileName = (TextView) profileView.findViewById(R.id.profile_name);
         profileEmail = (TextView) profileView.findViewById(R.id.profile_email);
@@ -52,6 +55,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileTotal = (TextView) profileView.findViewById(R.id.profile_total);
         profileImage = (ImageView) profileView.findViewById(R.id.profile_image);
         profileEdit = (ImageView) profileView.findViewById(R.id.profile_edit);
+        profileRating = (RelativeLayout) profileView.findViewById(R.id.profile_rating_relative_layout);
 
         /*  This will obtain and set the values are going to show in the profile */
         numberAnnounces = 40;
@@ -115,6 +119,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileImage.setImageResource(R.drawable.servicios);
 
         profileEdit.setOnClickListener(this);
+        profileRating.setOnClickListener(this);
 
         return profileView;
     }
@@ -123,6 +128,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.profile_edit) {
             Intent intent = new Intent(getContext(), ProfileEditActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            //finish();
+        } else if (v.getId() == R.id.profile_rating_relative_layout) {
+            Intent intent = new Intent(getContext(), ProfileRatingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             //finish();

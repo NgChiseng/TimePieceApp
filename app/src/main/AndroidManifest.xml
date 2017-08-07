@@ -104,7 +104,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/EditProfileTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".ProfileRatingActivity"></activity>
     </application>
 
 </manifest>

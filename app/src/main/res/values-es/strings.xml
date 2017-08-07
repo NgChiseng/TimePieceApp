@@ -97,4 +97,5 @@
     <string name="postal_code">Código Postal</string>
     <string name="country">País</string>
     <string name="cardholder_address">DIRECCIÓN DEL TARJETAHABIENTE</string>
+    <string name="profile_rating_operation">Se %1$s: %2$s</string>
 </resources>
