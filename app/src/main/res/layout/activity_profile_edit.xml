@@ -50,7 +50,7 @@
                 android:imeOptions="actionNext"
                 android:hint="@string/name_complete"
                 android:layout_below="@+id/edit_profile_image"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="40dp" />
 
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edit_profile_name"
                 android:layout_alignStart="@+id/edit_profile_name"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 app:hintEnabled="false"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/White">
@@ -134,7 +134,7 @@
                 android:id="@+id/edit_profile_view5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/phone"
+                android:src="@drawable/ciudad_pin1"
                 android:layout_alignTop="@+id/edit_profile_address"
                 android:layout_alignStart="@+id/edit_profile_view4" />
 
