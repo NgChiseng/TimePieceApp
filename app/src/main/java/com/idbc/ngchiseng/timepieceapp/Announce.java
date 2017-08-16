@@ -98,6 +98,8 @@ public class Announce {
 
     public String getCurrency() { return currency; }
 
+    public String getPoint() { return ("+" + address); }
+
     public String getPrice() { return price; }
 
     public int getPriceInt() { return Integer.parseInt(price); }

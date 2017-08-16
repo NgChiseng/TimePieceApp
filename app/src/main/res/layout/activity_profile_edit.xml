@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.idbc.ngchiseng.timepieceapp.ProfileEditActivity">
+
+    <include layout="@layout/my_custom_back_toolbar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/announce_banner">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/unknownuser"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/edit_profile_view1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src = "@drawable/user"
+                android:layout_alignBottom="@+id/edit_profile_name"
+                android:layout_toStartOf="@+id/edit_profile_name" />
+
+            <EditText
+                android:id="@+id/edit_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:backgroundTint="@color/White"
+                android:textColorHint="@color/White"
+                android:textColor="@color/White"
+                android:imeOptions="actionNext"
+                android:hint="@string/name_complete"
+                android:layout_below="@+id/edit_profile_image"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp" />
+
+            <ImageView
+                android:id="@+id/edit_profile_view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/password"
+                android:layout_alignTop="@+id/edit_profile_password_layout"
+                android:layout_alignStart="@+id/edit_profile_view1" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/edit_profile_password_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_profile_name"
+                android:layout_alignStart="@+id/edit_profile_name"
+                android:layout_alignParentEnd="true"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/White">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_profile_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:backgroundTint="@color/White"
+                    android:textColorHint="@color/White"
+                    android:textColor="@color/White"
+                    android:hint="@string/password" />
+                </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/edit_profile_view3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/email"
+                android:layout_alignBottom="@+id/edit_profile_email"
+                android:layout_alignStart="@+id/edit_profile_view2" />
+
+            <EditText
+                android:id="@+id/edit_profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@color/White"
+                android:textColorHint="@color/White"
+                android:textColor="@color/White"
+                android:imeOptions="actionNext"
+                android:hint="@string/email"
+                android:layout_below="@+id/edit_profile_password_layout"
+                android:layout_marginTop="10dp"
+                android:layout_alignStart="@+id/edit_profile_name" />
+
+            <ImageView
+                android:id="@+id/edit_profile_view4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone"
+                android:layout_alignBottom="@+id/edit_profile_phone"
+                android:layout_alignStart="@+id/edit_profile_view3" />
+
+            <EditText
+                android:id="@+id/edit_profile_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:backgroundTint="@color/White"
+                android:textColorHint="@color/White"
+                android:textColor="@color/White"
+                android:imeOptions="actionNext"
+                android:hint="@string/phone"
+                android:layout_below="@+id/edit_profile_email"
+                android:layout_marginTop="10dp"
+                android:layout_alignStart="@+id/edit_profile_email" />
+
+            <ImageView
+                android:id="@+id/edit_profile_view5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ciudad_pin1"
+                android:layout_alignTop="@+id/edit_profile_address"
+                android:layout_alignStart="@+id/edit_profile_view4" />
+
+            <EditText
+                android:id="@+id/edit_profile_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:backgroundTint="@color/White"
+                android:textColorHint="@color/White"
+                android:textColor="@color/White"
+                android:imeOptions="actionDone"
+                android:hint="@string/address"
+                android:layout_below="@+id/edit_profile_phone"
+                android:layout_marginTop="10dp"
+                android:layout_alignStart="@+id/edit_profile_phone" />
+
+            <Button
+                android:id="@+id/edit_profile_save"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/circle1"
+                android:textAlignment="center"
+                android:textColor="@color/barWhite"
+                android:text="@string/save"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/edit_profile_address"
+                android:layout_marginTop="40dp"/>
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

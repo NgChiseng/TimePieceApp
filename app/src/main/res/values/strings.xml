@@ -101,5 +101,18 @@
     <string name="modification_date">Modification Date: %1$s</string>
     <string name="collected_required">%1$s Collected, %2$s Required</string>
     <string name="donation_edit_collected">Collected: %1$s</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
+    <string name="credit_card">CREDIT CARD</string>
+    <string name="credit_card_name">Name in the Credit Card</string>
+    <string name="credit_card_number">Credit Card Number</string>
+    <string name="credit_card_expiration">Expiration Date</string>
+    <string name="credit_card_cvv">CVV</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="cardholder_address">CARDHOLDER\'S ADDRESS</string>
+    <string name="profile_rating_operation">Was %1$s: %2$s</string>
 
 </resources>

@@ -181,7 +181,7 @@
 
         <!-- The RelativeLayout is for control the fitChart size -->
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/profile_rating_relative_layout"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center">

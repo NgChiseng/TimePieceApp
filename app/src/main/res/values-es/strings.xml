@@ -86,4 +86,16 @@
     <string name="modification_date">Fecha Modificacion: %1$s</string>
     <string name="collected_required">%1$s Recolectados, %2$s Requeridos</string>
     <string name="donation_edit_collected">Recolectados: %1$s</string>
+    <string name="address">Dirección</string>
+    <string name="save">Guardar</string>
+    <string name="credit_card">TARJETA DE CRÉDITO</string>
+    <string name="credit_card_expiration">Fecha de Expiración</string>
+    <string name="credit_card_name">Nombre en la Tarjeta de Crédito</string>
+    <string name="credit_card_number">Número de la Tarjeta de Crédito</string>
+    <string name="city">Ciudad</string>
+    <string name="state">Estado</string>
+    <string name="postal_code">Código Postal</string>
+    <string name="country">País</string>
+    <string name="cardholder_address">DIRECCIÓN DEL TARJETAHABIENTE</string>
+    <string name="profile_rating_operation">Se %1$s: %2$s</string>
 </resources>
