@@ -13,7 +13,7 @@
     <string name="detail_shopping">Add to the bag</string>
     <string name="phone">Phone</string>
     <string name="email">Email</string>
-    <string name="email_invalid">This email is invalid</string>
+    <string name="email_invalid">This email is invalid.</string>
     <string name="forgot_password"><u>Forgot your password?</u></string>
     <string name="login">Log In</string>
     <string name="login_fb">LOG IN WITH <b>FACEBOOK</b></string>
@@ -114,5 +114,11 @@
     <string name="country">Country</string>
     <string name="cardholder_address">CARDHOLDER\'S ADDRESS</string>
     <string name="profile_rating_operation">Was %1$s: %2$s</string>
+    <string name="name_invalid">This name is invalid.</string>
+    <string name="password_invalid">This password is invalid.</string>
+    <string name="phone_invalid">This phone is invalid.</string>
+    <string name="connection_error">Error connecting to server try later.</string>
+    <string name="user_created">¡User Created!</string>
+    <string name="invalid_credentials">Invalid data, try again.</string>
 
 </resources>

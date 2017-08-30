@@ -18,7 +18,7 @@
     <string name="password">Clave</string>
     <string name="sign_up">Registro</string>
     <string name="login">INICIAR SESIÓN</string>
-    <string name="email_invalid">Este correo es invalido</string>
+    <string name="email_invalid">Este correo es invalido.</string>
     <string name="password_reset_msg">Introduzca su correo, y le enviaremos un mensaje para recuperar su contraseña.</string>
     <string name="submit">Enviar</string>
     <string name="tour_msg_01">Has la diferencia, se parte de una única experiencia social en su estilo.</string>
@@ -98,4 +98,10 @@
     <string name="country">País</string>
     <string name="cardholder_address">DIRECCIÓN DEL TARJETAHABIENTE</string>
     <string name="profile_rating_operation">Se %1$s: %2$s</string>
+    <string name="name_invalid">Este nombre es invalido.</string>
+    <string name="password_invalid">Esta clave es invalida.</string>
+    <string name="phone_invalid">Este numero es invalido.</string>
+    <string name="connection_error">Error en la conexión con el servidor intente más tarde.</string>
+    <string name="user_created">¡Usuario Creado!</string>
+    <string name="invalid_credentials">Datos inválidos, intente de nuevo.</string>
 </resources>
