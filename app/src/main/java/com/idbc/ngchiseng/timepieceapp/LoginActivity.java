@@ -2,6 +2,8 @@ package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +27,16 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -39,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextInputEditText passwordField;
     private TextView forgotPassword,signUp;
     private Button logIn,logInFb;
-    private ProgressBar logProgressBar;
+    private ProgressBar progressBar;
 
     private LoginButton loginButtonFb;
     private CallbackManager callbackManager;
@@ -73,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signUp = (TextView) findViewById(R.id.login_signup);
         logIn = (Button) findViewById(R.id.login_button);
         logInFb = (Button) findViewById(R.id.login_fb);
-        logProgressBar = (ProgressBar) findViewById(R.id.login_progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.login_progressBar);
 
         loginButtonFb = (LoginButton) findViewById(R.id.login_buttonfb);
 
@@ -138,13 +150,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case (R.id.login_button):
 
-                if (isValidEmail(emailField.getText().toString())) {
-                    Intent intentLogin = new Intent(this, MainActivity.class);
+                String email, password;
+
+                /* This block will handler each value obtained in the fields with the variable corresponding
+                in a string format
+                */
+                email = emailField.getText().toString();
+                password = passwordField.getText().toString();
+
+                if (!(isValidEmail(email))) {
+                    Toast.makeText(view.getContext(), R.string.email_invalid , Toast.LENGTH_LONG).show();
+                } else if (!(isValidPassword(password))) {
+                    Toast.makeText(view.getContext(), R.string.password_invalid, Toast.LENGTH_SHORT).show();
+                } else {
+                    /* Intent intentLogin = new Intent(this, MainActivity.class);
                     intentLogin.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intentLogin);
-                    //finish();
-                } else {
-                    Toast.makeText(view.getContext(), R.string.email_invalid , Toast.LENGTH_LONG).show();
+                    //finish();*/
+                    AttemptLogin attemptLogin = new AttemptLogin();
+                    attemptLogin.execute(email, password);
                 }
                 break;
 
@@ -171,7 +195,128 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /*--------------------------------------------------------------------------------------------*/
+    /* Class that will be used for send Log In's data to the server's API and process the response.
+    It is made in a AsyncTask because this type of process need run in secondary threads for not to
+    saturate the main thread, its params mean <Params, Progress Units, Results>
+     */
+    public class AttemptLogin extends AsyncTask<String, Integer, Integer> {
 
+        /* Method that is initialized in the main thread before entering the execution of the
+        secondary thread
+            @date[31/08/2017]
+            @author[ChiSeng Ng]
+            @param [Void]
+            @return [void]
+        */
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        /* Method that is initialized in the secondary thread, and will communicate with the
+        TimePiece API and manage this connection. In this function is to send validated Log In's
+        data to the server's API and process the response. Returns an integer value ([-1..1):
+        * -1, if an error occurred during the communication.
+        * 0, if everything went OK (redirecting to MainActivity and updating SharedPreferences afterwards).
+        * 1, if the credentials provided aren't valid.
+            @date[31/08/2017]
+            @author[ChiSeng Ng]
+            @param [String...] strings All the string that entered like params.
+            @return [Integer] Represent the result of the connection operation.
+        */
+        @Override
+        protected Integer doInBackground(String... strings) {
+
+            Integer result = -1;
+            try {
+                // Defining and initializing server's communication's variables
+                String credentials = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(strings[0], "UTF-8");
+                credentials += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(strings[1], "UTF-8");
+
+                URL url = new URL("http://192.168.1.110:8000/api-login/");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoOutput(true);
+                connection.setRequestMethod("POST");
+                connection.setConnectTimeout(10000);
+
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(credentials);
+                writer.flush();
+                /* This get the JSON object from the response urlConnection and save it the
+                "response" variable. In this case the true value is because the value received is a
+                JSON object, if received a JSON array object then is false.
+                */
+                APIResponse response = JSONResponseController.getJsonResponse(connection,true);
+
+                if (response != null){
+
+                    if (response.getStatus()==HttpURLConnection.HTTP_OK) {
+                        JSONObject response_body = response.getBody();
+
+                        /* */
+                        SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
+                        editor.putBoolean("logged",true);
+                        editor.putInt("id",response_body.getInt("id"));
+                        editor.putString("token",response_body.getString("token"));
+                        editor.putString("username",response_body.getString("username"));
+                        editor.putString("email",response_body.getString("email"));
+                        editor.putString("first_name",response_body.getString("first_name"));
+                        editor.putString("phone",response_body.getString("phone"));
+                        editor.putString("address",response_body.getString("address"));
+                        editor.apply();
+
+                        Log.d("OK", "OK");
+                        return 0;
+
+                    } else if (response.getStatus() == HttpURLConnection.HTTP_BAD_REQUEST) {
+                        Log.d("BAD", "BAD");
+                        result = 1;
+                    } else {
+                        Log.d("NOT", "FOUND");
+                        result = -1;
+                    }
+                }
+
+            } catch (MalformedURLException e) {
+                return result;
+            } catch (IOException e) {
+                return result;
+            } catch (JSONException e) {
+                return result;
+            }
+            return result;
+        }
+
+        // Process doInBackground() results
+        @Override
+        protected void onPostExecute(Integer anInt) {
+            String message;
+            switch (anInt) {
+                case (-1):
+                    message = "Ha habido un problema conectando con el servidor, intente de nuevo más tarde";
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case (0):
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    message = "¡Bienvenido!";
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    finish();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case (1):
+                    message = "Nombre de usuario y/o contraseña inválidos";
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    /*--------------------------------------------------------------------------------------------*/
     /*  Method that take a string, and evaluate it, to determine if it is an email.
            @date[12/06/2017]
            @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]
@@ -181,6 +326,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
    */
     public static boolean isValidEmail(String target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    /*  Method that take a string, and evaluate it, to determine if it is an password.
+           @date[31/08/2017]
+           @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]
+           @author[ChiSeng Ng]
+           @param [View] view View or widget that represent the button corresponding in this context.
+           @return [boolean] Return true if is a valid password, and false if not.
+   */
+    public static boolean isValidPassword(String target) {
+        return !TextUtils.isEmpty(target) && (target.length() >= 8) && (target.length() <= 15);
     }
 
     /*  Method that use the Calligraphy dependence to attach the base context and to can change the

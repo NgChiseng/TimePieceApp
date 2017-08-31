@@ -156,6 +156,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
                 writer.write(profile.toString());
                 writer.flush();
+                /* This get the JSON object from the response urlConnection and save it the
+                "response" variable. In this case the true value is because the value received is a
+                JSON object, if received a JSON array object then is false.
+                 */
                 APIResponse response = JSONResponseController.getJsonResponse(urlConnection, true);
 
                 if (response != null) {
