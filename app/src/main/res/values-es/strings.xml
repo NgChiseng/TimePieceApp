@@ -104,4 +104,6 @@
     <string name="connection_error">Error en la conexión con el servidor intente más tarde.</string>
     <string name="user_created">¡Usuario Creado!</string>
     <string name="invalid_credentials">Datos inválidos, intente de nuevo.</string>
+    <string name="welcome">¡Bienvenido!</string>
+    <string name="email_password_invalid">Correo y/o contraseña inválidos.</string>
 </resources>

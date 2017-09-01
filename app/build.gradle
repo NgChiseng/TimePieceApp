@@ -33,5 +33,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.javiersantos:FitChart:1.1'
     compile 'com.wdullaer:swipeactionadapter:2.0.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
 }

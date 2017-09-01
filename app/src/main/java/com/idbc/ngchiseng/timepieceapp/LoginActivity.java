@@ -254,7 +254,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (response.getStatus()==HttpURLConnection.HTTP_OK) {
                         JSONObject response_body = response.getBody();
 
-                        /* */
+                        /* This will create the session SharedPreferences with the data corresponding
+                        Note: Lack to analyze if is better to include its on TimePieceSharePreferences
+                        class.
+                        */
                         SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
                         editor.putBoolean("logged",true);
                         editor.putInt("id",response_body.getInt("id"));
@@ -264,6 +267,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putString("first_name",response_body.getString("first_name"));
                         editor.putString("phone",response_body.getString("phone"));
                         editor.putString("address",response_body.getString("address"));
+                        editor.putString("image", response_body.getString("image"));
                         editor.apply();
 
                         Log.d("OK", "OK");
@@ -288,27 +292,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return result;
         }
 
-        // Process doInBackground() results
+        /* Method that is initialized after the secondary thread finish it execution, and will
+        process the doInBackground() method results.
+            @date[01/09/2017]
+            @author[ChiSeng Ng]
+            @param [Integer] anInt Results passed from doInBackground() method.
+            @return [Void]
+        */
         @Override
         protected void onPostExecute(Integer anInt) {
-            String message;
             switch (anInt) {
                 case (-1):
-                    message = "Ha habido un problema conectando con el servidor, intente de nuevo más tarde";
-                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.connection_error, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     break;
                 case (0):
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    message = "¡Bienvenido!";
-                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.welcome, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();
                     progressBar.setVisibility(View.GONE);
                     break;
                 case (1):
-                    message = "Nombre de usuario y/o contraseña inválidos";
-                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.email_password_invalid, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     break;
                 default:
@@ -316,7 +322,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
     }
-    /*--------------------------------------------------------------------------------------------*/
+
     /*  Method that take a string, and evaluate it, to determine if it is an email.
            @date[12/06/2017]
            @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]

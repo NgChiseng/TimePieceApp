@@ -120,5 +120,7 @@
     <string name="connection_error">Error connecting to server try later.</string>
     <string name="user_created">¡User Created!</string>
     <string name="invalid_credentials">Invalid data, try again.</string>
+    <string name="welcome">¡Welcome!</string>
+    <string name="email_password_invalid">Invalid email or/and password.</string>
 
 </resources>

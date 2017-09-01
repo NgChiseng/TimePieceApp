@@ -2,6 +2,7 @@ package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
@@ -24,6 +26,13 @@ import java.util.Collection;
 import java.util.List;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
+
+    TextView profileName, profileEmail, profilePhone, profileAddress, profileAnnounces, profileDonations, profilePurchases, profileTotal;
+    ImageView profileImage, profileEdit;
+    int numberAnnounces, numberDonations, numberPurchases, numberTotal;
+    RelativeLayout profileRating;
+    SharedPreferences pref_session;
+    String name, email, phone, address;
 
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
@@ -40,11 +49,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         final View profileView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView profileName, profileEmail, profilePhone, profileAddress, profileAnnounces, profileDonations, profilePurchases, profileTotal;
-        ImageView profileImage, profileEdit;
-        int numberAnnounces, numberDonations, numberPurchases, numberTotal;
-        RelativeLayout profileRating;
-
         profileName = (TextView) profileView.findViewById(R.id.profile_name);
         profileEmail = (TextView) profileView.findViewById(R.id.profile_email);
         profilePhone = (TextView) profileView.findViewById(R.id.profile_phone);
@@ -56,6 +60,26 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileImage = (ImageView) profileView.findViewById(R.id.profile_image);
         profileEdit = (ImageView) profileView.findViewById(R.id.profile_edit);
         profileRating = (RelativeLayout) profileView.findViewById(R.id.profile_rating_relative_layout);
+
+        /* This will obtain the session SharedPreferences values */
+        pref_session = getActivity().getSharedPreferences("session", 0);
+        name = pref_session.getString("first_name", null);
+        email = pref_session.getString("email", null);
+        phone = pref_session.getString("phone", null);
+        address = pref_session.getString("address", null);
+        final String image = pref_session.getString("image", null);
+
+        /* This will handler each value of the session SharedPreference with the screen component
+        corresponding.
+        */
+        profileName.setText(name);
+        profileEmail.setText(email);
+        profilePhone.setText(phone);
+        profileAddress.setText(address);
+        if (image != null) {
+            Uri photo = Uri.parse(image);
+            Picasso.with(getContext()).load(photo).into(profileImage);
+        }
 
         /*  This will obtain and set the values are going to show in the profile */
         numberAnnounces = 40;
@@ -115,15 +139,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         fitChart.setMaxValue(numberTotal);
         fitChart.setValues(values);
 
-        /* This will set the image obtained in the server or facebook profile */
-        profileImage.setImageResource(R.drawable.servicios);
-
         profileEdit.setOnClickListener(this);
         profileRating.setOnClickListener(this);
 
         return profileView;
     }
 
+    /*  Method that handler the event handler with the event listener defined corresponding.
+           @date[01/09/2017]
+           @author[ChiSeng Ng]
+           @param [View] v View or widget that represent the button corresponding in this context.
+           @return [void]
+   */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.profile_edit) {

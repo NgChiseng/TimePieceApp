@@ -2,6 +2,7 @@ package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -31,10 +32,12 @@ public class MainActivity extends AppCompatActivity
         DonationsFragment.OnDonationsFragmentInteractionListener {
 
     /*  This will declare the global variables that are going to use in the main Activity */
-    private Boolean executed;
+    private Boolean executed, session;
     private RelativeLayout mainProducts,mainServices,mainDonations;
     private ImageView shoppingBag;
     private TextView productsAnnounces,servicesAnnounces,donationsAnnounces;
+    /*--------------------------------------------------------------------------------------------*/
+    private SharedPreferences pref_session;
 
     /*  This will declare the fragment manager variable for the fragments invocations. */
     FragmentManager mFragmentManager;
@@ -73,8 +76,10 @@ public class MainActivity extends AppCompatActivity
         /*  This will initialize the fragment manager */
         mFragmentManager = getSupportFragmentManager();
 
-        /*  This will get the executed preferences value(true or false) */
+        /*  This will get the executed and session preferences value(true or false) */
         executed = TimePieceSharedPreferences.getExecuted(MainActivity.this);
+        pref_session = getSharedPreferences("session", 0);
+        session = pref_session.getBoolean("logged", false);
 
         /*  This will verify if is the first time that the user start the App for show the Initial
         Tour.
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity
             /*  This will verify if the user is logged then start the main screen, and if him not
             then start the loginActivity.
              */
-            if (AccessToken.getCurrentAccessToken() != null) {
+            if ((AccessToken.getCurrentAccessToken() != null) || session) {
                 setContentView(R.layout.activity_main);
                 Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                 setSupportActionBar(toolbar);
