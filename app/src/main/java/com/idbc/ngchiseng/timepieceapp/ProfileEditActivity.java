@@ -330,7 +330,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
 
             try {
 
-                url = new URL("http://192.168.1.110:8000/profile/"+id+"/");
+                url = new URL("http://192.168.1.110:8000/profiles/"+id+"/");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setDoOutput(true);
