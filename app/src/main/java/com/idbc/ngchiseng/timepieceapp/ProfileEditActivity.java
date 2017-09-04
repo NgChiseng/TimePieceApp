@@ -3,20 +3,35 @@ package com.idbc.ngchiseng.timepieceapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -27,7 +42,12 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
     private ImageView profileImage;
     private EditText profileName, profilePassword, profileEmail, profilePhone, profileAddress;
     private Button saveBtn;
+    private ProgressBar profileProgressBar;
+    SharedPreferences pref_session;
+    int id;
+    String name, email, phone, address, password;
 
+    Bitmap thumbnail;
     private static final int REQUEST_CAMERA = 0;
     private static final int SELECT_FILE = 1;
 
@@ -67,6 +87,28 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
         profilePhone = (EditText) findViewById(R.id.edit_profile_phone);
         profileAddress = (EditText) findViewById(R.id.edit_profile_address);
         saveBtn = (Button) findViewById(R.id.edit_profile_save);
+        profileProgressBar = (ProgressBar) findViewById(R.id.edit_profile_progressBar);
+
+        /* This will obtain the session SharedPreferences values */
+        pref_session = this.getSharedPreferences("session", 0);
+        id = pref_session.getInt("id", 0);
+        name = pref_session.getString("first_name", null);
+        email = pref_session.getString("email", null);
+        phone = pref_session.getString("phone", null);
+        address = pref_session.getString("address", null);
+        final String image = pref_session.getString("image", null);
+
+        /* This will handler each value of the session SharedPreference with the screen component
+        corresponding.
+        */
+        profileName.setText(name);
+        profileEmail.setText(email);
+        profilePhone.setText(phone);
+        profileAddress.setText(address);
+        if (image != null) {
+            Uri photo = Uri.parse(image);
+            Picasso.with(getBaseContext()).load(photo).into(profileImage);
+        }
 
         profileImage.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
@@ -82,7 +124,53 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.edit_profile_save) {
-            Toast.makeText(this, "Click Save Data", Toast.LENGTH_LONG).show();
+
+            /* This block will handler each value obtained in the fields with the variable corresponding
+            in a string format
+            */
+            name = profileName.getText().toString();
+            password = profilePassword.getText().toString();
+            email = profileEmail.getText().toString();
+            phone = profilePhone.getText().toString();
+            address = profileAddress.getText().toString();
+
+            /* This block will be used to validate each value introduced by the user and make the
+            functionality corresponding.
+            */
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(v.getContext(), R.string.name_invalid, Toast.LENGTH_SHORT).show();
+            } else if (!(isValidPassword(password))) {
+                Toast.makeText(v.getContext(), R.string.password_invalid, Toast.LENGTH_SHORT).show();
+            } else if (!(isValidEmail(email))) {
+                Toast.makeText(v.getContext(), R.string.email_invalid, Toast.LENGTH_LONG).show();
+            } else if (!(isValidPhone(phone))) {
+                Toast.makeText(v.getContext(), R.string.phone_invalid, Toast.LENGTH_SHORT).show();
+            } else if (!(isValidAddress(address))) {
+                Toast.makeText(v.getContext(), R.string.address_invalid, Toast.LENGTH_SHORT).show();
+            } else {
+            /* Intent intentSignUp = new Intent(this, LoginActivity.class);
+            intentSignUp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentSignUp);
+            //finish();*/
+
+                PutUserProfile putUserProfile = new PutUserProfile();
+
+                /* This will evaluate if the thumbnail content a Bitmap of the image that was uploaded
+                or taken by the user, cast it to a BaseCode64 format and call the PutUserProfiles
+                class with its. In case, the user never uploaded or taken a photo then call the
+                PutUserProfiles class with a null value.
+                */
+                if (thumbnail != null) {
+                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                    thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                    byte[] byte_array = bytes.toByteArray();
+                    String image = Base64.encodeToString(byte_array, 0);
+                    putUserProfile.execute(name, password, email, phone, address, image);
+                } else {
+                    putUserProfile.execute(name, password, email, phone, address, null);
+                }
+            }
+            //Toast.makeText(this, "Click Save Data", Toast.LENGTH_LONG).show();
 
         } else if (v.getId() == R.id.edit_profile_image) {
             // Declaration of the alert dialog
@@ -180,7 +268,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
           @return [void]
     */
     private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         assert thumbnail != null;
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -198,15 +286,175 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
     */
     private void onSelectFromGalleryResult(Intent data) {
 
-        Bitmap bm;
         if (data != null) {
             try {
-                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-                profileImage.setImageBitmap(bm);
+                thumbnail = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                profileImage.setImageBitmap(thumbnail);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**********************************************************************************************/
+    /* Class that will be used for send the profile update data to the TimePiece API. It is made in a
+     AsyncTask because this type of process need run in secondary threads for not to saturate the
+     main thread, its params mean <Params, Progress Units, Results>
+    */
+    private class PutUserProfile extends AsyncTask<String, Integer, Integer> {
+
+        /* Method that is initialized in the main thread before entering the execution of the
+        secondary thread
+            @date[04/09/2017]
+            @author[ChiSeng Ng]
+            @param [Void]
+            @return [void]
+        */
+        @Override
+        protected void onPreExecute() {
+            profileProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        /* Method that is initialized in the secondary thread, and will communicate with the
+        TimePiece API and manage this connection.
+            @date[04/09/2017]
+            @author[ChiSeng Ng]
+            @param [String...] strings All the string that entered like params.
+            @return [Integer] Represent the result of the connection operation.
+        */
+        @Override
+        protected Integer doInBackground(String... strings) {
+            URL url;
+            HttpURLConnection urlConnection;
+            Integer result = -1;
+
+            try {
+
+                url = new URL("http://192.168.1.110:8000/profile/"+id+"/");
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("PATCH");
+
+                JSONObject user = new JSONObject();
+                JSONObject profile = new JSONObject();
+
+                user.put("username", email);
+                user.put("password", strings[1]);
+                user.put("email", strings[2]);
+
+                profile.put("user_fk", user);
+                profile.put("first_name", strings[0]);
+                profile.put("phone", strings[3]);
+                profile.put("address", strings[4]);
+                if (strings[5]!= null)
+                    profile.put("image_profile",strings[5]);
+
+                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
+                writer.write(profile.toString());
+                writer.flush();
+
+                APIResponse response = JSONResponseController.getJsonResponse(urlConnection, true);
+
+                if (response != null) {
+                    if (response.getStatus() == HttpURLConnection.HTTP_OK || response.getStatus() == HttpURLConnection.HTTP_CREATED) {
+                        Log.d("OK", response.getBody().toString());
+                        result = 0;
+                    } else if (response.getStatus() == HttpURLConnection.HTTP_BAD_REQUEST) {
+                        Log.d("BAD", "BAD");
+                        if (response.getBody().getString("code").equals("email"))
+                            result = 1;
+                        else
+                            result = 2;
+                    } else if (response.getStatus() == HttpURLConnection.HTTP_NOT_FOUND) {
+                        Log.d("NOT", "FOUND");
+                        Log.d("OK", response.getBody().toString());
+                        result = -1;
+                    }
+                }
+            } catch (Exception e) {
+                return result;
+            }
+            return result;
+        }
+
+        /* Method that is initialized after the secondary thread finish it execution, and will
+        process the doInBackground() method results.
+            @date[04/09/2017]
+            @author[ChiSeng Ng]
+            @param [Integer] anInt Results passed from doInBackground() method.
+            @return [Void]
+        */
+        @Override
+        protected void onPostExecute(Integer anInt) {
+            int message;
+            switch (anInt) {
+                case (-1):
+                    message = R.string.connection_error;
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
+                    break;
+                case (0):
+                    message = R.string.user_updated;
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
+                    finish();
+                    break;
+                case (1):
+                    message = R.string.email_invalid;
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
+                    break;
+                case (2):
+                    message = R.string.password_invalid;
+                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
+                    break;
+                default:
+                    break;
+            }
+            profileProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    /*  Method that take a string, and evaluate it, to determine if it is an email.
+           @date[12/06/2017]
+           @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]
+           @author[ChiSeng Ng]
+           @param [View] view View or widget that represent the button corresponding in this context.
+           @return [boolean] Return true if is a valid email, and false if not.
+   */
+    public static boolean isValidEmail(String target) {
+        return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    /*  Method that take a string, and evaluate it, to determine if it is an password.
+           @date[30/08/2017]
+           @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]
+           @author[ChiSeng Ng]
+           @param [View] view View or widget that represent the button corresponding in this context.
+           @return [boolean] Return true if is a valid password, and false if not.
+   */
+    public static boolean isValidPassword(String target) {
+        return !TextUtils.isEmpty(target) && (target.length() >= 8) && (target.length() <= 15);
+    }
+
+    /*  Method that take a string, and evaluate it, to determine if it is an phone.
+           @date[30/08/2017]
+           @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]
+           @author[ChiSeng Ng]
+           @param [View] view View or widget that represent the button corresponding in this context.
+           @return [boolean] Return true if is a valid phone, and false if not.
+   */
+    public static boolean isValidPhone(String target) {
+        return !TextUtils.isEmpty(target) && Patterns.PHONE.matcher(target).matches();
+    }
+
+    /*  Method that take a string, and evaluate it, to determine if it is an valid Address.
+           @date[04/09/2017]
+           @reference [https://stackoverflow.com/questions/24969894/android-email-validation-on-edittext]
+           @author[ChiSeng Ng]
+           @param [View] view View or widget that represent the button corresponding in this context.
+           @return [boolean] Return true if is a valid phone, and false if not.
+   */
+    public static boolean isValidAddress(String target) {
+        return !TextUtils.isEmpty(target) && (target.length() >= 8) && (target.length() <= 128);
     }
 
     /*  Method that use the Calligraphy dependence to attach the base context and to can change the

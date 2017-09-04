@@ -122,5 +122,7 @@
     <string name="invalid_credentials">Invalid data, try again.</string>
     <string name="welcome">¡Welcome!</string>
     <string name="email_password_invalid">Invalid email or/and password.</string>
+    <string name="address_invalid">This address is invalid because it should be at least 8 characters and 128 characters maximum.</string>
+    <string name="user_updated">¡User Updated!</string>
 
 </resources>

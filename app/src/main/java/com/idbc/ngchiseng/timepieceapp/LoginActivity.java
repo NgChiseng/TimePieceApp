@@ -267,7 +267,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putString("first_name",response_body.getString("first_name"));
                         editor.putString("phone",response_body.getString("phone"));
                         editor.putString("address",response_body.getString("address"));
-                        editor.putString("image", response_body.getString("image"));
                         editor.apply();
 
                         Log.d("OK", "OK");
