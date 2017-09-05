@@ -45,7 +45,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
     private ProgressBar profileProgressBar;
     SharedPreferences pref_session;
     int id;
-    String name, email, phone, address, password;
+    String name, email, phone, address, password, image_base64;
 
     Bitmap thumbnail;
     private static final int REQUEST_CAMERA = 0;
@@ -92,6 +92,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
         /* This will obtain the session SharedPreferences values */
         pref_session = this.getSharedPreferences("session", 0);
         id = pref_session.getInt("id", 0);
+        Log.d("Este es el id: ", String.valueOf(id));
         name = pref_session.getString("first_name", null);
         email = pref_session.getString("email", null);
         phone = pref_session.getString("phone", null);
@@ -148,10 +149,6 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
             } else if (!(isValidAddress(address))) {
                 Toast.makeText(v.getContext(), R.string.address_invalid, Toast.LENGTH_SHORT).show();
             } else {
-            /* Intent intentSignUp = new Intent(this, LoginActivity.class);
-            intentSignUp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intentSignUp);
-            //finish();*/
 
                 PutUserProfile putUserProfile = new PutUserProfile();
 
@@ -164,8 +161,8 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
                     byte[] byte_array = bytes.toByteArray();
-                    String image = Base64.encodeToString(byte_array, 0);
-                    putUserProfile.execute(name, password, email, phone, address, image);
+                    image_base64 = Base64.encodeToString(byte_array, 0);
+                    putUserProfile.execute(name, password, email, phone, address, image_base64);
                 } else {
                     putUserProfile.execute(name, password, email, phone, address, null);
                 }
@@ -330,11 +327,12 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
 
             try {
 
-                url = new URL("http://192.168.1.110:8000/profiles/"+id+"/");
+                url = new URL("http://192.168.1.110:8000/profiles/"+id);
+                Log.d("La URL es", String.valueOf(url));
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setDoOutput(true);
-                urlConnection.setRequestMethod("PATCH");
+                urlConnection.setRequestMethod("PUT");
 
                 JSONObject user = new JSONObject();
                 JSONObject profile = new JSONObject();
@@ -396,6 +394,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
                 case (0):
                     message = R.string.user_updated;
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
+                    /* This finish the activity and return to the previous screen */
                     finish();
                     break;
                 case (1):

@@ -87,6 +87,14 @@
                 android:text="Av. Principal de los Ruices, Edif. Betania, piso 3, Apto 3A. Caracas,Venezula."/>
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/profile_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+
     </RelativeLayout>
 
     <LinearLayout
