@@ -108,4 +108,5 @@
     <string name="email_password_invalid">Correo y/o contraseña inválidos.</string>
     <string name="address_invalid">Esta direccion es invalida porque deberia tener al menos 8 caracteres y 128 caracteres maximo.</string>
     <string name="user_updated">¡Usuario Actualizado!</string>
+    <string name="data_updated">Datos actualizados</string>
 </resources>

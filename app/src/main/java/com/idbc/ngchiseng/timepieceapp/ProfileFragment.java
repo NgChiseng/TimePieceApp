@@ -233,6 +233,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     if (response.getStatus() == HttpURLConnection.HTTP_OK) {
                         Log.w("El response status fue", String.valueOf(response.getStatus()));
                         response_body = response.getBody();
+                        Log.d("La url de imagen es", response_body.getString("image_profile"));
                         response_body.put("status",0);
                     } else {
                         response_body.put("status",1);
@@ -255,11 +256,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(JSONObject response) {
             //Log.d("RESPONSE POST",String.valueOf(response.getInt("status")));
-
+            Log.d("Estoy en el:", "onPostExecute");
+            Log.w("RESPONSE", response.toString());
             try {
                 if (response.getInt("status") == 0) {
-                    String name_obtained = response.getString("first_name");
-                    String email_obtained = response.getString("email");
+
+                    JSONObject userFkObject = response.getJSONObject("user_fk");
+                    String name_obtained = userFkObject.getString("first_name");
+                    String email_obtained = userFkObject.getString("email");
                     String phone_obtained = response.getString("phone");
                     String address_obtained = response.getString("address");
                     String image_obtained = response.getString("image_profile");
@@ -275,7 +279,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     editor.putString("address", address_obtained);
                     editor.putString("image", image_obtained);
                     editor.apply();
-
+                    Toast.makeText(getContext(), R.string.data_updated, Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(getContext(), R.string.connection_error, Toast.LENGTH_SHORT).show();
                 }
