@@ -135,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         protected Integer doInBackground(String... strings) {
             URL url;
             HttpURLConnection urlConnection;
-            Integer result = -1;
+            Integer result = 0;
             try {
                 /* Note: Change the url for the deployment */
                 url = new URL("http://192.168.1.110:8000/profiles/");
@@ -209,7 +209,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     break;
             }
             progressBar.setVisibility(View.GONE);
-            //finish();
+            Intent intentSignUp = new Intent(getBaseContext(), LoginActivity.class);
+            intentSignUp.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentSignUp);
+            finish();
         }
     }
 
