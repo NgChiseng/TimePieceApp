@@ -149,7 +149,8 @@
                 android:layout_height="45dp"
                 android:background="@color/barWhite"
                 android:layout_below="@+id/payment_card_country"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:text="$178"/>
 
             <Button
                 android:id="@+id/payment_card_btn"

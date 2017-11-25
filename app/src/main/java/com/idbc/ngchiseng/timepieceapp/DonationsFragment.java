@@ -61,7 +61,7 @@ public class DonationsFragment extends Fragment {
                 "Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, " +
                 "lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim " +
                 "erat, vitae malesuada nisl.";
-        data.add(new Announce(R.drawable.first_item, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, "A", "59", requiredWord ));
+        data.add(new Announce(R.drawable.ninos_cocina_aprender, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, description, "59", requiredWord ));
 
 
 

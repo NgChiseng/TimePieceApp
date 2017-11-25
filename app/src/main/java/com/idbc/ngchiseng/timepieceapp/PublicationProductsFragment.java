@@ -61,7 +61,7 @@ public class PublicationProductsFragment extends Fragment {
                 "sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie" +
                 " tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel " +
                 "dignissim erat, vitae malesuada nisl.";
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "Coordinar envío con el vendedor" , "$", "44", "Unidad", description, "24-03-2017", "24-03-2017"));
+        data.add(new Announce(R.drawable.zapatos_punta_negra, "Zapatos punta negra", "Coordinar envío con el vendedor" , "$", "44", "Unidad", description, "24-03-2017", "24-03-2017"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.

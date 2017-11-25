@@ -65,7 +65,7 @@ public class SalesProcessFragment extends Fragment {
                 "sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie" +
                 " tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel " +
                 "dignissim erat, vitae malesuada nisl.";
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar con el vendedor", "$", "88", "Unidad", description, "2", "Producto", "24-05-2017"));
+        data.add(new Announce(R.drawable.zapatos_punta_negra, "Zapatos punta negra", "José García", "Coordinar con el vendedor", "$", "88", "Unidad", description, "2", "Producto", "24-05-2017"));
         data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Carlos Lopez", "Altamira, Caracas", "$", "25", "Persona", description, "1", "Servicio", "15-06-2017"));
         data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$", "126", "hrs", description, "3", "Servicio", "13-07-2017"));
         data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carlos Lopez", "A domicilio", "$", "100", "hrs", description, "4", "Servicio", "11-07-2010"));

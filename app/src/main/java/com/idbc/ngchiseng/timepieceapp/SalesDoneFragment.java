@@ -67,7 +67,7 @@ public class SalesDoneFragment extends Fragment {
                 "dignissim erat, vitae malesuada nisl.";
         data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$", "126", "hrs", description, "3", "Servicio", "13-07-2017", "14-07-2017"));
         data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carlos Lopez", "A domicilio", "$", "100", "hrs", description, "4", "Servicio", "11-07-2010", "26-07-2010"));
-        data.add(new Announce(R.drawable.fourth_item, "Zapatos punta negra", "José García", "Coordinar con el vendedor", "$", "88", "Unidad", description, "2", "Producto", "24-05-2017", "30-07-2018"));
+        data.add(new Announce(R.drawable.zapatos_punta_negra, "Zapatos punta negra", "José García", "Coordinar con el vendedor", "$", "88", "Unidad", description, "2", "Producto", "24-05-2017", "30-07-2018"));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.

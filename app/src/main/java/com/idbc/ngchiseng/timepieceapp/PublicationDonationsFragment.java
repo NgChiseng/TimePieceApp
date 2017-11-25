@@ -66,7 +66,7 @@ public class PublicationDonationsFragment extends Fragment {
                 "Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, " +
                 "lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim " +
                 "erat, vitae malesuada nisl.";
-        data.add(new Announce(R.drawable.first_item, "Clases de cocina para niños de la comunidad la Sierra", "24-03-2017", "24-03-2017", "$", "44", "230", description));
+        data.add(new Announce(R.drawable.ninos_cocina_aprender, "Clases de cocina para niños de la comunidad la Sierra", "24-03-2017", "24-03-2017", "$", "44", "230", description));
 
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
