@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -13,14 +14,27 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -36,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private RelativeLayout mainProducts,mainServices,mainDonations;
     private ImageView shoppingBag;
     private TextView productsAnnounces,servicesAnnounces,donationsAnnounces;
+    private ProgressBar progressBar;
     /*--------------------------------------------------------------------------------------------*/
     private SharedPreferences pref_session;
 
@@ -120,22 +135,25 @@ public class MainActivity extends AppCompatActivity
                 productsAnnounces = (TextView) findViewById(R.id.main_products_announces);
                 servicesAnnounces = (TextView) findViewById(R.id.main_services_announces);
                 donationsAnnounces = (TextView) findViewById(R.id.main_donations_announces);
-
+                progressBar = (ProgressBar) findViewById(R.id.main_progressBar);
                 /* This will put the value corresponding to the number of announce that will result of
                 the query on the API.
-                */
+
                 Resources res = getResources();
-                String text = String.format(res.getString(R.string.main_announces), 1);
+                String text = String.format(res.getString(R.string.main_announces), 0);
                 productsAnnounces.setText(text);
-                text = String.format(res.getString(R.string.main_announces), 3);
+                text = String.format(res.getString(R.string.main_announces), 0);
                 servicesAnnounces.setText(text);
-                text = String.format(res.getString(R.string.main_announces), 1);
-                donationsAnnounces.setText(text);
+                text = String.format(res.getString(R.string.main_announces), 0);
+                donationsAnnounces.setText(text);*/
 
                 mainProducts.setOnClickListener(this);
                 mainServices.setOnClickListener(this);
                 mainDonations.setOnClickListener(this);
                 shoppingBag.setOnClickListener(this);
+
+                AttemptMain attemptMain = new AttemptMain();
+                attemptMain.execute("","");
             } else {
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -370,5 +388,124 @@ public class MainActivity extends AppCompatActivity
           */
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, detailFragment).addToBackStack(null).commit();
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+    /* Class that will be used for send Log In's data to the server's API and process the response.
+    It is made in a AsyncTask because this type of process need run in secondary threads for not to
+    saturate the main thread, its params mean <Params, Progress Units, Results>
+     */
+    public class AttemptMain extends AsyncTask<String, Integer, Integer> {
+
+        /* Method that is initialized in the main thread before entering the execution of the
+        secondary thread
+            @date[31/08/2017]
+            @author[ChiSeng Ng]
+            @param [Void]
+            @return [void]
+        */
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        /* Method that is initialized in the secondary thread, and will communicate with the
+        TimePiece API and manage this connection. In this function is to send validated Log In's
+        data to the server's API and process the response. Returns an integer value ([-1..1):
+        * -1, if an error occurred during the communication.
+        * 0, if everything went OK (redirecting to MainActivity and updating SharedPreferences afterwards).
+        * 1, if the credentials provided aren't valid.
+            @date[31/08/2017]
+            @author[ChiSeng Ng]
+            @param [String...] strings All the string that entered like params.
+            @return [Integer] Represent the result of the connection operation.
+        */
+        @Override
+        protected Integer doInBackground(String... strings) {
+
+            Integer result = 0;
+            try {
+                // Defining and initializing server's communication's variables
+                String credentials = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(strings[0], "UTF-8");
+                credentials += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(strings[1], "UTF-8");
+
+                URL url = new URL("http://192.168.1.110:8000/api-login/");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoOutput(true);
+                connection.setRequestMethod("POST");
+                connection.setConnectTimeout(2000);
+
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(credentials);
+                writer.flush();
+                /* This get the JSON object from the response urlConnection and save it the
+                "response" variable. In this case the true value is because the value received is a
+                JSON object, if received a JSON array object then is false.
+                */
+                APIResponse response = JSONResponseController.getJsonResponse(connection,true);
+
+                if (response != null){
+
+                    if (response.getStatus()==HttpURLConnection.HTTP_OK) {
+                        JSONObject response_body = response.getBody();
+                        Log.d("OK", "OK");
+                        return 0;
+
+                    } else if (response.getStatus() == HttpURLConnection.HTTP_BAD_REQUEST) {
+                        Log.d("BAD", "BAD");
+                        result = 1;
+                    } else {
+                        Log.d("NOT", "FOUND");
+                        result = -1;
+                    }
+                }
+
+            } catch (MalformedURLException e) {
+                return result;
+            } catch (IOException e) {
+                return result;
+            } catch (JSONException e) {
+                return result;
+            }
+            return result;
+        }
+
+        /* Method that is initialized after the secondary thread finish it execution, and will
+        process the doInBackground() method results.
+            @date[01/09/2017]
+            @author[ChiSeng Ng]
+            @param [Integer] anInt Results passed from doInBackground() method.
+            @return [Void]
+        */
+        @Override
+        protected void onPostExecute(Integer anInt) {
+            switch (anInt) {
+                case (-1):
+                    Toast.makeText(getBaseContext(), R.string.connection_error, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case (0):
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    /*Toast.makeText(getBaseContext(), R.string.welcome, Toast.LENGTH_SHORT).show();
+                    /* This will put the value corresponding to the number of announce that will result of
+                the query on the API.
+                */
+                    Resources res = getResources();
+                    String text = String.format(res.getString(R.string.main_announces), 1);
+                    productsAnnounces.setText(text);
+                    text = String.format(res.getString(R.string.main_announces), 3);
+                    servicesAnnounces.setText(text);
+                    text = String.format(res.getString(R.string.main_announces), 1);
+                    donationsAnnounces.setText(text);
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case (1):
+                    Toast.makeText(getBaseContext(), R.string.email_password_invalid, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

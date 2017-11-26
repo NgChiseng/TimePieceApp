@@ -10,18 +10,31 @@
 
     <include layout="@layout/my_custom_back_toolbar" />
 
-    <ListView
-        android:id="@+id/shopping_list"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/White"
-        android:divider="@color/White"
-        android:dividerHeight="7dp"
-        android:padding="8dp"
-        android:scrollbarStyle="outsideOverlay">
+        android:layout_weight="1">
 
-    </ListView>
+        <ListView
+            android:id="@+id/shopping_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/White"
+            android:divider="@color/White"
+            android:dividerHeight="7dp"
+            android:padding="8dp"
+            android:scrollbarStyle="outsideOverlay">
+        </ListView>
+
+        <ProgressBar
+            android:id="@+id/shopping_bag_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/shopping_total"

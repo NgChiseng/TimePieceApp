@@ -140,9 +140,9 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
             */
             if (TextUtils.isEmpty(name)) {
                 Toast.makeText(v.getContext(), R.string.name_invalid, Toast.LENGTH_SHORT).show();
-            } else if (!(isValidPassword(password))) {
+            } /*else if (!(isValidPassword(password))) {
                 Toast.makeText(v.getContext(), R.string.password_invalid, Toast.LENGTH_SHORT).show();
-            } else if (!(isValidEmail(email))) {
+            }*/ else if (!(isValidEmail(email))) {
                 Toast.makeText(v.getContext(), R.string.email_invalid, Toast.LENGTH_LONG).show();
             } else if (!(isValidPhone(phone))) {
                 Toast.makeText(v.getContext(), R.string.phone_invalid, Toast.LENGTH_SHORT).show();
@@ -323,7 +323,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
         protected Integer doInBackground(String... strings) {
             URL url;
             HttpURLConnection urlConnection;
-            Integer result = -1;
+            Integer result = 0;
 
             try {
 
@@ -333,6 +333,7 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("PUT");
+                urlConnection.setConnectTimeout(2000);
 
                 JSONObject user = new JSONObject();
                 JSONObject profile = new JSONObject();
@@ -395,6 +396,11 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
                     message = R.string.user_updated;
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
                     /* This finish the activity and return to the previous screen */
+                    SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
+                    editor.putString("address","Caracas, Venezuela");
+                    editor.apply();
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
                     finish();
                     break;
                 case (1):

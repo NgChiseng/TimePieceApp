@@ -43,7 +43,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     SharedPreferences pref_session;
     int id;
     String name, email, phone, address;
-
+    View profileView;
+    FitChart fitChart;
+    List<FitChartValue> values;
     /*  Method that will onCreate the fragment, inflate its View, link its component, and will return
     the render to the main Activity.
         @date[29/06/2017]
@@ -57,7 +59,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View profileView = inflater.inflate(R.layout.fragment_profile, container, false);
+        profileView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         profileName = (TextView) profileView.findViewById(R.id.profile_name);
         profileEmail = (TextView) profileView.findViewById(R.id.profile_email);
@@ -84,84 +86,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         GetUserInfo profileInfo = new GetUserInfo();
         profileInfo.execute();
 
-        /* This will obtain the rest of the session SharedPreference value after called the
-        GetUserInfo class.
-         */
-        name = pref_session.getString("first_name", null);
-        email = pref_session.getString("email", null);
-        phone = pref_session.getString("phone", null);
-        address = pref_session.getString("address", null);
-        final String image = pref_session.getString("image", null);
-
-        /* This will handler each value of the session SharedPreference with the screen component
-        corresponding.
-        */
-        profileName.setText(name);
-        profileEmail.setText(email);
-        profilePhone.setText(phone);
-        profileAddress.setText(address);
-        if (image != null) {
-            Uri photo = Uri.parse(image);
-            Picasso.with(getContext()).load(photo).into(profileImage);
-        }
-
-        /*  This will obtain and set the values are going to show in the profile */
-        numberAnnounces = 40;
-        numberDonations = 6;
-        numberPurchases = 2;
-        numberTotal = numberAnnounces + numberDonations + numberPurchases;
-
-        /* This will set the corresponding values to show on the profile screen */
-        profileAnnounces.setText(Integer.toString(numberAnnounces));
-        profileDonations.setText(Integer.toString(numberDonations));
-        profilePurchases.setText(Integer.toString(numberPurchases));
-        profileTotal.setText(Integer.toString(numberTotal));
-
-        /* This will create the list array that is going to save each profile data that wil show on
-         the screen. This function is implemented using a fitChart library:
-         @reference https://github.com/javiersantos/FitChart
-        */
-        List<FitChartValue> values = new ArrayList<>();
-
-        /* This will order each value from highest to lowest in the array list */
-        if (numberAnnounces >= numberDonations){
-            if (numberAnnounces >= numberPurchases){
-                values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
-                if (numberDonations >= numberPurchases){
-                    values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
-                    values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
-                } else {
-                    values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
-                    values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
-                }
-            } else {
-                values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
-                values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
-                values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
-            }
-        } else {
-            if (numberDonations >= numberPurchases){
-                values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
-                if (numberAnnounces >= numberPurchases){
-                    values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
-                    values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
-                } else {
-                    values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
-                    values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
-                }
-            } else {
-                values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
-                values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
-                values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
-            }
-        }
-        /* This will handler the fitChart and will declare the min value like 0 percent, will set
-        the max or total value and will set the corresponding values in the fitChart.
-         */
-        final FitChart fitChart = (FitChart) profileView.findViewById(R.id.profile_fitChart);
-        fitChart.setMinValue(0);
-        fitChart.setMaxValue(numberTotal);
-        fitChart.setValues(values);
+        values = new ArrayList<>();
+        fitChart = (FitChart) profileView.findViewById(R.id.profile_fitChart);
 
         profileEdit.setOnClickListener(this);
         profileRating.setOnClickListener(this);
@@ -224,7 +150,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             try {
                 url = new URL("http://192.168.1.110:8000/profiles/"+id);
                 urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setConnectTimeout(10000);
+                urlConnection.setConnectTimeout(3000);
 
                 APIResponse response = JSONResponseController.getJsonResponse(urlConnection,true);
 
@@ -281,7 +207,84 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     editor.apply();
                     Toast.makeText(getContext(), R.string.data_updated, Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(getContext(), R.string.connection_error, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), R.string.connection_error, Toast.LENGTH_SHORT).show();
+                    /* This will obtain the rest of the session SharedPreference value after called the
+                    GetUserInfo class.
+                    */
+                    name = pref_session.getString("first_name", null);
+                    email = pref_session.getString("email", null);
+                    phone = pref_session.getString("phone", null);
+                    address = pref_session.getString("address", null);
+                    final String image = pref_session.getString("image", null);
+
+                    /* This will handler each value of the session SharedPreference with the screen component
+                    corresponding.
+                    */
+                    profileName.setText(name);
+                    profileEmail.setText(email);
+                    profilePhone.setText(phone);
+                    profileAddress.setText(address);
+                    if (image != null) {
+                        Uri photo = Uri.parse(image);
+                        Picasso.with(getContext()).load(photo).into(profileImage);
+                    }
+
+                    /*  This will obtain and set the values are going to show in the profile */
+                    numberAnnounces = pref_session.getInt("announces", 0);
+                    numberDonations = pref_session.getInt("donations", 0);
+                    numberPurchases = pref_session.getInt("purchases", 0);
+                    numberTotal = numberAnnounces + numberDonations + numberPurchases;
+
+                    /* This will set the corresponding values to show on the profile screen */
+                    profileAnnounces.setText(Integer.toString(numberAnnounces));
+                    profileDonations.setText(Integer.toString(numberDonations));
+                    profilePurchases.setText(Integer.toString(numberPurchases));
+                    profileTotal.setText(Integer.toString(numberTotal));
+
+                    /* This will create the list array that is going to save each profile data that wil show on
+                    the screen. This function is implemented using a fitChart library:
+                    @reference https://github.com/javiersantos/FitChart
+                    */
+
+                    /* This will order each value from highest to lowest in the array list */
+                    if (numberAnnounces >= numberDonations){
+                        if (numberAnnounces >= numberPurchases){
+                            values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
+                            if (numberDonations >= numberPurchases){
+                                values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
+                                values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
+                            } else {
+                                values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
+                                values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
+                            }
+                        } else {
+                            values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
+                            values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
+                            values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
+                        }
+                    } else {
+                        if (numberDonations >= numberPurchases){
+                            values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
+                            if (numberAnnounces >= numberPurchases){
+                                values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
+                                values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
+                            } else {
+                                values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
+                                values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
+                            }
+                        } else {
+                            values.add(new FitChartValue(numberPurchases, ContextCompat.getColor(getContext(), R.color.circle3)));
+                            values.add(new FitChartValue(numberDonations, ContextCompat.getColor(getContext(), R.color.circle2)));
+                            values.add(new FitChartValue(numberAnnounces, ContextCompat.getColor(getContext(), R.color.circle1)));
+                        }
+                    }
+
+                    /* This will handler the fitChart and will declare the min value like 0 percent, will set
+                    the max or total value and will set the corresponding values in the fitChart.*/
+                    fitChart.setMinValue(0);
+                    fitChart.setMaxValue(numberTotal);
+                    fitChart.setValues(values);
+                    Toast.makeText(getContext(), R.string.data_updated, Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

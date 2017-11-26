@@ -162,6 +162,14 @@
                 android:layout_below="@+id/payment_card_total"
                 android:text="@string/shopping_pay"/>
 
+            <ProgressBar
+                android:id="@+id/payment_progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"/>
+
         </RelativeLayout>
 
     </ScrollView>

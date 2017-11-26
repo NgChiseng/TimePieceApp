@@ -228,7 +228,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         @Override
         protected Integer doInBackground(String... strings) {
 
-            Integer result = -1;
+            Integer result = 0;
             try {
                 // Defining and initializing server's communication's variables
                 String credentials = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(strings[0], "UTF-8");
@@ -238,7 +238,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
-                connection.setConnectTimeout(10000);
+                connection.setConnectTimeout(2000);
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(credentials);
@@ -308,6 +308,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 case (0):
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     Toast.makeText(getBaseContext(), R.string.welcome, Toast.LENGTH_SHORT).show();
+                    /* This will create the session SharedPreferences with the data corresponding
+                        Note: Lack to analyze if is better to include its on TimePieceSharePreferences
+                        class.
+                        */
+                    SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
+                    editor.putBoolean("logged",true);
+                    editor.putInt("id",1);
+                    editor.putInt("announces", 0);
+                    editor.putInt("donations", 0);
+                    editor.putInt("purchases", 3);
+                    editor.putString("token","123456789");
+                    editor.putString("username","Francisco");
+                    editor.putString("email","francisco2017@gmail.com");
+                    editor.putString("first_name","Francisco");
+                    editor.putString("phone","04124567890");
+                    editor.putString("address","");
+                    editor.apply();
                     startActivity(intent);
                     finish();
                     progressBar.setVisibility(View.GONE);

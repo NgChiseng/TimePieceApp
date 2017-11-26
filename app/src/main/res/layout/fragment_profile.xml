@@ -43,8 +43,7 @@
                     android:ellipsize="end"
                     android:textColor="@color/barWhite"
                     android:textSize="25sp"
-                    fontPath="fonts/MyriadPro-SemiboldCond.otf"
-                    android:text="Carlos Lopez" />
+                    fontPath="fonts/MyriadPro-SemiboldCond.otf"/>
 
                 <ImageView
                     android:id="@+id/profile_edit"
@@ -64,8 +63,7 @@
                 android:paddingTop="2dp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="13sp"
-                android:text="clopez@gmail.com"/>
+                android:textSize="13sp"/>
 
             <TextView
                 android:id="@+id/profile_phone"
@@ -74,8 +72,7 @@
                 android:textColor="@color/barWhite"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="13sp"
-                android:text="04129876544"/>
+                android:textSize="13sp"/>
 
             <TextView
                 android:id="@+id/profile_address"
@@ -83,8 +80,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/barWhite"
                 android:ellipsize="end"
-                android:textSize="13sp"
-                android:text="Av. Principal de los Ruices, Edif. Betania, piso 3, Apto 3A. Caracas,Venezula."/>
+                android:textSize="13sp" />
         </LinearLayout>
 
         <ProgressBar

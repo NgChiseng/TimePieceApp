@@ -142,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setRequestMethod("POST");
-                urlConnection.setConnectTimeout(10000);
+                urlConnection.setConnectTimeout(4000);
 
                 JSONObject user = new JSONObject();
                 JSONObject profile = new JSONObject();
