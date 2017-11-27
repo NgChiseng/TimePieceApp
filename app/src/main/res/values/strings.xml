@@ -125,5 +125,6 @@
     <string name="address_invalid">This address is invalid because it should be at least 8 characters and 128 characters maximum.</string>
     <string name="user_updated">¡User Updated!</string>
     <string name="data_updated">Data updated</string>
+    <string name="payment_successful">Payment Successful</string>
 
 </resources>

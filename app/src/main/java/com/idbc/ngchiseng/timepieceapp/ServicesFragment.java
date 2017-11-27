@@ -1,16 +1,29 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 
@@ -18,6 +31,8 @@ public class ServicesFragment extends Fragment {
 
     /*  This will declare the variables that are going to use on the fragment. */
     private ListView listAnnounces;
+    private ProgressBar progressBar;
+    ArrayList<Announce> data;
 
     /* Declaration of the interface that will use to call and pass the detail data to the
     DetailFragment through the MainActivity.
@@ -38,17 +53,17 @@ public class ServicesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View servicesView = inflater.inflate(R.layout.fragment_services, container, false);
-
-        // Initialized ArrayList of Announces
-        ArrayList<Announce> data = new ArrayList<Announce>();
+        progressBar = (ProgressBar) servicesView.findViewById(R.id.service_progressBar);
+        /* Initialized ArrayList of Announces*/
+        data = new ArrayList<Announce>();
 
         /*  This block will obtain and add the date corresponding to each Announce object on the
         ArrayList of Announces.
-         */
+
         data.add(new Announce(R.drawable.first_item, "Clases de Cocina", "Carlos Lopez", "Altamira,Caracas", "$", "25", "Persona", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
         data.add(new Announce(R.drawable.second_item, "El mejor servicio de plomeria", "Francisco Javier Rodriguez", "A domicilio", "$", "42", "hr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
         data.add(new Announce(R.drawable.third_item, "Clases de guitarra acustica", "Carlos Lopez", "A domicilio", "$", "25", "hr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
-
+        */
         /*  This will handler the ArrayList of Announces and the data inside its with the screen list
         and components o widgets, using the AnnouncesAdapter.
          */
@@ -91,7 +106,8 @@ public class ServicesFragment extends Fragment {
                 servicesInterface.onServicesFragmentInteraction(selected);
             }
         });
-
+        AttemptServices attemptServices = new AttemptServices();
+        attemptServices.execute("","");
         return servicesView;
     }
 
@@ -124,5 +140,118 @@ public class ServicesFragment extends Fragment {
      */
     public interface OnServicesFragmentInteractionListener {
         void onServicesFragmentInteraction(Announce announce);
+    }
+
+    /*--------------------------------------------------------------------------------------------*/
+    /* Class that will be used for send Log In's data to the server's API and process the response.
+    It is made in a AsyncTask because this type of process need run in secondary threads for not to
+    saturate the main thread, its params mean <Params, Progress Units, Results>
+     */
+    public class AttemptServices extends AsyncTask<String, Integer, Integer> {
+
+        /* Method that is initialized in the main thread before entering the execution of the
+        secondary thread
+            @date[31/08/2017]
+            @author[ChiSeng Ng]
+            @param [Void]
+            @return [void]
+        */
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        /* Method that is initialized in the secondary thread, and will communicate with the
+        TimePiece API and manage this connection. In this function is to send validated Log In's
+        data to the server's API and process the response. Returns an integer value ([-1..1):
+        * -1, if an error occurred during the communication.
+        * 0, if everything went OK (redirecting to MainActivity and updating SharedPreferences afterwards).
+        * 1, if the credentials provided aren't valid.
+            @date[31/08/2017]
+            @author[ChiSeng Ng]
+            @param [String...] strings All the string that entered like params.
+            @return [Integer] Represent the result of the connection operation.
+        */
+        @Override
+        protected Integer doInBackground(String... strings) {
+
+            Integer result = 0;
+            try {
+                // Defining and initializing server's communication's variables
+                String credentials = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(strings[0], "UTF-8");
+                credentials += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(strings[1], "UTF-8");
+
+                URL url = new URL("http://192.168.1.110:8000/api-login/");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoOutput(true);
+                connection.setRequestMethod("POST");
+                connection.setConnectTimeout(2000);
+
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(credentials);
+                writer.flush();
+                /* This get the JSON object from the response urlConnection and save it the
+                "response" variable. In this case the true value is because the value received is a
+                JSON object, if received a JSON array object then is false.
+                */
+                APIResponse response = JSONResponseController.getJsonResponse(connection,true);
+
+                if (response != null){
+
+                    if (response.getStatus()==HttpURLConnection.HTTP_OK) {
+                        JSONObject response_body = response.getBody();
+                        Log.d("OK", "OK");
+                        return 0;
+
+                    } else if (response.getStatus() == HttpURLConnection.HTTP_BAD_REQUEST) {
+                        Log.d("BAD", "BAD");
+                        result = 1;
+                    } else {
+                        Log.d("NOT", "FOUND");
+                        result = -1;
+                    }
+                }
+
+            } catch (MalformedURLException e) {
+                return result;
+            } catch (IOException e) {
+                return result;
+            } catch (JSONException e) {
+                return result;
+            }
+            return result;
+        }
+
+        /* Method that is initialized after the secondary thread finish it execution, and will
+        process the doInBackground() method results.
+            @date[01/09/2017]
+            @author[ChiSeng Ng]
+            @param [Integer] anInt Results passed from doInBackground() method.
+            @return [Void]
+        */
+        @Override
+        protected void onPostExecute(Integer anInt) {
+            switch (anInt) {
+                case (-1):
+                    Toast.makeText(getContext(), R.string.connection_error, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case (0):
+                    /*  This block will obtain and add the date corresponding to each Announce object on the
+                    ArrayList of Announces.*/
+
+                    data.add(new Announce(R.drawable.limpieza, "Limpieza domestica", "Luisa Suarez", "A domicilio", "$", "10", "Hora", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
+                    data.add(new Announce(R.drawable.electricista, "Chequeo y Reparaciones Electricas", "Chiseng Ng Yu", "A domicilio", "$", "50", "Visita", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed venenatis odio. Quisque suscipit ligula a risus pharetra dapibus. Nunc sit amet neque odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim erat, vitae malesuada nisl." ));
+                    listAnnounces.deferNotifyDataSetChanged();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                case (1):
+                    Toast.makeText(getContext(), R.string.email_password_invalid, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

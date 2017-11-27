@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     private ProgressBar progressBar;
     /*--------------------------------------------------------------------------------------------*/
     private SharedPreferences pref_session;
+    private SharedPreferences pref_others;
 
     /*  This will declare the fragment manager variable for the fragments invocations. */
     FragmentManager mFragmentManager;
@@ -433,7 +434,7 @@ public class MainActivity extends AppCompatActivity
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
-                connection.setConnectTimeout(2000);
+                connection.setConnectTimeout(800);
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(credentials);
@@ -491,12 +492,19 @@ public class MainActivity extends AppCompatActivity
                 the query on the API.
                 */
                     Resources res = getResources();
-                    String text = String.format(res.getString(R.string.main_announces), 1);
+                    String text = String.format(res.getString(R.string.main_announces), 3);
                     productsAnnounces.setText(text);
-                    text = String.format(res.getString(R.string.main_announces), 3);
+                    text = String.format(res.getString(R.string.main_announces), 2);
                     servicesAnnounces.setText(text);
-                    text = String.format(res.getString(R.string.main_announces), 1);
-                    donationsAnnounces.setText(text);
+                    pref_others = getSharedPreferences("others", 0);
+                    boolean created = pref_others.getBoolean("donation_created", false);
+                    if (created) {
+                        text = String.format(res.getString(R.string.main_announces), 1);
+                        donationsAnnounces.setText(text);
+                    } else {
+                        text = String.format(res.getString(R.string.main_announces), 0);
+                        donationsAnnounces.setText(text);
+                    }
                     progressBar.setVisibility(View.GONE);
                     break;
                 case (1):

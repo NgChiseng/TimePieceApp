@@ -187,6 +187,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case (R.id.login_fb):
+                SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
+                editor.putBoolean("logged",true);
+                editor.putInt("id", 2);
+                editor.putInt("announces", 0);
+                editor.putInt("donations", 0);
+                editor.putInt("purchases", 3);
+                editor.putString("token","123456789");
+                editor.putString("username","Chiseng Ng Yu");
+                editor.putString("email","ngyu1101@hotmail.com");
+                editor.putString("first_name","Chiseng");
+                editor.putString("phone","04125634975");
+                editor.putString("address","Caracas, Venezuela");
+                editor.apply();
                 loginButtonFb.performClick();
                 break;
 
