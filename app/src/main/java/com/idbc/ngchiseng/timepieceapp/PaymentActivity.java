@@ -1,9 +1,11 @@
 package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -221,10 +223,19 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                     break;
                 case (0):
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getBaseContext(), R.string.payment_successful, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    //Toast.makeText(getBaseContext(), R.string.payment_successful, Toast.LENGTH_SHORT).show();
+                    // Declaration of the alert dialog
+                    AlertDialog.Builder publicationSelector = new AlertDialog.Builder(PaymentActivity.this,R.style.ListAlertDialogStyle);
+                    publicationSelector.setMessage(R.string.payment_successful);
+                    publicationSelector.setPositiveButton(R.string.finalize, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    publicationSelector.show();
                     break;
                 case (1):
                     Toast.makeText(getBaseContext(), R.string.email_password_invalid, Toast.LENGTH_SHORT).show();

@@ -190,9 +190,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
                 editor.putBoolean("logged",true);
                 editor.putInt("id", 2);
-                editor.putInt("announces", 0);
+                editor.putInt("announces", 4);
                 editor.putInt("donations", 0);
-                editor.putInt("purchases", 3);
+                editor.putInt("purchases", 2);
                 editor.putString("token","123456789");
                 editor.putString("username","Chiseng Ng Yu");
                 editor.putString("email","ngyu1101@hotmail.com");
@@ -200,6 +200,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 editor.putString("phone","04125634975");
                 editor.putString("address","Caracas, Venezuela");
                 editor.apply();
+                progressBar.setVisibility(View.VISIBLE);
                 loginButtonFb.performClick();
                 break;
 
@@ -332,11 +333,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     editor.putInt("donations", 0);
                     editor.putInt("purchases", 3);
                     editor.putString("token","123456789");
-                    editor.putString("username","Francisco");
-                    editor.putString("email","francisco2017@gmail.com");
-                    editor.putString("first_name","Francisco");
-                    editor.putString("phone","04124567890");
-                    editor.putString("address","");
                     editor.apply();
                     startActivity(intent);
                     finish();

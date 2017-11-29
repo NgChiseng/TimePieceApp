@@ -211,7 +211,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     /* This will obtain the rest of the session SharedPreference value after called the
                     GetUserInfo class.
                     */
-                    name = pref_session.getString("first_name", null);
+                    name = pref_session.getString("username", null);
                     email = pref_session.getString("email", null);
                     phone = pref_session.getString("phone", null);
                     address = pref_session.getString("address", null);
@@ -224,9 +224,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     profileEmail.setText(email);
                     profilePhone.setText(phone);
                     profileAddress.setText(address);
-                    if (image != null) {
-                        Uri photo = Uri.parse(image);
-                        Picasso.with(getContext()).load(photo).into(profileImage);
+                    if (image == "1") {
+                        //Uri photo = Uri.parse(image);
+                        //Picasso.with(getContext()).load(photo).into(profileImage);
+                        profileImage.setImageResource(R.drawable.francisco4);
+                    } else if (pref_session.getInt("id", 0) == 2){
+                        profileImage.setImageResource(R.drawable.chi);
                     }
 
                     /*  This will obtain and set the values are going to show in the profile */

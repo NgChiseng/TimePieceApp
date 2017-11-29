@@ -2,6 +2,7 @@ package com.idbc.ngchiseng.timepieceapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -197,6 +198,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
                     break;
                 case (0):
+                    SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
+                    editor.putString("username", nameField.getText().toString());
+                    editor.putString("email", emailField.getText().toString());
+                    editor.putString("first_name", nameField.getText().toString());
+                    editor.putString("phone",phoneField.getText().toString());
+                    editor.putString("address","");
+                    editor.apply();
                     message = R.string.user_created;
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
                     finish();

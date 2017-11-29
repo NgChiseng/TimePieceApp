@@ -269,7 +269,8 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         assert thumbnail != null;
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        profileImage.setImageBitmap(thumbnail);
+        //profileImage.setImageBitmap(thumbnail);
+        profileImage.setImageResource(R.drawable.francisco4);
     }
 
     /*  Method that receive the photo encoded into the data intent as a small Bitmap in extras,
@@ -393,15 +394,29 @@ public class ProfileEditActivity extends AppCompatActivity implements View.OnCli
                     Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
                     break;
                 case (0):
-                    message = R.string.user_updated;
-                    Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
+                    //message = R.string.user_updated;
+                    //Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG).show();
                     /* This finish the activity and return to the previous screen */
                     SharedPreferences.Editor editor = getSharedPreferences("session", 0).edit();
-                    editor.putString("address","Caracas, Venezuela");
+                    editor.putString("image", "1");
+                    editor.putString("address", profileAddress.getText().toString());
                     editor.apply();
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    Log.d("Alert", "Antes");
+                    AlertDialog.Builder publicationSelector = new AlertDialog.Builder(ProfileEditActivity.this,R.style.ListAlertDialogStyle);
+                    Log.d("Alert", "Despues");
+                    publicationSelector.setMessage(R.string.user_updated);
+                    Log.d("Alert", "mensaje");
+                    publicationSelector.setPositiveButton(R.string.finalize, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.d("Alert", "click");
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    publicationSelector.show();
+                    /**/
                     break;
                 case (1):
                     message = R.string.email_invalid;
