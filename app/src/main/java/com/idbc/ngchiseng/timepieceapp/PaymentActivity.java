@@ -170,7 +170,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
-                connection.setConnectTimeout(2000);
+                connection.setConnectTimeout(2500);
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(credentials);

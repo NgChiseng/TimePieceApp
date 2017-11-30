@@ -252,7 +252,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
-                connection.setConnectTimeout(2000);
+                connection.setConnectTimeout(1700);
 
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(credentials);

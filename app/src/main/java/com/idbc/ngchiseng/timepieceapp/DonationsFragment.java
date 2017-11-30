@@ -246,7 +246,7 @@ public class DonationsFragment extends Fragment {
                 case (0):
                     /*  This block will obtain and add the date corresponding to each Announce object on the
                     ArrayList of Announces.
-                    */
+
                     String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget " +
                             "nunc finibus, vehicula felis ac, pulvinar eros. Sed lobortis eu metus eu tristique. " +
                             "Nam nec justo ut velit accumsan laoreet. Fusce ut leo vitae metus porta tempor sed " +
@@ -255,11 +255,11 @@ public class DonationsFragment extends Fragment {
                             "cubilia Curae; Nunc ut vulputate ante, vitae rutrum nisi. Duis sed metus sapien. " +
                             "Aenean gravida ac metus accumsan consequat. Ut laoreet, sapien sed molestie tempus, " +
                             "lacus justo gravida felis, eget sagittis arcu est non dolor. Aenean vel dignissim " +
-                            "erat, vitae malesuada nisl.";
+                            "erat, vitae malesuada nisl.";*/
                     pref_others = getActivity().getSharedPreferences("others", 0);
                     boolean created = pref_others.getBoolean("donation_created", false);
                     if (created) {
-                        data.add(new Announce(R.drawable.ninos_cocina_aprender, "Clases de cocina para niños de la comunidad la Sierra", "José García", "$", "44", collectedWord, description, "59", requiredWord));
+                        data.add(new Announce(R.drawable.idiomas, pref_others.getString("donation_title", null), "Chiseng Ng Yu", "$", "0" , collectedWord, pref_others.getString("donation_description", null), pref_others.getString("donation_required", null) , requiredWord));
                         listAnnounces.deferNotifyDataSetChanged();
                     }
                     progressBar.setVisibility(View.GONE);

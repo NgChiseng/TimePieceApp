@@ -224,7 +224,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     profileEmail.setText(email);
                     profilePhone.setText(phone);
                     profileAddress.setText(address);
-                    if (image == "1") {
+                    if (image == "1" & pref_session.getInt("id", 0) == 1) {
                         //Uri photo = Uri.parse(image);
                         //Picasso.with(getContext()).load(photo).into(profileImage);
                         profileImage.setImageResource(R.drawable.francisco4);
@@ -287,7 +287,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     fitChart.setMinValue(0);
                     fitChart.setMaxValue(numberTotal);
                     fitChart.setValues(values);
-                    Toast.makeText(getContext(), R.string.data_updated, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), R.string.data_updated, Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

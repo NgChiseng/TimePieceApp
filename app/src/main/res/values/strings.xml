@@ -128,5 +128,6 @@
     <string name="payment_successful">¡Payment Successful!</string>
     <string name="collected_in_shoppingbag">¡Collected in the Shopping Bag!</string>
     <string name="successful_confirmation">¡Successful confirmation!</string>
+    <string name="successful_creation">¡Successful Confirmation!</string>
 
 </resources>

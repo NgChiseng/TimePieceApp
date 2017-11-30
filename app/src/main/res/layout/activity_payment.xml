@@ -60,7 +60,7 @@
                 android:layout_below="@+id/payment_card_number"
                 android:layout_alignStart="@+id/payment_card_number"
                 android:layout_marginEnd="10dp"
-                android:inputType="date"
+                android:inputType="text"
                 android:imeOptions="actionNext"
                 android:hint="@string/credit_card_expiration"/>
 
